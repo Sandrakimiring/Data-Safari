@@ -110,20 +110,32 @@
             submitBtn.textContent = isSignUp ? "Sign Up" : "Login";
             toggleForm.textContent = isSignUp ? "Already have an account? Log in" : "Don't have an account? Sign up";
         });
-
-        authForm.addEventListener("submit", (e) => {
+        authForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const email = emailInput.value;
             const password = passwordInput.value;
-
-            if (isSignUp) {
-                signUp(email, password);
-            } else {
-                login(email, password);
+        
+            try {
+                if (isSignUp) {
+                    await signUp(email, password);
+                } else {
+                    await login(email, password);
+                }
+                
+                // Redirect to homepage after successful login
+                window.location.href = "homepage.html";
+            } catch (error) {
+                console.error("Authentication failed:", error);
+                alert("Login failed: " + error.message);
             }
         });
+        
 
+      
+        
         document.getElementById("google-login").addEventListener("click", googleLogin);
+    
+    
     </script>
 </body>
 </html>
