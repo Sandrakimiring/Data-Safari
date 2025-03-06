@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Data Safari</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Light/Dark Mode */
+        :root {
+            --body-bg: #b0b0b0;
+            --header-bg: linear-gradient(to right, #ffffff, #f7fafc);
+            --paper-bg: #ffffff;
+            --text-color: #2d3748;
+            --secondary-text: #718096;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --bar-bg: #e2e8f0;
+            --footer-bg: #e2e8f0;
+            --support-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --body-bg: #2d3748;
+            --header-bg: linear-gradient(to right, #4a5568, #2d3748);
+            --paper-bg: #4a5568;
+            --text-color: #e2e8f0;
+            --secondary-text: #a0aec0;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --bar-bg: #718096;
+            --footer-bg: #718096;
+            --support-bg: #4a5568;
+        }
+
+        /* General Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--body-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Header Styling */
+        .header-container {
+            background: var(--header-bg);
+            box-shadow: 0px 4px 12px var(--shadow);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 25px;
+            flex-wrap: wrap;
+        }
+
+        .logo-nav-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-container img {
+            width: 130px;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* User Profile Section */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: default;
+        }
+
+        .profile-pic {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #4a5568;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            margin-right: 12px;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .profile-name {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+        }
+
+        .dropdown-arrow {
+            margin-left: 6px;
+            font-size: 14px;
+            color: var(--secondary-text);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: var(--paper-bg);
+            box-shadow: 0px 6px 12px var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 160px;
+            z-index: 10;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: #edf2f7;
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: #718096;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            display: flex;
+            background: transparent;
+            padding: 10px 25px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        .nav-bar a:hover {
+            color: #3182ce;
+            border-bottom: 2px solid #3182ce;
+        }
+
+        .nav-bar .active {
+            color: #3182ce;
+            border-bottom: 2px solid #3182ce;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: #718096;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #5a667a;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .paper {
+            background: var(--paper-bg);
+            padding: 40px;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0px 6px 20px var(--shadow);
+        }
+
+        /* Welcome Message */
+        .welcome-message {
+            font-size: 26px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            letter-spacing: 0.5px;
+        }
+
+        /* Progress Bars */
+        .progress-bar-container {
+            background: var(--paper-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .progress-bar-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 15px var(--shadow);
+        }
+
+        .progress-bar-container:nth-child(1) { border-left: 4px solid #3182ce; }
+        .progress-bar-container:nth-child(2) { border-left: 4px solid #38a169; }
+        .progress-bar-container:nth-child(3) { border-left: 4px solid #805ad5; }
+        .progress-bar-container:nth-child(4) { border-left: 4px solid #dd6b20; }
+        .progress-bar-container:nth-child(5) { border-left: 4px solid #d53f8c; }
+        .progress-bar-container:nth-child(6) { border-left: 4px solid #00b5d8; }
+
+        .progress-title {
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            max-width: 250px;
+            height: 10px;
+            background: var(--bar-bg);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-bar-container:nth-child(1) .progress-fill { background: #3182ce; }
+        .progress-bar-container:nth-child(2) .progress-fill { background: #38a169; }
+        .progress-bar-container:nth-child(3) .progress-fill { background: #805ad5; }
+        .progress-bar-container:nth-child(4) .progress-fill { background: #dd6b20; }
+        .progress-bar-container:nth-child(5) .progress-fill { background: #d53f8c; }
+        .progress-bar-container:nth-child(6) .progress-fill { background: #00b5d8; }
+
+        .progress-percentage {
+            font-size: 14px;
+            color: var(--secondary-text);
+            margin-top: 6px;
+            text-align: right;
+            width: 100%;
+            max-width: 250px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Support Section */
+        .support-section {
+            padding: 30px 20px;
+            text-align: left;
+            background: var(--support-bg);
+            margin: 0 20px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px var(--shadow);
+        }
+
+        .support-text {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .support-button {
+            background: #3182ce;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .support-button:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--footer-bg);
+            padding: 15px 20px;
+            text-align: left;
+            color: var(--text-color);
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            box-shadow: 0px -2px 10px var(--shadow);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile-container {
+                margin-top: 10px;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .nav-bar a {
+                margin-right: 0;
+                font-size: 14px;
+            }
+
+            .theme-toggle {
+                margin-top: 15px;
+                align-self: flex-end;
+            }
+
+            .content {
+                padding: 30px 10px;
+            }
+
+            .paper {
+                padding: 20px;
+                width: 100%;
+            }
+
+            .welcome-message {
+                font-size: 20px;
+            }
+
+            .progress-title {
+                font-size: 16px;
+            }
+
+            .progress-bar, .progress-percentage {
+                max-width: 100%;
+            }
+
+            .support-section {
+                padding: 20px 15px;
+                margin: 0 10px 15px;
+            }
+
+            .support-text {
+                font-size: 14px;
+            }
+
+            .support-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .footer {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container img {
+                width: 100px;
+            }
+
+            .profile-pic {
+                width: 36px;
+                height: 36px;
+            }
+
+            .profile-name {
+                font-size: 14px;
+            }
+
+            .dropdown-arrow {
+                font-size: 12px;
+            }
+
+            .dropdown-menu {
+                width: 140px;
+            }
+
+            .dropdown-menu a {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header-container">
+        <div class="header">
+            <div class="logo-nav-container">
+                <div class="logo-container">
+                    <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
+                </div>
+            </div>
+            <div class="profile-container">
+                <div class="profile-pic">JD</div>
+                <span class="profile-name">John Doe</span>
+                <span class="dropdown-arrow">▾</span>
+                <div class="dropdown-menu">
+                    <a href="edit-profile.html">Edit My Profile</a>
+                    <a href="logout.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-links">
+                <a href="content.html" class="active">Content</a>
+                <a href="community.html">Community</a>
+                <a href="faqs.html">FAQs</a>
+                <a href="about.html">About Us</a>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="paper">
+            <div class="welcome-message">Welcome to Data Safari!</div>
+
+            <div class="progress-bar-container" onclick="window.location.href='intro.html'">
+                <div class="progress-title">Introduction to Data Science</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+                <div class="progress-percentage">85%</div>
+            </div>
+
+            <div class="progress-bar-container" onclick="window.location.href='data-analysis.html'">
+                <div class="progress-title">Data Analysis</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                <div class="progress-percentage">75%</div>
+            </div>
+
+            <div class="progress-bar-container" onclick="window.location.href='sql.html'">
+                <div class="progress-title">SQL Databases</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <div class="progress-percentage">60%</div>
+            </div>
+
+            <div class="progress-bar-container" onclick="window.location.href='visualization.html'">
+                <div class="progress-title">Data Visualization</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 45%;"></div>
+                </div>
+                <div class="progress-percentage">45%</div>
+            </div>
+
+            <div class="progress-bar-container" onclick="window.location.href='python.html'">
+                <div class="progress-title">Python for Data Science</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+                <div class="progress-percentage">70%</div>
+            </div>
+
+            <div class="progress-bar-container" onclick="window.location.href='ml.html'">
+                <div class="progress-title">Machine Learning</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 55%;"></div>
+                </div>
+                <div class="progress-percentage">55%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Section -->
+    <div class="support-section">
+        <div class="support-text">Do you need support? Click the button below to talk to us.</div>
+        <button class="support-button" onclick="window.location.href='support.html'">Support</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © Data Safari 2025
+    </div>
+
+    <script>
+        // Dropdown toggle
+        document.querySelector('.dropdown-arrow').addEventListener('click', function() {
+            const dropdown = document.querySelector('.dropdown-menu');
+            dropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function(event) {
+            const profileContainer = document.querySelector('.profile-container');
+            const dropdown = document.querySelector('.dropdown-menu');
+            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
+
+</body>
+</html>
