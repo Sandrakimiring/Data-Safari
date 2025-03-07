@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Learning Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-light: #f8f9fa;
+            --text-dark: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        
+        body.dark-mode {
+            --light-bg: #1a1a1a;
+            --text-dark: #f8f9fa;
+            --text-light: #f8f9fa;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .sidebar h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .sidebar ul li {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar ul li i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .sidebar ul li:hover, .sidebar ul li.active {
+            background: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .theme-switch {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .theme-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .theme-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .content {
+            margin-left: 280px;
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .header {
+            background: #2a2a2a;
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+        
+        body.dark-mode .content-section {
+            background: #2a2a2a;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-section h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .content-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .content-section a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .content-section a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .sql-box {
+            background: #eee;
+            padding: 10px;
+            border-left: 4px solid var(--primary-color);
+            font-family: monospace;
+            white-space: pre-wrap;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .sql-box {
+            background: #4a5568;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        .mark-complete-btn {
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            display: block;
+            margin-top: 20px;
+        }
+
+        .mark-complete-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1024px) {
+            .content-section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 240px;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--dark-bg);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            
+            .header {
+                margin-top: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-section {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .mark-complete-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <i class="fas fa-bars menu-toggle"></i>
+    
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <h2>SQL Learning</h2>
+            </div>
+        </div>
+        
+        <ul>
+            <li class="active" onclick="showContent('introduction')"><i class="fas fa-info-circle"></i> Introduction</li>
+            <li onclick="showContent('basic-commands')"><i class="fas fa-terminal"></i> Basic Commands</li>
+            <li onclick="showContent('advanced-queries')"><i class="fas fa-search"></i> Advanced Queries</li>
+            <li onclick="showContent('joins')"><i class="fas fa-link"></i> Joins</li>
+            <li onclick="showContent('indexes')"><i class="fas fa-tachometer-alt"></i> Indexes & Optimization</li>
+            <li onclick="showContent('applications')"><i class="fas fa-cogs"></i> Practical Applications</li>
+        </ul>
+        
+        <div class="theme-switch">
+            <button class="theme-btn" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="header">
+            <h1>SQL Learning Resources</h1>
+        </div>
+        
+        <div id="introduction" class="content-section active">
+            <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+            <h3>What is SQL?</h3>
+            <p>SQL (Structured Query Language) is a standard language designed for managing and manipulating data in relational databases. It allows users to store, retrieve, update, and delete data efficiently in systems like MySQL, PostgreSQL, SQLite, and SQL Server.</p>
+            
+            <h3>Why Learn SQL?</h3>
+            <p>SQL is a foundational skill for anyone working with data:</p>
+            <ul>
+                <li><strong>Data Analysis:</strong> Query databases to extract insights for decision-making.</li>
+                <li><strong>Database Management:</strong> Create and maintain structured data storage.</li>
+                <li><strong>Backend Development:</strong> Power web applications with dynamic data.</li>
+                <li><strong>Big Data:</strong> Process large datasets in tools like Hadoop or Spark SQL.</li>
+                <li><strong>Business Intelligence:</strong> Generate reports and dashboards.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>By mastering SQL, you’ll be able to:</p>
+            <ul>
+                <li>Design and manage relational databases.</li>
+                <li>Write queries to retrieve and analyze data.</li>
+                <li>Optimize database performance for large-scale applications.</li>
+                <li>Integrate SQL with programming languages like Python.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Start with these:</p>
+            <ul>
+                <li><a href="https://www.w3schools.com/sql/" target="_blank">W3Schools SQL Tutorial</a> - Beginner-friendly guide.</li>
+                <li><a href="https://www.youtube.com/watch?v=9Pzj7Aj25lw" target="_blank">SQL Basics Video</a> - YouTube tutorial.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('basic-commands')">Mark as Complete</button>
+        </div>
+        
+        <div id="basic-commands" class="content-section">
+            <h2><i class="fas fa-terminal"></i> Basic Commands</h2>
+            <h3>Overview</h3>
+            <p>Basic SQL commands allow you to create, modify, and query databases. Here are the essentials:</p>
+            
+            <h3>1. Creating a Table</h3>
+            <div class="sql-box">
+                CREATE TABLE students (
+                    id INT PRIMARY KEY,
+                    name VARCHAR(50),
+                    age INT,
+                    grade CHAR(1)
+                );
+            </div>
+            
+            <h3>2. Inserting Data</h3>
+            <div class="sql-box">
+                INSERT INTO students (id, name, age, grade)
+                VALUES (1, 'Alice', 20, 'A');
+            </div>
+            
+            <h3>3. Selecting Data</h3>
+            <div class="sql-box">
+                SELECT * FROM students;
+            </div>
+            
+            <h3>4. Updating Data</h3>
+            <div class="sql-box">
+                UPDATE students
+                SET grade = 'B'
+                WHERE name = 'Alice';
+            </div>
+            
+            <h3>5. Deleting Data</h3>
+            <div class="sql-box">
+                DELETE FROM students WHERE id = 1;
+            </div>
+            
+            <h3>Learning Outcomes</h3>
+            <p>After this section, you’ll be able to:</p>
+            <ul>
+                <li>Create and populate database tables.</li>
+                <li>Retrieve and modify data with basic queries.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Explore these:</p>
+            <ul>
+                <li><a href="https://www.sqlitetutorial.net/sqlite-create-table/" target="_blank">SQLite Tutorial</a> - Table creation.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('advanced-queries')">Mark as Complete</button>
+        </div>
+        
+        <div id="advanced-queries" class="content-section">
+            <h2><i class="fas fa-search"></i> Advanced Queries</h2>
+            <h3>Overview</h3>
+            <p>Advanced queries allow for more complex data retrieval and analysis:</p>
+            
+            <h3>1. Filtering with WHERE</h3>
+            <div class="sql-box">
+                SELECT name, age
+                FROM students
+                WHERE age > 18;
+            </div>
+            
+            <h3>2. Sorting with ORDER BY</h3>
+            <div class="sql-box">
+                SELECT * FROM students
+                ORDER BY age DESC;
+            </div>
+            
+            <h3>3. Aggregating with GROUP BY</h3>
+            <div class="sql-box">
+                SELECT grade, COUNT(*) as count
+                FROM students
+                GROUP BY grade;
+            </div>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll learn to:</p>
+            <ul>
+                <li>Filter and sort data effectively.</li>
+                <li>Perform aggregations like counts, averages, and sums.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Check these:</p>
+            <ul>
+                <li><a href="https://www.w3schools.com/sql/sql_where.asp" target="_blank">W3Schools WHERE Clause</a> - Filtering guide.</li>
+                <li><a href="https://www.youtube.com/watch?v=R2fQ5-PMju0" target="_blank">Advanced SQL Video</a> - YouTube tutorial.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('joins')">Mark as Complete</button>
+        </div>
+        
+        <div id="joins" class="content-section">
+            <h2><i class="fas fa-link"></i> Joins</h2>
+            <h3>What are Joins?</h3>
+            <p>Joins combine data from multiple tables based on related columns.</p>
+            
+            <h3>1. INNER JOIN</h3>
+            <div class="sql-box">
+                SELECT students.name, courses.course_name
+                FROM students
+                INNER JOIN courses ON students.id = courses.student_id;
+            </div>
+            
+            <h3>2. LEFT JOIN</h3>
+            <div class="sql-box">
+                SELECT students.name, courses.course_name
+                FROM students
+                LEFT JOIN courses ON students.id = courses.student_id;
+            </div>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Link tables to retrieve combined data.</li>
+                <li>Understand different join types (INNER, LEFT, RIGHT, FULL).</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Learn more:</p>
+            <ul>
+                <li><a href="https://www.w3schools.com/sql/sql_join.asp" target="_blank">W3Schools Joins</a> - Join types explained.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('indexes')">Mark as Complete</button>
+        </div>
+        
+        <div id="indexes" class="content-section">
+            <h2><i class="fas fa-tachometer-alt"></i> Indexes & Optimization</h2>
+            <h3>What are Indexes?</h3>
+            <p>Indexes improve query performance by allowing faster data retrieval.</p>
+            
+            <h3>Creating an Index</h3>
+            <div class="sql-box">
+                CREATE INDEX idx_name ON students(name);
+            </div>
+            
+            <h3>Optimization Tips</h3>
+            <ul>
+                <li>Use indexes on frequently queried columns.</li>
+                <li>Avoid over-indexing to reduce write overhead.</li>
+                <li>Analyze queries with EXPLAIN to identify bottlenecks.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll master:</p>
+            <ul>
+                <li>Creating and managing indexes.</li>
+                <li>Optimizing database performance.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Dive in:</p>
+            <ul>
+                <li><a href="https://www.sqlitetutorial.net/sqlite-index/" target="_blank">SQLite Index Tutorial</a> - Indexing guide.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('applications')">Mark as Complete</button>
+        </div>
+        
+        <div id="applications" class="content-section">
+            <h2><i class="fas fa-cogs"></i> Practical Applications</h2>
+            <h3>Real-World Uses</h3>
+            <p>SQL powers many applications:</p>
+            <ul>
+                <li><strong>Data Analysis:</strong> Query sales data for trends.</li>
+                <li><strong>Web Development:</strong> Manage user data in apps.</li>
+                <li><strong>Business Reporting:</strong> Generate financial reports.</li>
+            </ul>
+            
+            <h3>Video Tutorials</h3>
+            <p>Watch these for practical insights:</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/OT1RErkfLNQ" allowfullscreen></iframe>
+            </div>
+            
+            <h3>Interactive Quiz</h3>
+            <p><strong>Question:</strong> What command retrieves all records from a table?</p>
+            <input type="text" id="answer" placeholder="Enter SQL command">
+            <button class="mark-complete-btn" onclick="checkAnswer()">Submit</button>
+            <p id="result"></p>
+            
+            <h3>Resources</h3>
+            <p>Explore further:</p>
+            <ul>
+                <li><a href="https://www.coursera.org/learn/sql-for-data-science" target="_blank">SQL for Data Science</a> - Coursera course.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('introduction')">Mark as Complete</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+            
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+                if (sidebar.classList.contains('open')) {
+                    menuToggle.classList.remove('fa-bars');
+                    menuToggle.classList.add('fa-times');
+                } else {
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        function showContent(id) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+            
+            const menuItems = document.querySelectorAll('.sidebar ul li');
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent.toLowerCase().includes(id.toLowerCase())) {
+                    item.classList.add('active');
+                }
+            });
+            
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('open');
+                document.querySelector('.menu-toggle').classList.remove('fa-times');
+                document.querySelector('.menu-toggle').classList.add('fa-bars');
+            }
+        }
+
+        function checkAnswer() {
+            let userAnswer = document.getElementById("answer").value.trim().toUpperCase();
+            let correctAnswer = "SELECT * FROM students;".toUpperCase();
+            
+            if (userAnswer === correctAnswer) {
+                document.getElementById("result").innerHTML = "✅ Correct! You got it.";
+            } else {
+                document.getElementById("result").innerHTML = "❌ Try again! Hint: Use SELECT.";
+            }
+        }
+    </script>
+</body>
+</html>
