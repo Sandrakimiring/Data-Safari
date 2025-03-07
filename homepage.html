@@ -3,69 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Data Safari</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Home | Data Safari Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Light/Dark Mode */
         :root {
-            --body-bg: #b0b0b0;
-            --header-bg: linear-gradient(to right, #ffffff, #f7fafc);
-            --paper-bg: #ffffff;
-            --text-color: #2d3748;
-            --secondary-text: #718096;
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-light: #f8f9fa;
+            --text-dark: #333;
             --shadow: rgba(0, 0, 0, 0.08);
-            --bar-bg: #e2e8f0;
-            --footer-bg: #e2e8f0;
-            --support-bg: #ffffff;
+            --transition: all 0.3s ease;
         }
 
         [data-theme="dark"] {
-            --body-bg: #2d3748;
-            --header-bg: linear-gradient(to right, #4a5568, #2d3748);
-            --paper-bg: #4a5568;
-            --text-color: #e2e8f0;
-            --secondary-text: #a0aec0;
+            --light-bg: #1a1a1a;
+            --text-dark: #f8f9fa;
+            --text-light: #f8f9fa;
+            --dark-bg: #4a5568;
             --shadow: rgba(0, 0, 0, 0.3);
-            --bar-bg: #718096;
-            --footer-bg: #718096;
-            --support-bg: #4a5568;
         }
 
-        /* General Styling */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--body-bg);
+            background: var(--light-bg);
+            color: var(--text-dark);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            color: var(--text-color);
-            transition: background 0.3s, color 0.3s;
+            transition: var(--transition);
         }
 
         /* Header Styling */
         .header-container {
-            background: var(--header-bg);
-            box-shadow: 0px 4px 12px var(--shadow);
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 20px 25px;
+            box-shadow: 0 4px 12px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 25px;
             flex-wrap: wrap;
         }
 
-        .logo-nav-container {
+        .logo-container {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
         .logo-container img {
-            width: 130px;
+            width: 100px;
             height: auto;
             transition: transform 0.3s;
         }
@@ -74,39 +73,48 @@
             transform: scale(1.05);
         }
 
-        /* User Profile Section */
+        .logo-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
         .profile-container {
             display: flex;
             align-items: center;
             position: relative;
-            cursor: default;
         }
 
         .profile-pic {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: #4a5568;
+            background: var(--primary-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: bold;
             color: white;
-            margin-right: 12px;
+            font-weight: bold;
+            margin-right: 10px;
             box-shadow: 0 2px 4px var(--shadow);
         }
 
         .profile-name {
             font-size: 16px;
-            font-weight: 600;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
+            color: var(--text-light);
         }
 
         .dropdown-arrow {
-            margin-left: 6px;
+            margin-left: 8px;
             font-size: 14px;
-            color: var(--secondary-text);
+            color: var(--text-light);
             cursor: pointer;
             padding: 5px;
         }
@@ -116,10 +124,9 @@
             position: absolute;
             right: 0;
             top: 100%;
-            background: var(--paper-bg);
-            box-shadow: 0px 6px 12px var(--shadow);
+            background: var(--dark-bg);
+            box-shadow: 0 6px 12px var(--shadow);
             border-radius: 8px;
-            overflow: hidden;
             width: 160px;
             z-index: 10;
         }
@@ -131,60 +138,52 @@
         .dropdown-menu a {
             display: block;
             padding: 12px;
-            color: var(--text-color);
+            color: var(--text-light);
             text-decoration: none;
             font-size: 14px;
             transition: background 0.2s;
         }
 
         .dropdown-menu a:hover {
-            background: #edf2f7;
-        }
-
-        [data-theme="dark"] .dropdown-menu a:hover {
-            background: #718096;
+            background: var(--primary-color);
         }
 
         /* Navigation Bar */
         .nav-bar {
-            display: flex;
             background: transparent;
             padding: 10px 25px;
+            display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            position: relative;
         }
 
         .nav-links {
             display: flex;
+            gap: 25px;
             flex-wrap: wrap;
-            gap: 20px;
         }
 
         .nav-bar a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--text-light);
             font-size: 16px;
-            font-weight: 600;
             font-family: 'Poppins', sans-serif;
-            padding-bottom: 6px;
-            border-bottom: 2px solid transparent;
-            transition: color 0.3s, border-bottom 0.3s;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            cursor: pointer;
         }
 
-        .nav-bar a:hover {
-            color: #3182ce;
-            border-bottom: 2px solid #3182ce;
+        .nav-bar a:hover, .nav-bar a.active {
+            background: var(--primary-color);
+            color: var(--text-light);
         }
 
-        .nav-bar .active {
-            color: #3182ce;
-            border-bottom: 2px solid #3182ce;
-        }
-
-        /* Theme Toggle Button */
         .theme-toggle {
-            background: #718096;
+            background: var(--primary-color);
             color: white;
             border: none;
             padding: 8px 15px;
@@ -196,66 +195,110 @@
         }
 
         .theme-toggle:hover {
-            background: #5a667a;
+            background: #2980b9;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 10px;
         }
 
         /* Main Content */
         .content {
-            padding: 50px 20px;
-            display: flex;
-            justify-content: center;
+            padding: 30px;
             flex-grow: 1;
         }
 
-        .paper {
-            background: var(--paper-bg);
-            padding: 40px;
-            width: 100%;
-            max-width: 900px;
-            border-radius: 20px;
-            box-shadow: 0px 6px 20px var(--shadow);
+        .content-section {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
         }
 
-        /* Welcome Message */
+        [data-theme="dark"] .content-section {
+            background: #2a2a2a;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        /* Learning Section Specific Styling */
+        #learning {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         .welcome-message {
             font-size: 26px;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
             text-align: center;
             margin-bottom: 30px;
-            color: var(--text-color);
-            letter-spacing: 0.5px;
+            color: var(--primary-color);
         }
 
-        /* Progress Bars */
         .progress-bar-container {
-            background: var(--paper-bg);
+            background: white;
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0px 4px 10px var(--shadow);
+            box-shadow: 0 4px 10px var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
-        .progress-bar-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 8px 15px var(--shadow);
+        [data-theme="dark"] .progress-bar-container {
+            background: #2a2a2a;
         }
 
-        .progress-bar-container:nth-child(1) { border-left: 4px solid #3182ce; }
-        .progress-bar-container:nth-child(2) { border-left: 4px solid #38a169; }
-        .progress-bar-container:nth-child(3) { border-left: 4px solid #805ad5; }
-        .progress-bar-container:nth-child(4) { border-left: 4px solid #dd6b20; }
-        .progress-bar-container:nth-child(5) { border-left: 4px solid #d53f8c; }
-        .progress-bar-container:nth-child(6) { border-left: 4px solid #00b5d8; }
+        .progress-bar-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow);
+        }
+
+        .progress-bar-container:nth-child(2) { border-left: 4px solid var(--primary-color); }
+        .progress-bar-container:nth-child(3) { border-left: 4px solid var(--accent-color); }
+        .progress-bar-container:nth-child(4) { border-left: 4px solid #805ad5; }
+        .progress-bar-container:nth-child(5) { border-left: 4px solid #dd6b20; }
+        .progress-bar-container:nth-child(6) { border-left: 4px solid #d53f8c; }
+        .progress-bar-container:nth-child(7) { border-left: 4px solid #00b5d8; }
 
         .progress-title {
             font-size: 18px;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
             margin-bottom: 8px;
-            color: var(--text-color);
+            color: var(--text-dark);
             text-decoration: none;
         }
 
@@ -263,10 +306,14 @@
             width: 100%;
             max-width: 250px;
             height: 10px;
-            background: var(--bar-bg);
+            background: var(--light-bg);
             border-radius: 5px;
             position: relative;
             overflow: hidden;
+        }
+
+        [data-theme="dark"] .progress-bar {
+            background: #718096;
         }
 
         .progress-fill {
@@ -275,16 +322,16 @@
             transition: width 0.5s ease;
         }
 
-        .progress-bar-container:nth-child(1) .progress-fill { background: #3182ce; }
-        .progress-bar-container:nth-child(2) .progress-fill { background: #38a169; }
-        .progress-bar-container:nth-child(3) .progress-fill { background: #805ad5; }
-        .progress-bar-container:nth-child(4) .progress-fill { background: #dd6b20; }
-        .progress-bar-container:nth-child(5) .progress-fill { background: #d53f8c; }
-        .progress-bar-container:nth-child(6) .progress-fill { background: #00b5d8; }
+        .progress-bar-container:nth-child(2) .progress-fill { background: var(--primary-color); }
+        .progress-bar-container:nth-child(3) .progress-fill { background: var(--accent-color); }
+        .progress-bar-container:nth-child(4) .progress-fill { background: #805ad5; }
+        .progress-bar-container:nth-child(5) .progress-fill { background: #dd6b20; }
+        .progress-bar-container:nth-child(6) .progress-fill { background: #d53f8c; }
+        .progress-bar-container:nth-child(7) .progress-fill { background: #00b5d8; }
 
         .progress-percentage {
             font-size: 14px;
-            color: var(--secondary-text);
+            color: var(--secondary-color);
             margin-top: 6px;
             text-align: right;
             width: 100%;
@@ -295,58 +342,50 @@
         /* Support Section */
         .support-section {
             padding: 30px 20px;
-            text-align: left;
-            background: var(--support-bg);
-            margin: 0 20px 20px;
+            background: var(--light-bg);
+            margin: 0 30px 20px;
             border-radius: 15px;
-            box-shadow: 0px 6px 15px var(--shadow);
+            box-shadow: 0 6px 15px var(--shadow);
+            text-align: center;
         }
 
         .support-text {
             margin-bottom: 15px;
-            color: var(--text-color);
             font-size: 16px;
-            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
         }
 
         .support-button {
-            background: #3182ce;
+            background: var(--primary-color);
             color: white;
             padding: 12px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
             font-family: 'Poppins', sans-serif;
+            font-size: 16px;
             transition: background 0.3s, transform 0.2s;
         }
 
         .support-button:hover {
-            background: #2b6cb0;
+            background: #2980b9;
             transform: translateY(-2px);
         }
 
         /* Footer */
         .footer {
-            background: var(--footer-bg);
-            padding: 15px 20px;
+            background: var(--dark-bg);
+            padding: 15px 30px;
             text-align: left;
-            color: var(--text-color);
+            color: var(--text-light);
             font-size: 14px;
-            font-family: 'Roboto', sans-serif;
-            box-shadow: 0px -2px 10px var(--shadow);
+            box-shadow: 0 -2px 10px var(--shadow);
         }
 
-        /* Media Queries for Responsiveness */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header {
-                padding: 10px 15px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .profile-container {
-                margin-top: 10px;
+                padding: 15px;
             }
 
             .nav-bar {
@@ -356,14 +395,20 @@
             }
 
             .nav-links {
+                display: none;
                 flex-direction: column;
-                gap: 15px;
                 width: 100%;
+                gap: 15px;
+                background: var(--dark-bg);
+                padding: 15px 0;
             }
 
-            .nav-bar a {
-                margin-right: 0;
-                font-size: 14px;
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
             }
 
             .theme-toggle {
@@ -372,12 +417,11 @@
             }
 
             .content {
-                padding: 30px 10px;
+                padding: 20px;
             }
 
-            .paper {
+            #learning {
                 padding: 20px;
-                width: 100%;
             }
 
             .welcome-message {
@@ -393,8 +437,8 @@
             }
 
             .support-section {
+                margin: 0 15px 15px;
                 padding: 20px 15px;
-                margin: 0 10px 15px;
             }
 
             .support-text {
@@ -405,16 +449,19 @@
                 padding: 10px 20px;
                 font-size: 14px;
             }
-
-            .footer {
-                padding: 10px 15px;
-                font-size: 12px;
-            }
         }
 
         @media (max-width: 480px) {
             .logo-container img {
-                width: 100px;
+                width: 80px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .logo-text p {
+                font-size: 12px;
             }
 
             .profile-pic {
@@ -426,29 +473,20 @@
                 font-size: 14px;
             }
 
-            .dropdown-arrow {
-                font-size: 12px;
-            }
-
-            .dropdown-menu {
-                width: 140px;
-            }
-
-            .dropdown-menu a {
-                padding: 10px;
-                font-size: 12px;
+            .nav-bar a {
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Header -->
     <div class="header-container">
         <div class="header">
-            <div class="logo-nav-container">
-                <div class="logo-container">
-                    <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
+            <div class="logo-container">
+                <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
+                <div class="logo-text">
+                    <h1>Data Safari Academy</h1>
+                    <p>Empowering Young Minds in Data Science</p>
                 </div>
             </div>
             <div class="profile-container">
@@ -464,11 +502,14 @@
 
         <!-- Navigation Bar -->
         <div class="nav-bar">
+            <i class="fas fa-bars menu-toggle"></i>
             <div class="nav-links">
-                <a href="content.html" class="active">Content</a>
-                <a href="community.html">Community</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="about.html">About Us</a>
+                <a href="#learning" class="active" onclick="showContent('learning')">Learning</a>
+                <a href="#community" onclick="showContent('community')">Community</a>
+                <a href="#outreach" onclick="showContent('outreach')">Outreach</a>
+                <a href="#faqs" onclick="showContent('faqs')">FAQs</a>
+                <a href="#about" onclick="showContent('about')">About Us</a>
+                <a href="#documentation" onclick="showContent('documentation')">Documentation</a>
             </div>
             <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
         </div>
@@ -476,7 +517,8 @@
 
     <!-- Main Content -->
     <div class="content">
-        <div class="paper">
+        <div id="learning" class="content-section active">
+            <h2><i class="fas fa-book-open"></i> Learning Hub</h2>
             <div class="welcome-message">Welcome to Data Safari!</div>
 
             <div class="progress-bar-container" onclick="window.location.href='intro.html'">
@@ -527,22 +569,135 @@
                 <div class="progress-percentage">55%</div>
             </div>
         </div>
+
+        <div id="community" class="content-section">
+            <h2><i class="fas fa-users"></i> Community Engagement</h2>
+            <h3>Building a Learning Community</h3>
+            <p>Data Safari Academy is committed to fostering a vibrant community of young learners in Kenya and beyond. Our community engagement strategy focuses on providing access to data science resources, tutorials, and tools that simplify complex concepts for beginners.</p>
+            
+            <h3>Features for Community Engagement</h3>
+            <ul>
+                <li><strong>Discussion Forums:</strong> A space for learners to ask questions, share projects, and collaborate on data science challenges.</li>
+                <li><strong>Mentorship Program:</strong> Connect with experienced data professionals who offer guidance and feedback on projects.</li>
+                <li><strong>Weekly Webinars:</strong> Live sessions with industry experts covering topics like data cleaning, visualization, and machine learning.</li>
+                <li><strong>Project Showcase:</strong> Upload your data science projects to our gallery, receive peer reviews, and build a portfolio.</li>
+                <li><strong>Local Meetups:</strong> Partnering with polytechnics to host in-person workshops and hackathons.</li>
+            </ul>
+            
+            <h3>Simplifying Complex Concepts</h3>
+            <p>We break down intricate topics into digestible lessons:</p>
+            <ul>
+                <li><strong>Data Science Basics:</strong> Interactive tutorials with real-world examples (e.g., analyzing Kenyan weather data).</li>
+                <li><strong>Hands-On Exercises:</strong> Code-along sessions in Python and SQL, accessible via our platform.</li>
+                <li><strong>Visual Learning Tools:</strong> Animated explainers and infographics to demystify algorithms.</li>
+            </ul>
+            
+            <h3>Community Benefits</h3>
+            <p>By joining our community, young learners gain:</p>
+            <ul>
+                <li>Access to free and low-cost resources tailored for beginners.</li>
+                <li>Peer support to overcome learning hurdles.</li>
+                <li>Opportunities to network with peers and professionals across Kenya.</li>
+            </ul>
+        </div>
+
+        <div id="outreach" class="content-section">
+            <h2><i class="fas fa-bullhorn"></i> Outreach Strategy</h2>
+            <h3>Reaching Kenyan Polytechnics</h3>
+            <p>Our outreach strategy aims to engage students from polytechnics across Kenya, ensuring inclusivity and accessibility:</p>
+            
+            <h3>Plan</h3>
+            <ul>
+                <li><strong>Partnerships:</strong> Collaborate with polytechnic institutions to integrate Data Safari resources into their curricula.</li>
+                <li><strong>Mobile Access:</strong> Optimize our website for low-bandwidth environments and mobile devices, common among rural students.</li>
+                <li><strong>Workshops:</strong> Conduct free data science bootcamps in underserved regions like Kisumu, Eldoret, and Mombasa.</li>
+                <li><strong>Scholarships:</strong> Offer sponsored access to premium content for top performers from disadvantaged backgrounds.</li>
+                <li><strong>Social Media Campaigns:</strong> Use platforms like WhatsApp and Instagram to share bite-sized lessons and event updates.</li>
+            </ul>
+            
+            <h3>Inclusivity Measures</h3>
+            <p>We ensure broad reach by:</p>
+            <ul>
+                <li>Providing content in English and Swahili to accommodate diverse learners.</li>
+                <li>Offering offline resources (PDFs, videos) for areas with limited internet.</li>
+                <li>Engaging female students through targeted STEM initiatives.</li>
+            </ul>
+        </div>
+
+        <div id="faqs" class="content-section">
+            <h2><i class="fas fa-question-circle"></i> FAQs</h2>
+            <h3>What is Data Safari Academy?</h3>
+            <p>A platform designed to teach young Kenyans data science through accessible, beginner-friendly content.</p>
+            
+            <h3>Who can join?</h3>
+            <p>Anyone with an interest in data science, especially polytechnic students and young learners aged 16-25.</p>
+            
+            <h3>Do I need prior experience?</h3>
+            <p>No! Our courses start from scratch, assuming no prior knowledge.</p>
+            
+            <h3>Is it free?</h3>
+            <p>Yes, core content is free. Premium features (e.g., mentorship) have a small fee, with scholarships available.</p>
+            
+            <h3>How do I participate in the community?</h3>
+            <p>Sign up, join our forums, attend webinars, or submit projects via the Community tab.</p>
+            
+            <h3>What tools will I learn?</h3>
+            <p>Python, SQL, Excel, Tableau, and more—tailored for beginners.</p>
+            
+            <h3>How do I get support?</h3>
+            <p>Use the Support section to contact our team or mentors.</p>
+        </div>
+
+        <div id="about" class="content-section">
+            <h2><i class="fas fa-info-circle"></i> About Us</h2>
+            <h3>Our Mission</h3>
+            <p>Data Safari Academy aims to democratize data science education in Kenya, empowering young learners with skills for the digital age.</p>
+            
+            <h3>Our Vision</h3>
+            <p>To create a generation of data-literate innovators who solve local problems using data-driven insights.</p>
+            
+            <h3>Our Team</h3>
+            <ul>
+                <li><strong>Sandra Kimiring:</strong> Founder & Lead Educator, passionate about STEM education.</li>
+                <li><strong>John Mwangi:</strong> Tech Lead, expert in Python and machine learning.</li>
+                <li><strong>Aisha Omondi:</strong> Community Manager, focused on outreach and inclusivity.</li>
+            </ul>
+            
+            <h3>Our Story</h3>
+            <p>Started as a project to bridge the data skills gap in Kenyan polytechnics, Data Safari has grown into a hub for learning and collaboration.</p>
+        </div>
+
+        <div id="documentation" class="content-section">
+            <h2><i class="fas fa-file-alt"></i> Documentation</h2>
+            <h3>Our Journey</h3>
+            <p>From ideation to launch, we documented every step:</p>
+            <ul>
+                <li><strong>Ideation:</strong> Identified the need for accessible data science education in Kenya.</li>
+                <li><strong>Challenges:</strong> Limited internet access, diverse learner backgrounds.</li>
+                <li><strong>Solutions:</strong> Mobile-friendly design, offline resources, multilingual content.</li>
+                <li><strong>Lessons:</strong> Simplicity is key; community feedback drives improvement.</li>
+            </ul>
+            
+            <h3>Impact</h3>
+            <p>Aiming to reach 10,000 students by 2026, fostering data literacy and career growth.</p>
+        </div>
     </div>
 
     <!-- Support Section -->
     <div class="support-section">
-        <div class="support-text">Do you need support? Click the button below to talk to us.</div>
+        <div class="support-text">Need help? Reach out to our support team!</div>
         <button class="support-button" onclick="window.location.href='support.html'">Support</button>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        © Data Safari 2025
+        © Data Safari Academy 2025
     </div>
 
     <script>
         // Dropdown toggle
-        document.querySelector('.dropdown-arrow').addEventListener('click', function() {
+        document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
+            e.stopPropagation();
             const dropdown = document.querySelector('.dropdown-menu');
             dropdown.classList.toggle('active');
         });
@@ -564,7 +719,56 @@
                 body.setAttribute('data-theme', 'dark');
             }
         }
-    </script>
 
+        // Navigation toggle for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuToggle.classList.remove('fa-bars');
+                    menuToggle.classList.add('fa-times');
+                } else {
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Show content section
+        function showContent(id) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+
+            document.querySelectorAll('.nav-bar a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close mobile menu after selection
+            if (window.innerWidth <= 768) {
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.querySelector('.menu-toggle');
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('fa-times');
+                menuToggle.classList.add('fa-bars');
+            }
+        }
+    </script>
 </body>
 </html>
