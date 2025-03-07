@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning Academy - Videos</title>
+    <title>Machine Learning Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -147,118 +147,110 @@
             background: #2a2a2a;
         }
         
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background-color: var(--light-bg);
-            padding: 10px 15px;
-            border-radius: 30px;
-            width: 300px;
-        }
-        
-        .search-bar input {
-            border: none;
-            background: none;
-            outline: none;
-            width: 100%;
-            margin-left: 10px;
-            font-size: 14px;
-            color: var(--text-dark);
-        }
-        
-        .video-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .video {
+        .content-section {
+            display: none;
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
         }
         
-        body.dark-mode .video {
+        body.dark-mode .content-section {
             background: #2a2a2a;
         }
         
-        .video:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
         }
         
-        .video h3 {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            margin-top: 0;
+            gap: 10px;
+        }
+        
+        .content-section h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.6;
             margin-bottom: 15px;
             color: var(--text-dark);
         }
         
-        .video h3 i {
-            margin-right: 10px;
+        .content-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .content-section a {
             color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
         }
         
-        .video-badge {
+        .content-section a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        iframe {
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 220px;
-            border: none;
+            height: 100%;
+            border: 0;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        
-        .video-info {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .video-duration {
-            font-size: 14px;
-            color: #777;
-        }
-        
-        .watch-btn {
-            background-color: var(--primary-color);
-            color: white;
+
+        .mark-complete-btn {
+            background: var(--primary-color);
+            color: var(--text-light);
             border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: 500;
+            font-size: 16px;
             transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            display: block;
+            margin-top: 20px;
         }
-        
-        .watch-btn:hover {
-            background-color: #2980b9;
-            transform: scale(1.05);
+
+        .mark-complete-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
         }
         
         @media (max-width: 1024px) {
-            .video-container {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .content-section {
+                padding: 20px;
             }
         }
         
@@ -293,22 +285,20 @@
         }
         
         @media (max-width: 480px) {
-            .video-container {
-                grid-template-columns: 1fr;
+            .content-section {
+                padding: 15px;
             }
             
-            .search-bar {
-                width: 100%;
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
+
+            .mark-complete-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -319,17 +309,18 @@
         <div class="sidebar-header">
             <div class="logo">
                 <i class="fas fa-brain"></i>
-                <h2>ML Academy</h2>
+                <h2>Machine Learning</h2>
             </div>
         </div>
         
         <ul>
-            <li class="active" onclick="scrollToSection('data-science')"><i class="fas fa-database"></i> What is Data Science?</li>
-            <li onclick="scrollToSection('ml-course')"><i class="fas fa-graduation-cap"></i> ML Course</li>
-            <li onclick="scrollToSection('feature-selection')"><i class="fas fa-filter"></i> Feature Selection</li>
-            <li onclick="scrollToSection('scikit-learn')"><i class="fab fa-python"></i> Scikit-Learn</li>
-            <li onclick="scrollToSection('time-series')"><i class="fas fa-clock"></i> Time Series</li>
-            <li onclick="scrollToSection('deep-learning')"><i class="fas fa-network-wired"></i> Deep Learning</li>
+            <li class="active" onclick="showContent('intro')"><i class="fas fa-database"></i> Introduction</li>
+            <li onclick="showContent('regression')"><i class="fas fa-chart-line"></i> Regression</li>
+            <li onclick="showContent('classification')"><i class="fas fa-tags"></i> Classification</li>
+            <li onclick="showContent('clustering')"><i class="fas fa-object-group"></i> Clustering</li>
+            <li onclick="showContent('feature-engineering')"><i class="fas fa-tools"></i> Feature Engineering</li>
+            <li onclick="showContent('time-series')"><i class="fas fa-clock"></i> Time Series</li>
+            <li onclick="showContent('deep-learning')"><i class="fas fa-network-wired"></i> Deep Learning</li>
         </ul>
         
         <div class="theme-switch">
@@ -342,75 +333,266 @@
     <div class="content">
         <div class="header">
             <h1>Machine Learning Academy</h1>
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search for tutorials..." id="searchInput">
-            </div>
         </div>
         
-        <div class="video-container">
-            <div class="video fade-in" id="data-science" style="animation-delay: 0.1s;">
-                <div class="video-badge">Beginner</div>
-                <h3><i class="fas fa-database"></i> What is Data Science?</h3>
-                <iframe src="https://www.youtube.com/embed/-ETQ97mXXF0"></iframe>
-                <p style="font-size: 14px; color: #555; margin: 10px 0;">An introduction to data science, covering its principles and applications.</p>
-                <div class="video-info">
-                    <span class="video-duration"><i class="far fa-clock"></i> 30 minutes</span>
-                    <button class="watch-btn"><i class="fas fa-play"></i> Watch Now</button>
-                </div>
-            </div>
+        <div id="intro" class="content-section active">
+            <h2><i class="fas fa-database"></i> Introduction to Machine Learning</h2>
+            <h3>What is Machine Learning?</h3>
+            <p>Machine Learning (ML) is a subset of artificial intelligence that enables systems to learn from data, identify patterns, and make decisions with minimal human intervention. It’s widely used in applications like recommendation systems, image recognition, and predictive analytics.</p>
             
-            <div class="video fade-in" id="ml-course" style="animation-delay: 0.2s;">
-                <h3><i class="fas fa-graduation-cap"></i> Machine Learning Course</h3>
-                <iframe src="https://www.youtube.com/embed/GwIo3gDZCVQ"></iframe>
-                <p style="font-size: 14px; color: #555; margin: 10px 0;">A comprehensive beginner course on machine learning concepts and techniques.</p>
-                <div class="video-info">
-                    <span class="video-duration"><i class="far fa-clock"></i> 4 hours</span>
-                    <button class="watch-btn"><i class="fas fa-play"></i> Watch Now</button>
-                </div>
-            </div>
+            <h3>Why Learn Machine Learning?</h3>
+            <p>ML is transforming industries. Benefits include:</p>
+            <ul>
+                <li>Automating data-driven decision-making.</li>
+                <li>Unlocking insights from complex datasets.</li>
+                <li>Powering innovations in AI technologies.</li>
+            </ul>
             
-            <div class="video fade-in" id="feature-selection" style="animation-delay: 0.3s;">
-                <div class="video-badge">Intermediate</div>
-                <h3><i class="fas fa-filter"></i> Feature Selection in ML</h3>
-                <iframe src="https://www.youtube.com/embed/hCwTDTdYirg"></iframe>
-                <p style="font-size: 14px; color: #555; margin: 10px 0;">Learn techniques to select the most relevant features for machine learning models.</p>
-                <div class="video-info">
-                    <span class="video-duration"><i class="far fa-clock"></i> 25 minutes</span>
-                    <button class="watch-btn"><i class="fas fa-play"></i> Watch Now</button>
-                </div>
-            </div>
+            <h3>Learning Outcomes</h3>
+            <p>By exploring ML, you’ll be able to:</p>
+            <ul>
+                <li>Understand core ML concepts and types (supervised, unsupervised, reinforcement).</li>
+                <li>Apply ML algorithms to real-world problems.</li>
+                <li>Evaluate and improve model performance.</li>
+            </ul>
             
-            <div class="video fade-in" id="scikit-learn" style="animation-delay: 0.4s;">
-                <h3><i class="fab fa-python"></i> ML Models with Scikit-Learn</h3>
-                <iframe src="https://www.youtube.com/embed/0B5eIE_1vpU"></iframe>
-                <p style="font-size: 14px; color: #555; margin: 10px 0;">Build and evaluate machine learning models using the Scikit-Learn library.</p>
-                <div class="video-info">
-                    <span class="video-duration"><i class="far fa-clock"></i> 35 minutes</span>
-                    <button class="watch-btn"><i class="fas fa-play"></i> Watch Now</button>
-                </div>
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/-ETQ97mXXF0" allowfullscreen></iframe>
             </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">An introduction to data science and machine learning principles (30 minutes).</p>
             
-            <div class="video fade-in" id="time-series" style="animation-delay: 0.5s;">
-                <div class="video-badge">Advanced</div>
-                <h3><i class="fas fa-clock"></i> Time Series Analysis</h3>
-                <iframe src="https://www.youtube.com/embed/qoJaSphj3jI"></iframe>
-                <p style="font-size: 14px; color: #555; margin: 10px 0;">Understand time series data and forecasting techniques in machine learning.</p>
-                <div class="video-info">
-                    <span class="video-duration"><i class="far fa-clock"></i> 40 minutes</span>
-                    <button class="watch-btn"><i class="fas fa-play"></i> Watch Now</button>
-                </div>
-            </div>
+            <h3>Resources</h3>
+            <p>Start here:</p>
+            <ul>
+                <li><a href="https://www.coursera.org/learn/machine-learning" target="_blank">Coursera ML Course</a> - Free introductory course.</li>
+                <li><a href="https://developers.google.com/machine-learning/crash-course" target="_blank">Google ML Crash Course</a> - Beginner guide.</li>
+            </ul>
             
-            <div class="video fade-in" id="deep-learning" style="animation-delay: 0.6s;">
-                <h3><i class="fas fa-network-wired"></i> Intro to Deep Learning</h3>
-                <iframe src="https://www.youtube.com/embed/aircAruvnKk"></iframe>
-                <p style="font-size: 14px; color: #555; margin: 10px 0;">Explore the basics of deep learning and neural networks.</p>
-                <div class="video-info">
-                    <span class="video-duration"><i class="far fa-clock"></i> 50 minutes</span>
-                    <button class="watch-btn"><i class="fas fa-play"></i> Watch Now</button>
-                </div>
+            <button class="mark-complete-btn" onclick="showContent('regression')">Mark as Complete</button>
+        </div>
+        
+        <div id="regression" class="content-section">
+            <h2><i class="fas fa-chart-line"></i> Regression</h2>
+            <h3>What is Regression?</h3>
+            <p>Regression is a supervised learning technique used to predict continuous outcomes, such as sales figures or temperatures, by modeling relationships between variables.</p>
+            
+            <h3>Why Learn Regression?</h3>
+            <p>Regression is foundational in ML. Benefits include:</p>
+            <ul>
+                <li>Predicting numerical values for business and science.</li>
+                <li>Understanding variable relationships.</li>
+                <li>Building a base for advanced models.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Implement linear and polynomial regression.</li>
+                <li>Use metrics like R-squared and MSE for evaluation.</li>
+                <li>Apply regularization (Lasso, Ridge) to prevent overfitting.</li>
+            </ul>
+            
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/GwIo3gDZCVQ" allowfullscreen></iframe>
             </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">A comprehensive beginner course on regression techniques (4 hours).</p>
+            
+            <h3>Resources</h3>
+            <p>Explore these:</p>
+            <ul>
+                <li><a href="https://scikit-learn.org/stable/modules/linear_model.html" target="_blank">Scikit-Learn Linear Models</a> - Official guide.</li>
+                <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle Datasets</a> - Practice datasets.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('classification')">Mark as Complete</button>
+        </div>
+        
+        <div id="classification" class="content-section">
+            <h2><i class="fas fa-tags"></i> Classification</h2>
+            <h3>What is Classification?</h3>
+            <p>Classification is a supervised learning method to predict categorical outcomes, such as spam detection or disease diagnosis, by assigning labels to data.</p>
+            
+            <h3>Why Learn Classification?</h3>
+            <p>It’s key for decision-making. Benefits include:</p>
+            <ul>
+                <li>Automating decisions in healthcare, finance, etc.</li>
+                <li>Handling binary and multi-class problems.</li>
+                <li>Enhancing predictive analytics skills.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Implement Logistic Regression, SVM, and Decision Trees.</li>
+                <li>Evaluate with accuracy, precision, and recall.</li>
+                <li>Address imbalanced data with SMOTE.</li>
+            </ul>
+            
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0B5eIE_1vpU" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">Building classification models with Scikit-Learn (35 minutes).</p>
+            
+            <h3>Resources</h3>
+            <p>Check these:</p>
+            <ul>
+                <li><a href="https://scikit-learn.org/stable/supervised_learning.html" target="_blank">Scikit-Learn Supervised Learning</a> - Classification guide.</li>
+                <li><a href="https://archive.ics.uci.edu/ml/index.php" target="_blank">UCI ML Repository</a> - Datasets.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('clustering')">Mark as Complete</button>
+        </div>
+        
+        <div id="clustering" class="content-section">
+            <h2><i class="fas fa-object-group"></i> Clustering</h2>
+            <h3>What is Clustering?</h3>
+            <p>Clustering is an unsupervised learning technique that groups similar data points into clusters without predefined labels, ideal for pattern discovery.</p>
+            
+            <h3>Why Learn Clustering?</h3>
+            <p>It uncovers hidden structures. Benefits include:</p>
+            <ul>
+                <li>Segmenting customers for marketing.</li>
+                <li>Detecting anomalies in data.</li>
+                <li>Preparing data for supervised learning.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Apply K-Means, DBSCAN, and Hierarchical Clustering.</li>
+                <li>Determine optimal clusters with elbow method or silhouette score.</li>
+                <li>Visualize clusters using Matplotlib.</li>
+            </ul>
+            
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/hCwTDTdYirg" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">Feature selection and clustering techniques (25 minutes).</p>
+            
+            <h3>Resources</h3>
+            <p>Explore these:</p>
+            <ul>
+                <li><a href="https://scikit-learn.org/stable/modules/clustering.html" target="_blank">Scikit-Learn Clustering</a> - Official documentation.</li>
+                <li><a href="https://www.data.gov/" target="_blank">Data.gov</a> - Open datasets.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('feature-engineering')">Mark as Complete</button>
+        </div>
+        
+        <div id="feature-engineering" class="content-section">
+            <h2><i class="fas fa-tools"></i> Feature Engineering</h2>
+            <h3>What is Feature Engineering?</h3>
+            <p>Feature Engineering involves creating, selecting, and transforming features to enhance machine learning model performance.</p>
+            
+            <h3>Why Learn Feature Engineering?</h3>
+            <p>It’s critical for success. Benefits include:</p>
+            <ul>
+                <li>Improving model accuracy and interpretability.</li>
+                <li>Reducing training time with relevant features.</li>
+                <li>Bridging raw data to actionable insights.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Perform feature scaling, encoding, and extraction.</li>
+                <li>Use PCA for dimensionality reduction.</li>
+                <li>Evaluate feature importance with Random Forests.</li>
+            </ul>
+            
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/hCwTDTdYirg" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">Feature selection techniques in ML (25 minutes).</p>
+            
+            <h3>Resources</h3>
+            <p>Check these:</p>
+            <ul>
+                <li><a href="https://machinelearningmastery.com/feature-selection-machine-learning-python/" target="_blank">Machine Learning Mastery</a> - Feature selection guide.</li>
+                <li><a href="https://scikit-learn.org/stable/modules/preprocessing.html" target="_blank">Scikit-Learn Preprocessing</a> - Documentation.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('time-series')">Mark as Complete</button>
+        </div>
+        
+        <div id="time-series" class="content-section">
+            <h2><i class="fas fa-clock"></i> Time Series Analysis</h2>
+            <h3>What is Time Series Analysis?</h3>
+            <p>Time Series Analysis models and forecasts data points collected over time, such as stock prices or weather data.</p>
+            
+            <h3>Why Learn Time Series?</h3>
+            <p>It’s essential for temporal data. Benefits include:</p>
+            <ul>
+                <li>Predicting trends in finance, weather, etc.</li>
+                <li>Understanding seasonality and anomalies.</li>
+                <li>Applying specialized ML models.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Decompose time series into trend, seasonality, and noise.</li>
+                <li>Implement ARIMA and Prophet for forecasting.</li>
+                <li>Evaluate with MAE and RMSE metrics.</li>
+            </ul>
+            
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/qoJaSphj3jI" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">Time series analysis and forecasting (40 minutes).</p>
+            
+            <h3>Resources</h3>
+            <p>Explore these:</p>
+            <ul>
+                <li><a href="https://www.statsmodels.org/stable/tsa.html" target="_blank">Statsmodels TSA</a> - Time series tools.</li>
+                <li><a href="https://facebook.github.io/prophet/" target="_blank">Prophet Documentation</a> - Forecasting library.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('deep-learning')">Mark as Complete</button>
+        </div>
+        
+        <div id="deep-learning" class="content-section">
+            <h2><i class="fas fa-network-wired"></i> Deep Learning</h2>
+            <h3>What is Deep Learning?</h3>
+            <p>Deep Learning is a subset of ML using neural networks with multiple layers to model complex patterns in data like images or speech.</p>
+            
+            <h3>Why Learn Deep Learning?</h3>
+            <p>It powers advanced tech. Benefits include:</p>
+            <ul>
+                <li>Solving image recognition and NLP problems.</li>
+                <li>Handling large, unstructured datasets.</li>
+                <li>Advancing careers in AI research.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>You’ll be able to:</p>
+            <ul>
+                <li>Build neural networks with TensorFlow or PyTorch.</li>
+                <li>Train models with backpropagation and optimization.</li>
+                <li>Apply CNNs and RNNs to specific tasks.</li>
+            </ul>
+            
+            <h3>Video Tutorial</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/aircAruvnKk" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">Introduction to deep learning and neural networks (50 minutes).</p>
+            
+            <h3>Resources</h3>
+            <p>Check these:</p>
+            <ul>
+                <li><a href="https://www.tensorflow.org/tutorials" target="_blank">TensorFlow Tutorials</a> - Official guide.</li>
+                <li><a href="https://pytorch.org/tutorials/" target="_blank">PyTorch Tutorials</a> - Beginner resources.</li>
+                <li><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.AI</a> - Courses by Andrew Ng.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('intro')">Mark as Complete</button>
         </div>
     </div>
     
@@ -443,25 +625,13 @@
                     menuToggle.classList.add('fa-bars');
                 }
             });
-            
-            const searchInput = document.getElementById('searchInput');
-            const videos = document.querySelectorAll('.video');
-            
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                videos.forEach(video => {
-                    const title = video.querySelector('h3').textContent.toLowerCase();
-                    if (title.includes(searchTerm)) {
-                        video.style.display = 'block';
-                    } else {
-                        video.style.display = 'none';
-                    }
-                });
-            });
         });
         
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        function showContent(id) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
             
             const menuItems = document.querySelectorAll('.sidebar ul li');
             menuItems.forEach(item => {
