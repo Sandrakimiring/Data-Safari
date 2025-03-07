@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Safari Academy - Introduction to Data Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-light: #f8f9fa;
+            --text-dark: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        
+        body.dark-mode {
+            --light-bg: #1a1a1a;
+            --text-dark: #f8f9fa;
+            --text-light: #f8f9fa;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .sidebar h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .sidebar ul li {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar ul li i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .sidebar ul li:hover, .sidebar ul li.active {
+            background: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .theme-switch {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .theme-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .theme-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .content {
+            margin-left: 280px;
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .header {
+            background: #2a2a2a;
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+        
+        body.dark-mode .content-section {
+            background: #2a2a2a;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-section h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .content-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .content-section a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .content-section a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .content-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .content-section iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .complete-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .complete-btn:hover {
+            background-color: #219653;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 1024px) {
+            .content-section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 240px;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--dark-bg);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            
+            .header {
+                margin-top: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-section {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <i class="fas fa-bars menu-toggle"></i>
+    
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-safari"></i>
+                <h2>Data Safari Academy</h2>
+            </div>
+        </div>
+        
+        <ul>
+            <li class="active" onclick="showContent('what-is')"><i class="fas fa-question-circle"></i> What is Data Science?</li>
+            <li onclick="showContent('components')"><i class="fas fa-puzzle-piece"></i> Key Components</li>
+            <li onclick="showContent('roadmap')"><i class="fas fa-map"></i> Data Science Roadmap</li>
+            <li onclick="showContent('modern-world')"><i class="fas fa-globe"></i> Data in Modern World</li>
+            <li onclick="showContent('careers')"><i class="fas fa-briefcase"></i> Career Opportunities</li>
+            <li onclick="showContent('approaches')"><i class="fas fa-tools"></i> Approaches</li>
+            <li onclick="showContent('guide')"><i class="fas fa-book"></i> Practitioner’s Guide</li>
+            <li onclick="showContent('resources')"><i class="fas fa-link"></i> Resources</li>
+        </ul>
+        
+        <div class="theme-switch">
+            <button class="theme-btn" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="header">
+            <h1>Introduction to Data Science</h1>
+        </div>
+        
+        <div id="what-is" class="content-section active">
+            <h2><i class="fas fa-question-circle"></i> What is Data Science?</h2>
+            <h3>Definition</h3>
+            <p>Data science is a multidisciplinary field that combines statistical analysis, programming, and domain expertise to extract meaningful insights and knowledge from data. It’s about turning raw data into actionable intelligence that drives decisions in businesses, science, and beyond.</p>
+            <iframe src="https://www.youtube.com/embed/RBSUwFGa6Fk"></iframe>
+            
+            <h3>Definitions of Key Terms</h3>
+            <p><strong>Data:</strong> Raw, unprocessed facts and figures collected from various sources, such as numbers, text, or images.</p>
+            <p><strong>Big Data:</strong> Extremely large datasets that traditional tools can’t handle efficiently, often characterized by the 3 Vs: Volume, Velocity, and Variety.</p>
+            <p><strong>Data Analytics:</strong> The process of examining data to draw conclusions, often a subset of data science focused on descriptive insights.</p>
+            <p><strong>Machine Learning:</strong> A branch of AI where algorithms learn patterns from data to make predictions or decisions.</p>
+            
+            <h3>What to Expect</h3>
+            <p>Data science is both challenging and rewarding. Expect to:</p>
+            <ul>
+                <li>Work with messy, real-world data requiring cleaning and preparation.</li>
+                <li>Use a mix of technical skills (coding, stats) and soft skills (communication).</li>
+                <li>Solve complex problems across industries like healthcare, finance, and tech.</li>
+                <li>Continuously learn as tools and techniques evolve rapidly.</li>
+            </ul>
+            
+            <button class="complete-btn" onclick="showContent('components')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="components" class="content-section">
+            <h2><i class="fas fa-puzzle-piece"></i> Key Components of Data Science</h2>
+            <h3>Overview</h3>
+            <p>Data science involves several interconnected stages that transform raw data into insights. Here’s a detailed look at each component:</p>
+            
+            <h3>Data Collection</h3>
+            <p>Data collection is the foundational step in the data science process. It involves gathering data from various sources—databases, APIs, web scraping, or IoT devices—to ensure you have the necessary information to analyze and derive insights. Quality and relevance of data are critical here.</p>
+            
+            <h3>Data Cleaning</h3>
+            <p>Raw data is often incomplete, inconsistent, or noisy. Data cleaning involves removing duplicates, handling missing values, correcting errors, and standardizing formats to prepare data for analysis. This step can take up to 80% of a data scientist’s time.</p>
+            
+            <h3>Data Exploration and Visualization</h3>
+            <p>Exploring data through statistical summaries and visualizations (charts, graphs) helps identify patterns, trends, and outliers. Tools like Matplotlib or Tableau make this process intuitive and insightful.</p>
+            
+            <h3>Statistical Analysis</h3>
+            <p>Statistical methods—hypothesis testing, regression, probability—provide a rigorous foundation for understanding data relationships and making predictions. This is where data science bridges math and real-world applications.</p>
+            
+            <h3>Machine Learning</h3>
+            <p>Machine learning automates predictive modeling by learning from data. Techniques like regression, classification, and clustering enable data scientists to forecast outcomes and uncover hidden patterns.</p>
+            
+            <h3>Domain Expertise</h3>
+            <p>Understanding the context—whether it’s finance, healthcare, or marketing—is crucial. Domain expertise ensures that insights are relevant and actionable, aligning technical work with business goals.</p>
+            
+            <h3>Communication and Presentation</h3>
+            <p>Translating complex findings into clear, compelling stories for stakeholders is a key skill. Effective visualizations and reports bridge the gap between data and decision-making.</p>
+            
+            <button class="complete-btn" onclick="showContent('roadmap')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="roadmap" class="content-section">
+            <h2><i class="fas fa-map"></i> Data Science Roadmap</h2>
+            <h3>Your Learning Path</h3>
+            <p>Here’s a structured roadmap to guide you through becoming a data scientist, based on the provided image:</p>
+            <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/Data%20Science%20Road%20Map.png" alt="Data Science Roadmap">
+            
+            <h3>Step 1: Preparing Data</h3>
+            <p>Start with data wrangling—cleaning, transforming, and organizing raw data into a usable format. Learn tools like Excel, Pandas, or OpenRefine to handle missing values, outliers, and inconsistencies.</p>
+            
+            <h3>Step 2: SQL</h3>
+            <p>Master Structured Query Language (SQL) to query and manage databases. SQL is essential for extracting data from relational databases like MySQL or PostgreSQL, a common task in data science workflows.</p>
+            
+            <h3>Step 3: Data Visualization</h3>
+            <p>Learn to create charts, dashboards, and plots using tools like Matplotlib, Seaborn, or Tableau. Visualization helps communicate insights effectively to technical and non-technical audiences.</p>
+            
+            <h3>Step 4: Python</h3>
+            <p>Python is the backbone of data science. Master its syntax, libraries (Pandas, NumPy), and scripting to automate tasks, analyze data, and build models.</p>
+            
+            <h3>Step 5: Machine Learning</h3>
+            <p>Dive into machine learning with these subtopics:</p>
+            <ul>
+                <li><strong>Regression:</strong> Predict continuous values (e.g., house prices) using linear or polynomial models.</li>
+                <li><strong>Classification:</strong> Assign labels to data (e.g., spam detection) with algorithms like Logistic Regression or SVM.</li>
+                <li><strong>NLP (Natural Language Processing):</strong> Analyze text data—sentiment analysis, chatbots—using libraries like NLTK or spaCy.</li>
+            </ul>
+            
+            <button class="complete-btn" onclick="showContent('modern-world')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="modern-world" class="content-section">
+            <h2><i class="fas fa-globe"></i> Data Science in the Modern World</h2>
+            <h3>Impact on Businesses</h3>
+            <p>Data science drives modern businesses by enabling data-driven decisions. Companies use it to optimize marketing campaigns, predict customer behavior, and streamline operations. For example, Netflix uses recommendation algorithms to keep viewers engaged, while Amazon leverages predictive analytics for inventory management.</p>
+            
+            <h3>Role in Modern Systems</h3>
+            <p>In technology, data science powers AI systems, autonomous vehicles, and smart cities. It’s behind facial recognition, fraud detection, and even climate modeling. The integration of big data and IoT devices has amplified its reach, making real-time analytics a reality.</p>
+            
+            <h3>Examples in Action</h3>
+            <ul>
+                <li><strong>Healthcare:</strong> Predicting disease outbreaks or personalizing treatments.</li>
+                <li><strong>Finance:</strong> Detecting fraudulent transactions or assessing credit risk.</li>
+                <li><strong>Retail:</strong> Forecasting demand and optimizing pricing strategies.</li>
+            </ul>
+            
+            <button class="complete-btn" onclick="showContent('careers')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="careers" class="content-section">
+            <h2><i class="fas fa-briefcase"></i> Career Opportunities</h2>
+            <h3>Why Pursue Data Science?</h3>
+            <p>Data science offers lucrative and diverse career paths due to its demand across industries. Salaries often exceed $100,000 annually, and the field is projected to grow significantly.</p>
+            
+            <h3>Roles in Data Science</h3>
+            <ul>
+                <li><strong>Data Analyst:</strong> Focuses on interpreting data and creating reports.</li>
+                <li><strong>Data Scientist:</strong> Combines analysis, modeling, and domain knowledge.</li>
+                <li><strong>Machine Learning Engineer:</strong> Builds and deploys ML models.</li>
+                <li><strong>Data Engineer:</strong> Manages data pipelines and infrastructure.</li>
+                <li><strong>Business Intelligence Analyst:</strong> Translates data into business strategies.</li>
+            </ul>
+            
+            <h3>Skills Employers Seek</h3>
+            <p>Programming (Python, R), statistics, data visualization, and communication are top skills. Familiarity with tools like SQL, TensorFlow, and cloud platforms (AWS, Azure) is a plus.</p>
+            
+            <button class="complete-btn" onclick="showContent('approaches')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="approaches" class="content-section">
+            <h2><i class="fas fa-tools"></i> Approaches in Data Science</h2>
+            <h3>Supervised Learning</h3>
+            <p>Uses labeled data to train models for prediction (e.g., regression, classification). Ideal when you have clear outcomes to predict.</p>
+            
+            <h3>Unsupervised Learning</h3>
+            <p>Finds patterns in unlabeled data (e.g., clustering, dimensionality reduction). Useful for exploratory analysis.</p>
+            
+            <h3>Reinforcement Learning</h3>
+            <p>Trains agents to make decisions by rewarding desired actions, common in robotics and gaming.</p>
+            
+            <h3>Big Data Approaches</h3>
+            <p>Tools like Hadoop and Spark handle massive datasets, enabling distributed processing and real-time analytics.</p>
+            
+            <h3>Hybrid Methods</h3>
+            <p>Combining techniques (e.g., semi-supervised learning) to leverage both labeled and unlabeled data for better results.</p>
+            
+            <button class="complete-btn" onclick="showContent('guide')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="guide" class="content-section">
+            <h2><i class="fas fa-book"></i> Data Practitioner’s Guide</h2>
+            <h3>Getting Started</h3>
+            <p>Begin with a solid foundation in math (statistics, linear algebra) and programming (Python). Practice with small datasets to build confidence.</p>
+            
+            <h3>Building a Portfolio</h3>
+            <p>Create projects showcasing data cleaning, visualization, and modeling. Share them on GitHub or Kaggle to demonstrate your skills.</p>
+            
+            <h3>Staying Updated</h3>
+            <p>Follow blogs (Towards Data Science), join communities (Reddit’s r/datascience), and attend conferences like PyData.</p>
+            
+            <h3>Problem-Solving Tips</h3>
+            <ul>
+                <li>Break problems into smaller steps: collect, clean, explore, model, validate.</li>
+                <li>Use version control (Git) to manage code.</li>
+                <li>Test multiple models and compare performance metrics.</li>
+            </ul>
+            
+            <h3>Mindset</h3>
+            <p>Embrace curiosity, persistence, and adaptability. Data science is as much about experimentation as it is about technical skill.</p>
+            
+            <button class="complete-btn" onclick="showContent('resources')"><i class="fas fa-check"></i> Mark as Complete</button>
+        </div>
+        
+        <div id="resources" class="content-section">
+            <h2><i class="fas fa-link"></i> Additional Resources</h2>
+            <h3>Popular Tools and Technologies</h3>
+            <ul>
+                <li><strong>Programming Languages:</strong> Python, R</li>
+                <li><strong>Data Manipulation:</strong> Pandas, NumPy</li>
+                <li><strong>Visualization:</strong> Matplotlib, Seaborn, Plotly</li>
+                <li><strong>Machine Learning:</strong> Scikit-learn, TensorFlow, Keras</li>
+                <li><strong>Big Data:</strong> Hadoop, Spark</li>
+                <li><strong>Databases:</strong> SQL, NoSQL</li>
+            </ul>
+            
+            <h3>Learning Platforms</h3>
+            <ul>
+                <li><a href="https://www.coursera.org/specializations/data-science-python" target="_blank">Coursera Data Science</a> - Comprehensive courses.</li>
+                <li><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn</a> - Free micro-courses.</li>
+                <li><a href="https://www.datacamp.com/" target="_blank">DataCamp</a> - Interactive learning.</li>
+            </ul>
+            
+            <h3>Books</h3>
+            <ul>
+                <li>"Python for Data Analysis" by Wes McKinney</li>
+                <li>"Hands-On Machine Learning" by Aurélien Géron</li>
+                <li>"Data Science for Beginners" by Andrew Park</li>
+            </ul>
+            
+            <h3>Datasets</h3>
+            <ul>
+                <li><a href="https://www.kaggle.com/datasets" target="_blank">Kaggle Datasets</a></li>
+                <li><a href="https://data.gov/" target="_blank">Data.gov</a></li>
+                <li><a href="https://archive.ics.uci.edu/ml/index.php" target="_blank">UCI ML Repository</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+            
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+                if (sidebar.classList.contains('open')) {
+                    menuToggle.classList.remove('fa-bars');
+                    menuToggle.classList.add('fa-times');
+                } else {
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        function showContent(id) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+            
+            const menuItems = document.querySelectorAll('.sidebar ul li');
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent.toLowerCase().includes(id.toLowerCase())) {
+                    item.classList.add('active');
+                }
+            });
+            
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('open');
+                document.querySelector('.menu-toggle').classList.remove('fa-times');
+                document.querySelector('.menu-toggle').classList.add('fa-bars');
+            }
+        }
+    </script>
+</body>
+</html>
