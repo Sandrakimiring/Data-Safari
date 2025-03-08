@@ -6,6 +6,8 @@
     <title>Home | Data Safari Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Favicon: Data chart icon in #3498db -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <style>
         :root {
             --primary-color: #3498db;
@@ -65,7 +67,9 @@
 
         .logo-container img {
             width: 100px;
-            height: auto;
+            height: 100px; /* Fixed height for circular shape */
+            border-radius: 50%; /* Makes logo circular */
+            object-fit: cover;
             transition: transform 0.3s;
         }
 
@@ -245,10 +249,26 @@
             gap: 10px;
         }
 
+        .content-section h3 {
+            color: var(--secondary-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 20px 0 10px;
+        }
+
         .content-section p {
             line-height: 1.6;
             margin-bottom: 15px;
             color: var(--text-dark);
+        }
+
+        .content-section ul {
+            padding-left: 20px;
+            color: var(--text-dark);
+        }
+
+        .content-section ul li {
+            margin-bottom: 10px;
         }
 
         /* Learning Section Specific Styling */
@@ -447,11 +467,25 @@
                 padding: 10px 20px;
                 font-size: 14px;
             }
+
+            .content-section h3 {
+                font-size: 16px;
+            }
+
+            .content-section p, .content-section ul li {
+                font-size: 14px;
+            }
+
+            .logo-container img {
+                width: 80px;
+                height: 80px;
+            }
         }
 
         @media (max-width: 480px) {
             .logo-container img {
-                width: 80px;
+                width: 60px;
+                height: 60px;
             }
 
             .logo-text h1 {
@@ -474,6 +508,32 @@
             .nav-bar a {
                 font-size: 14px;
             }
+
+            .welcome-message {
+                font-size: 18px;
+            }
+
+            .progress-title {
+                font-size: 14px;
+            }
+
+            .progress-percentage {
+                font-size: 12px;
+            }
+
+            .support-text {
+                font-size: 13px;
+            }
+
+            .support-button {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+
+            .footer {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -493,7 +553,7 @@
                 <span class="dropdown-arrow">▾</span>
                 <div class="dropdown-menu">
                     <a href="edit-profile.html">Edit My Profile</a>
-                    <a href="logout.html">Log Out</a>
+                    <a href="#" onclick="logout()">Log Out</a>
                 </div>
             </div>
         </div>
@@ -616,45 +676,71 @@
 
         <div id="faqs" class="content-section">
             <h2><i class="fas fa-question-circle"></i> FAQs</h2>
-            <h3>What is Data Safari Academy?</h3>
-            <p>A platform designed to teach young Kenyans data science through accessible, beginner-friendly content.</p>
-            
-            <h3>Who can join?</h3>
-            <p>Anyone with an interest in data science, especially polytechnic students and young learners aged 16-25.</p>
-            
-            <h3>Do I need prior experience?</h3>
-            <p>No! Our courses start from scratch, assuming no prior knowledge.</p>
-            
-            <h3>Is it free?</h3>
-            <p>Yes, core content is free. Premium features (e.g., mentorship) have a small fee, with scholarships available.</p>
-            
-            <h3>How do I participate in the community?</h3>
-            <p>Sign up, join our forums, attend webinars, or submit projects via the Community tab.</p>
-            
-            <h3>What tools will I learn?</h3>
-            <p>Python, SQL, Excel, Tableau, and more—tailored for beginners.</p>
-            
-            <h3>How do I get support?</h3>
-            <p>Use the Support section to contact our team or mentors.</p>
+            <h3>1. What is this platform about?</h3>
+            <p>This platform, Data Safari Academy, is a free and accessible website designed to help learners explore and master Data Science concepts. Our mission is to empower young minds, particularly in Kenya and beyond, by providing comprehensive resources, tutorials, and tools that simplify complex data science topics. Whether you're a beginner or looking to advance your skills, we offer a welcoming space to dive into the world of data, from foundational principles to cutting-edge applications.</p>
+
+            <h3>2. Is this website free to use?</h3>
+            <p>Yes, this website is completely free and open to all learners worldwide. We believe that education should be accessible to everyone, regardless of financial background. There are no hidden fees or subscriptions—our core content, including tutorials, exercises, and community features, is available at no cost. We’re committed to keeping Data Safari Academy a resource that anyone with an internet connection can benefit from.</p>
+
+            <h3>3. Can I access the website on my phone?</h3>
+            <p>Absolutely! The website is mobile-friendly and works seamlessly on both mobile and desktop devices. We’ve optimized our design to ensure a smooth experience whether you’re using a smartphone, tablet, or computer. This means you can learn on the go, access resources from anywhere, and enjoy the same functionality across all your devices, making Data Safari Academy truly flexible for your lifestyle.</p>
+
+            <h3>4. What topics does the platform cover?</h3>
+            <p>We cover a wide range of Data Science topics, including Python programming, SQL databases, Machine Learning, Artificial Intelligence (AI), and Data Visualization. Our curriculum is designed to take you from the basics—like coding in Python or querying data with SQL—to advanced concepts such as building machine learning models and creating insightful visualizations. We’re constantly expanding our offerings to include emerging trends and tools in the data science field.</p>
+
+            <h3>5. Is customer support available?</h3>
+            <p>Yes, we offer round-the-clock customer support to assist you with any questions or challenges you might face. Our dedicated team is available 24/7 via email or our website’s help center to provide guidance, troubleshoot issues, or simply chat about your learning journey. Whether you’re stuck on a technical problem or need advice on your next step, we’re here to ensure you have a smooth and enjoyable experience.</p>
+
+            <h3>6. How do I sign up?</h3>
+            <p>Simply click on the 'Sign Up' button on the homepage and follow the registration steps—it’s quick and easy! You’ll need to provide an email address and create a password, after which you’ll gain full access to our learning resources and community features. Once registered, you can personalize your profile and start exploring the platform right away. If you ever need help, our support team is just a click away.</p>
+
+            <h3>7. Are there certificates available?</h3>
+            <p>Currently, we do not offer certificates, but we plan to introduce them in the future as part of our commitment to enhancing your learning experience. These certificates will recognize your achievements and mastery of specific data science skills, providing a valuable credential for your resume or portfolio. Stay tuned for updates as we roll out this exciting feature!</p>
+
+            <h3>8. How can I contribute to the platform?</h3>
+            <p>You can contribute by sharing insights, submitting articles, or suggesting new learning materials that you think would benefit the community. Whether you’re an experienced data scientist or a passionate learner, your input is valuable! Reach out through our contact page or community forum to propose content, share your projects, or collaborate with us to make Data Safari Academy even better.</p>
+
+            <h3>9. Will AI be integrated into this platform?</h3>
+            <p>Yes, we are planning to incorporate AI-driven learning assistants to improve the learning experience in the near future. These assistants will offer personalized recommendations, answer questions in real-time, and guide you through complex topics with tailored support. Our goal is to leverage AI to make learning more interactive and efficient, helping you achieve your data science goals faster.</p>
+
+            <h3>10. Are there community discussions?</h3>
+            <p>Yes! Our community forum allows learners to interact, share insights, and collaborate on data science projects. It’s a vibrant space where you can ask questions, discuss concepts, showcase your work, and connect with peers from around the world. Whether you’re seeking feedback or just want to chat about data science, our community is here to support and inspire you.</p>
+
+            <h3>11. Do you provide live classes?</h3>
+            <p>Currently, we focus on self-paced learning, offering flexible resources that you can explore at your own speed. However, we’re considering introducing live classes in the future to complement our offerings. These would include interactive sessions with experts, covering topics like coding, analysis, and more. Keep an eye out for announcements as we expand our educational formats!</p>
+
+            <h3>12. Can I request a specific topic to be covered?</h3>
+            <p>Yes! We welcome topic requests and encourage you to let us know what you’d like to see. Contact us through our website’s support section or community forum with your suggestions, and we’ll do our best to incorporate them. Your input helps shape the platform, ensuring it meets the needs and interests of learners like you.</p>
+
+            <h3>13. Do you offer mentorship?</h3>
+            <p>We plan to introduce mentorship programs to connect learners with industry experts, providing personalized guidance and career advice. While this feature isn’t available yet, it’s in development, and we aim to launch it soon. Mentorship will offer you the chance to work one-on-one with professionals, gaining insights and feedback to accelerate your data science journey.</p>
+
+            <h3>14. Is there a paid version?</h3>
+            <p>No, our platform remains free for all users, and we’re dedicated to keeping it that way. Data Safari Academy is built on the principle of accessibility, ensuring that everyone can learn data science without financial barriers. While we may offer optional premium features (like mentorship) in the future, the core experience will always be free.</p>
+
+            <h3>15. How can I contact support?</h3>
+            <p>You can contact our support team via email or the help center on our website, available 24/7 to assist you. Whether you have a technical issue, a question about content, or just need some encouragement, we’re here to help. Visit the ‘Support’ section on our homepage for contact details and quick access to our friendly support staff.</p>
         </div>
 
         <div id="about" class="content-section">
             <h2><i class="fas fa-info-circle"></i> About Us</h2>
-            <h3>Our Mission</h3>
-            <p>Data Safari Academy aims to democratize data science education in Kenya, empowering young learners with skills for the digital age.</p>
+            <h3>Who We Are</h3>
+            <p>At Data Safari Academy, our team embarked on a mission to develop an innovative Data Science Learning Platform, aimed at equipping aspiring and existing data scientists with the right resources to thrive in this dynamic field. We conducted an extensive community outreach initiative across Kenya, engaging with students at various academic levels—those just beginning to explore career paths and those already immersed in the tech industry. Our goal was to bridge the gap between curiosity and expertise, creating a platform that inspires and educates the next generation of data professionals.</p>
             
-            <h3>Our Vision</h3>
-            <p>To create a generation of data-literate innovators who solve local problems using data-driven insights.</p>
+            <h3>Our Process</h3>
+            <p>Our research focused on understanding perceptions of Data Science, its career prospects, and how learners prefer to acquire knowledge in this rapidly evolving domain. We also analyzed interests in Data Science Hackathons, bootcamps, and available industry opportunities, gathering insights from diverse communities to ensure our platform resonates with real-world needs. The findings played a crucial role in shaping the design and functionality of this website. We meticulously crafted an interactive and user-friendly learning environment, ensuring it meets the diverse needs of aspiring data scientists, from interactive tutorials to a supportive community space.</p>
             
-            <h3>Our Team</h3>
+            <h3>Meet Our Team</h3>
             <ul>
-                <li><strong>Sandra Kimiring:</strong> Founder & Lead Educator, passionate about STEM education.</li>
-                <li><strong>John Mwangi:</strong> Tech Lead, expert in Python and machine learning.</li>
-                <li><strong>Aisha Omondi:</strong> Community Manager, focused on outreach and inclusivity.</li>
+                <li><strong>Project Manager: Mr. Okoth Rodney</strong> - Rodney oversees the vision and execution of Data Safari Academy, ensuring every aspect aligns with our mission. With years of experience in project management, he keeps our team on track and our goals in sight.</li>
+                <li><strong>Data Collection Lead: Ms. Wanjiru Joy</strong> - Joy spearheaded our nationwide outreach, gathering critical insights from students and professionals. Her passion for data and education drives our platform’s user-centric approach.</li>
+                <li><strong>Data Analyst: Mr. Omarii Frankline</strong> - Frankline crunched the numbers from our research, turning raw data into actionable strategies. His analytical skills ensure our content is both relevant and impactful.</li>
+                <li><strong>UI/UX Designer: Ms. Otieno Effie</strong> - Effie crafted the intuitive and visually appealing interface you see today. Her design expertise makes learning on our platform a seamless and enjoyable experience.</li>
+                <li><strong>Front-End Developer: Sir Leslie Gedion</strong> - Leslie brought our designs to life with clean, responsive code. His technical prowess ensures the platform works flawlessly across all devices.</li>
+                <li><strong>Back-End Developer: Ms. Jebet Sandra</strong> - Sandra powers the engine behind Data Safari Academy, building robust systems to support our features. Her work keeps everything running smoothly under the hood.</li>
+                <li><strong>Content & Documentation: Mr. Genga Kandy</strong> - Kandy curates and creates the educational content that fuels our platform. His knack for clear, engaging writing helps learners grasp complex concepts with ease.</li>
+                <li><strong>Deployment & Maintenance: Mr. Alumeta Philip</strong> - Philip ensures our platform stays live and up-to-date, handling deployment and ongoing maintenance. His dedication keeps Data Safari Academy reliable and accessible.</li>
             </ul>
-            
-            <h3>Our Story</h3>
-            <p>Started as a project to bridge the data skills gap in Kenyan polytechnics, Data Safari has grown into a hub for learning and collaboration.</p>
         </div>
 
         <div id="documentation" class="content-section">
@@ -758,6 +844,14 @@
                 menuToggle.classList.remove('fa-times');
                 menuToggle.classList.add('fa-bars');
             }
+        }
+
+        // Logout function
+        function logout() {
+            // Simulate ending the session by clearing sessionStorage (client-side example)
+            sessionStorage.clear();
+            // Redirect to LoginPage.html
+            window.location.href = 'LoginPage.html';
         }
     </script>
 </body>
