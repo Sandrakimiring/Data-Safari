@@ -239,6 +239,13 @@
                 return;
             }
 
+            // Email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address (e.g., user@domain.com).");
+                return;
+            }
+
             // Password validation
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
             if (!passwordRegex.test(password)) {
