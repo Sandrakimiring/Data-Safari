@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Data Safari</title>
-    <!-- Favicon: Simple data chart icon (SVG base64) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2kePSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Same CSS as provided, no changes needed here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            min-height: 100vh; /* Changed to min-height for better mobile fit */
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: auto; /* Changed to auto to allow scrolling if needed */
+            overflow: auto;
             background: radial-gradient(circle at center, #2c3e50 0%, #1a252f 100%);
             position: relative;
         }
@@ -43,10 +43,10 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
             text-align: center;
             max-width: 400px;
-            width: 90%; /* Responsive width */
+            width: 90%;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            margin: 20px; /* Added margin for smaller screens */
+            margin: 20px;
         }
         .login-container img.logo {
             width: 120px;
@@ -161,7 +161,6 @@
             transform: translateY(-2px);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .login-container {
                 padding: 30px;
@@ -237,7 +236,7 @@
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit" id="submit-btn">Login</button>
         </form>
-        <p class="toggle-link" id="toggle-form">Don't have an account? Sign up</p>
+        <p class="toggle-link" id="toggle-form" onclick="window.location.href='SignUp.html'">Don't have an account? Sign up</p>
         <p class="toggle-link" id="forgot-password">Forgot Password?</p>
         <div class="separator">or</div>
         <button id="google-login">
@@ -246,44 +245,31 @@
     </div>
 
     <script type="module">
-        import { login, signUp, googleLogin } from "./auth.js";
+        import { login, googleLogin } from "./auth.js";
 
         const authForm = document.getElementById("auth-form");
         const emailInput = document.getElementById("email");
         const passwordInput = document.getElementById("password");
-        const submitBtn = document.getElementById("submit-btn");
-        const toggleForm = document.getElementById("toggle-form");
-        const formTitle = document.getElementById("form-title");
-
-        let isSignUp = false;
-
-        toggleForm.addEventListener("click", () => {
-            isSignUp = !isSignUp;
-            formTitle.textContent = isSignUp ? "Sign Up for Data Safari" : "Log into Data Safari";
-            submitBtn.textContent = isSignUp ? "Sign Up" : "Login";
-            toggleForm.textContent = isSignUp ? "Already have an account? Log in" : "Don't have an account? Sign up";
-        });
 
         authForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const email = emailInput.value;
             const password = passwordInput.value;
-        
+
             try {
-                if (isSignUp) {
-                    await signUp(email, password);
-                } else {
-                    await login(email, password);
-                }
-                
-                // Redirect to homepage after successful login
-                window.location.href = "homepage.html";
+                await login(email, password);
+                window.location.href = "homepage.html"; // Redirect on success
             } catch (error) {
-                console.error("Authentication failed:", error);
-                alert("Login failed: " + error.message);
+                if (error.code === "auth/wrong-password") {
+                    alert("Wrong password, try again!");
+                } else if (error.code === "auth/user-not-found") {
+                    alert("Invalid User. Sign up please");
+                } else {
+                    alert("Login failed: " + error.message);
+                }
             }
         });
-        
+
         document.getElementById("google-login").addEventListener("click", googleLogin);
     </script>
 </body>
