@@ -249,26 +249,10 @@
             gap: 10px;
         }
 
-        .content-section h3 {
-            color: var(--secondary-color);
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            margin: 20px 0 10px;
-        }
-
         .content-section p {
             line-height: 1.6;
             margin-bottom: 15px;
             color: var(--text-dark);
-        }
-
-        .content-section ul {
-            padding-left: 20px;
-            color: var(--text-dark);
-        }
-
-        .content-section ul li {
-            margin-bottom: 10px;
         }
 
         /* Learning Section Specific Styling */
@@ -400,6 +384,122 @@
             box-shadow: 0 -2px 10px var(--shadow);
         }
 
+        /* FAQs Section Specific Styling */
+        #faqs .faq-search {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        #faqs .faq-search:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        #faqs .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        #faqs .faq-item h3 {
+            margin: 0;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+
+        #faqs .faq-item h3:hover {
+            color: #2980b9;
+        }
+
+        #faqs .faq-item h3::before {
+            content: "\f059"; /* Font Awesome question-circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        #faqs .faq-item p {
+            display: none;
+            margin-top: 10px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        /* About Section Specific Styling */
+        #about .about-image {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        #about .about-image:hover {
+            transform: scale(1.02);
+        }
+
+        #about .team-section h2 {
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            font-size: 24px;
+            margin: 30px 0 20px;
+        }
+
+        #about .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #about .member {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1 1 300px;
+            max-width: 300px;
+            box-shadow: 0 2px 6px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        [data-theme="dark"] #about .member {
+            background: #333;
+        }
+
+        #about .member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px var(--shadow);
+        }
+
+        #about .member strong {
+            color: var(--secondary-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #about .member p {
+            font-size: 14px;
+            margin: 0;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header {
@@ -468,12 +568,53 @@
                 font-size: 14px;
             }
 
-            .content-section h3 {
+            #faqs .faq-section {
+                padding: 20px;
+            }
+
+            #faqs .faq-section h1 {
+                font-size: 24px;
+            }
+
+            #faqs .faq-item h3 {
                 font-size: 16px;
             }
 
-            .content-section p, .content-section ul li {
+            #faqs .faq-item p {
                 font-size: 14px;
+            }
+
+            #faqs .faq-search {
+                padding: 10px;
+            }
+
+            #about .about-section {
+                padding: 20px;
+            }
+
+            #about .about-section h1 {
+                font-size: 24px;
+            }
+
+            #about .about-section p {
+                font-size: 14px;
+            }
+
+            #about .team-section h2 {
+                font-size: 20px;
+            }
+
+            #about .member {
+                flex: 1 1 250px;
+                max-width: 250px;
+            }
+
+            #about .member strong {
+                font-size: 16px;
+            }
+
+            #about .member p {
+                font-size: 13px;
             }
 
             .logo-container img {
@@ -528,6 +669,53 @@
             .support-button {
                 padding: 8px 15px;
                 font-size: 13px;
+            }
+
+            #faqs .faq-section {
+                padding: 15px;
+            }
+
+            #faqs .faq-section h1 {
+                font-size: 20px;
+            }
+
+            #faqs .faq-item h3 {
+                font-size: 15px;
+            }
+
+            #faqs .faq-item p {
+                font-size: 13px;
+            }
+
+            #faqs .faq-search {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            #about .about-section {
+                padding: 15px;
+            }
+
+            #about .about-section h1 {
+                font-size: 20px;
+            }
+
+            #about .about-image {
+                max-width: 100%;
+            }
+
+            #about .team-section h2 {
+                font-size: 18px;
+            }
+
+            #about .member {
+                flex: 1 1 100%;
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            #about .member strong {
+                font-size: 15px;
             }
 
             .footer {
@@ -675,72 +863,126 @@
         </div>
 
         <div id="faqs" class="content-section">
-            <h2><i class="fas fa-question-circle"></i> FAQs</h2>
-            <h3>1. What is this platform about?</h3>
-            <p>This platform, Data Safari Academy, is a free and accessible website designed to help learners explore and master Data Science concepts. Our mission is to empower young minds, particularly in Kenya and beyond, by providing comprehensive resources, tutorials, and tools that simplify complex data science topics. Whether you're a beginner or looking to advance your skills, we offer a welcoming space to dive into the world of data, from foundational principles to cutting-edge applications.</p>
-
-            <h3>2. Is this website free to use?</h3>
-            <p>Yes, this website is completely free and open to all learners worldwide. We believe that education should be accessible to everyone, regardless of financial background. There are no hidden fees or subscriptions—our core content, including tutorials, exercises, and community features, is available at no cost. We’re committed to keeping Data Safari Academy a resource that anyone with an internet connection can benefit from.</p>
-
-            <h3>3. Can I access the website on my phone?</h3>
-            <p>Absolutely! The website is mobile-friendly and works seamlessly on both mobile and desktop devices. We’ve optimized our design to ensure a smooth experience whether you’re using a smartphone, tablet, or computer. This means you can learn on the go, access resources from anywhere, and enjoy the same functionality across all your devices, making Data Safari Academy truly flexible for your lifestyle.</p>
-
-            <h3>4. What topics does the platform cover?</h3>
-            <p>We cover a wide range of Data Science topics, including Python programming, SQL databases, Machine Learning, Artificial Intelligence (AI), and Data Visualization. Our curriculum is designed to take you from the basics—like coding in Python or querying data with SQL—to advanced concepts such as building machine learning models and creating insightful visualizations. We’re constantly expanding our offerings to include emerging trends and tools in the data science field.</p>
-
-            <h3>5. Is customer support available?</h3>
-            <p>Yes, we offer round-the-clock customer support to assist you with any questions or challenges you might face. Our dedicated team is available 24/7 via email or our website’s help center to provide guidance, troubleshoot issues, or simply chat about your learning journey. Whether you’re stuck on a technical problem or need advice on your next step, we’re here to ensure you have a smooth and enjoyable experience.</p>
-
-            <h3>6. How do I sign up?</h3>
-            <p>Simply click on the 'Sign Up' button on the homepage and follow the registration steps—it’s quick and easy! You’ll need to provide an email address and create a password, after which you’ll gain full access to our learning resources and community features. Once registered, you can personalize your profile and start exploring the platform right away. If you ever need help, our support team is just a click away.</p>
-
-            <h3>7. Are there certificates available?</h3>
-            <p>Currently, we do not offer certificates, but we plan to introduce them in the future as part of our commitment to enhancing your learning experience. These certificates will recognize your achievements and mastery of specific data science skills, providing a valuable credential for your resume or portfolio. Stay tuned for updates as we roll out this exciting feature!</p>
-
-            <h3>8. How can I contribute to the platform?</h3>
-            <p>You can contribute by sharing insights, submitting articles, or suggesting new learning materials that you think would benefit the community. Whether you’re an experienced data scientist or a passionate learner, your input is valuable! Reach out through our contact page or community forum to propose content, share your projects, or collaborate with us to make Data Safari Academy even better.</p>
-
-            <h3>9. Will AI be integrated into this platform?</h3>
-            <p>Yes, we are planning to incorporate AI-driven learning assistants to improve the learning experience in the near future. These assistants will offer personalized recommendations, answer questions in real-time, and guide you through complex topics with tailored support. Our goal is to leverage AI to make learning more interactive and efficient, helping you achieve your data science goals faster.</p>
-
-            <h3>10. Are there community discussions?</h3>
-            <p>Yes! Our community forum allows learners to interact, share insights, and collaborate on data science projects. It’s a vibrant space where you can ask questions, discuss concepts, showcase your work, and connect with peers from around the world. Whether you’re seeking feedback or just want to chat about data science, our community is here to support and inspire you.</p>
-
-            <h3>11. Do you provide live classes?</h3>
-            <p>Currently, we focus on self-paced learning, offering flexible resources that you can explore at your own speed. However, we’re considering introducing live classes in the future to complement our offerings. These would include interactive sessions with experts, covering topics like coding, analysis, and more. Keep an eye out for announcements as we expand our educational formats!</p>
-
-            <h3>12. Can I request a specific topic to be covered?</h3>
-            <p>Yes! We welcome topic requests and encourage you to let us know what you’d like to see. Contact us through our website’s support section or community forum with your suggestions, and we’ll do our best to incorporate them. Your input helps shape the platform, ensuring it meets the needs and interests of learners like you.</p>
-
-            <h3>13. Do you offer mentorship?</h3>
-            <p>We plan to introduce mentorship programs to connect learners with industry experts, providing personalized guidance and career advice. While this feature isn’t available yet, it’s in development, and we aim to launch it soon. Mentorship will offer you the chance to work one-on-one with professionals, gaining insights and feedback to accelerate your data science journey.</p>
-
-            <h3>14. Is there a paid version?</h3>
-            <p>No, our platform remains free for all users, and we’re dedicated to keeping it that way. Data Safari Academy is built on the principle of accessibility, ensuring that everyone can learn data science without financial barriers. While we may offer optional premium features (like mentorship) in the future, the core experience will always be free.</p>
-
-            <h3>15. How can I contact support?</h3>
-            <p>You can contact our support team via email or the help center on our website, available 24/7 to assist you. Whether you have a technical issue, a question about content, or just need some encouragement, we’re here to help. Visit the ‘Support’ section on our homepage for contact details and quick access to our friendly support staff.</p>
+            <div class="faq-section">
+                <h1>Frequently Asked Questions</h1>
+                <input type="text" id="search" class="faq-search" placeholder="Search FAQs..." onkeyup="searchFAQ()">
+                
+                <div class="faq">
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">1. What is this platform about?</h3>
+                        <p>This platform, Data Safari Academy, is a free and accessible website designed to help learners explore and master Data Science concepts. Our mission is to empower young minds, particularly in Kenya and beyond, by providing comprehensive resources, tutorials, and tools that simplify complex data science topics. Whether you're a beginner or looking to advance your skills, we offer a welcoming space to dive into the world of data, from foundational principles to cutting-edge applications.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">2. Is this website free to use?</h3>
+                        <p>Yes, this website is completely free and open to all learners worldwide. We believe that education should be accessible to everyone, regardless of financial background. There are no hidden fees or subscriptions—our core content, including tutorials, exercises, and community features, is available at no cost. We’re committed to keeping Data Safari Academy a resource that anyone with an internet connection can benefit from.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">3. Can I access the website on my phone?</h3>
+                        <p>Absolutely! The website is mobile-friendly and works seamlessly on both mobile and desktop devices. We’ve optimized our design to ensure a smooth experience whether you’re using a smartphone, tablet, or computer. This means you can learn on the go, access resources from anywhere, and enjoy the same functionality across all your devices, making Data Safari Academy truly flexible for your lifestyle.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">4. What topics does the platform cover?</h3>
+                        <p>We cover a wide range of Data Science topics, including Python programming, SQL databases, Machine Learning, Artificial Intelligence (AI), and Data Visualization. Our curriculum is designed to take you from the basics—like coding in Python or querying data with SQL—to advanced concepts such as building machine learning models and creating insightful visualizations. We’re constantly expanding our offerings to include emerging trends and tools in the data science field.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">5. Is customer support available?</h3>
+                        <p>Yes, we offer round-the-clock customer support to assist you with any questions or challenges you might face. Our dedicated team is available 24/7 via email or our website’s help center to provide guidance, troubleshoot issues, or simply chat about your learning journey. Whether you’re stuck on a technical problem or need advice on your next step, we’re here to ensure you have a smooth and enjoyable experience.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">6. How do I sign up?</h3>
+                        <p>Simply click on the 'Sign Up' button on the homepage and follow the registration steps—it’s quick and easy! You’ll need to provide an email address and create a password, after which you’ll gain full access to our learning resources and community features. Once registered, you can personalize your profile and start exploring the platform right away. If you ever need help, our support team is just a click away.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">7. Are there certificates available?</h3>
+                        <p>Currently, we do not offer certificates, but we plan to introduce them in the future as part of our commitment to enhancing your learning experience. These certificates will recognize your achievements and mastery of specific data science skills, providing a valuable credential for your resume or portfolio. Stay tuned for updates as we roll out this exciting feature!</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">8. How can I contribute to the platform?</h3>
+                        <p>You can contribute by sharing insights, submitting articles, or suggesting new learning materials that you think would benefit the community. Whether you’re an experienced data scientist or a passionate learner, your input is valuable! Reach out through our contact page or community forum to propose content, share your projects, or collaborate with us to make Data Safari Academy even better.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">9. Will AI be integrated into this platform?</h3>
+                        <p>Yes, we are planning to incorporate AI-driven learning assistants to improve the learning experience in the near future. These assistants will offer personalized recommendations, answer questions in real-time, and guide you through complex topics with tailored support. Our goal is to leverage AI to make learning more interactive and efficient, helping you achieve your data science goals faster.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">10. Are there community discussions?</h3>
+                        <p>Yes! Our community forum allows learners to interact, share insights, and collaborate on data science projects. It’s a vibrant space where you can ask questions, discuss concepts, showcase your work, and connect with peers from around the world. Whether you’re seeking feedback or just want to chat about data science, our community is here to support and inspire you.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">11. Do you provide live classes?</h3>
+                        <p>Currently, we focus on self-paced learning, offering flexible resources that you can explore at your own speed. However, we’re considering introducing live classes in the future to complement our offerings. These would include interactive sessions with experts, covering topics like coding, analysis, and more. Keep an eye out for announcements as we expand our educational formats!</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">12. Can I request a specific topic to be covered?</h3>
+                        <p>Yes! We welcome topic requests and encourage you to let us know what you’d like to see. Contact us through our website’s support section or community forum with your suggestions, and we’ll do our best to incorporate them. Your input helps shape the platform, ensuring it meets the needs and interests of learners like you.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">13. Do you offer mentorship?</h3>
+                        <p>We plan to introduce mentorship programs to connect learners with industry experts, providing personalized guidance and career advice. While this feature isn’t available yet, it’s in development, and we aim to launch it soon. Mentorship will offer you the chance to work one-on-one with professionals, gaining insights and feedback to accelerate your data science journey.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">14. Is there a paid version?</h3>
+                        <p>No, our platform remains free for all users, and we’re dedicated to keeping it that way. Data Safari Academy is built on the principle of accessibility, ensuring that everyone can learn data science without financial barriers. While we may offer optional premium features (like mentorship) in the future, the core experience will always be free.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 onclick="toggleAnswer(this)">15. How can I contact support?</h3>
+                        <p>You can contact our support team via email or the help center on our website, available 24/7 to assist you. Whether you have a technical issue, a question about content, or just need some encouragement, we’re here to help. Visit the ‘Support’ section on our homepage for contact details and quick access to our friendly support staff.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="about" class="content-section">
-            <h2><i class="fas fa-info-circle"></i> About Us</h2>
-            <h3>Who We Are</h3>
-            <p>At Data Safari Academy, our team embarked on a mission to develop an innovative Data Science Learning Platform, aimed at equipping aspiring and existing data scientists with the right resources to thrive in this dynamic field. We conducted an extensive community outreach initiative across Kenya, engaging with students at various academic levels—those just beginning to explore career paths and those already immersed in the tech industry. Our goal was to bridge the gap between curiosity and expertise, creating a platform that inspires and educates the next generation of data professionals.</p>
-            
-            <h3>Our Process</h3>
-            <p>Our research focused on understanding perceptions of Data Science, its career prospects, and how learners prefer to acquire knowledge in this rapidly evolving domain. We also analyzed interests in Data Science Hackathons, bootcamps, and available industry opportunities, gathering insights from diverse communities to ensure our platform resonates with real-world needs. The findings played a crucial role in shaping the design and functionality of this website. We meticulously crafted an interactive and user-friendly learning environment, ensuring it meets the diverse needs of aspiring data scientists, from interactive tutorials to a supportive community space.</p>
-            
-            <h3>Meet Our Team</h3>
-            <ul>
-                <li><strong>Project Manager: Mr. Okoth Rodney</strong> - Rodney oversees the vision and execution of Data Safari Academy, ensuring every aspect aligns with our mission. With years of experience in project management, he keeps our team on track and our goals in sight.</li>
-                <li><strong>Data Collection Lead: Ms. Wanjiru Joy</strong> - Joy spearheaded our nationwide outreach, gathering critical insights from students and professionals. Her passion for data and education drives our platform’s user-centric approach.</li>
-                <li><strong>Data Analyst: Mr. Omarii Frankline</strong> - Frankline crunched the numbers from our research, turning raw data into actionable strategies. His analytical skills ensure our content is both relevant and impactful.</li>
-                <li><strong>UI/UX Designer: Ms. Otieno Effie</strong> - Effie crafted the intuitive and visually appealing interface you see today. Her design expertise makes learning on our platform a seamless and enjoyable experience.</li>
-                <li><strong>Front-End Developer: Sir Leslie Gedion</strong> - Leslie brought our designs to life with clean, responsive code. His technical prowess ensures the platform works flawlessly across all devices.</li>
-                <li><strong>Back-End Developer: Ms. Jebet Sandra</strong> - Sandra powers the engine behind Data Safari Academy, building robust systems to support our features. Her work keeps everything running smoothly under the hood.</li>
-                <li><strong>Content & Documentation: Mr. Genga Kandy</strong> - Kandy curates and creates the educational content that fuels our platform. His knack for clear, engaging writing helps learners grasp complex concepts with ease.</li>
-                <li><strong>Deployment & Maintenance: Mr. Alumeta Philip</strong> - Philip ensures our platform stays live and up-to-date, handling deployment and ongoing maintenance. His dedication keeps Data Safari Academy reliable and accessible.</li>
-            </ul>
+            <div class="about-section">
+                <h1>About Us</h1>
+                <p>
+                    At Data Safari Academy, our team embarked on a mission to develop an innovative Data Science Learning Platform, aimed at equipping aspiring and existing data scientists with the right resources to thrive in this dynamic field. We conducted an extensive community outreach initiative across Kenya, engaging with students at various academic levels—those just beginning to explore career paths and those already immersed in the tech industry. Our goal was to bridge the gap between curiosity and expertise, creating a platform that inspires and educates the next generation of data professionals.
+                </p>
+                <p>
+                    Our research focused on understanding perceptions of Data Science, its career prospects, and how learners prefer to acquire knowledge in this rapidly evolving domain. We also analyzed interests in Data Science Hackathons, bootcamps, and available industry opportunities, gathering insights from diverse communities to ensure our platform resonates with real-world needs. The findings played a crucial role in shaping the design and functionality of this website. We meticulously crafted an interactive and user-friendly learning environment, ensuring it meets the diverse needs of aspiring data scientists, from interactive tutorials to a supportive community space.
+                </p>
+                
+                <!-- Base64 SVG Data Visualization Graphic -->
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDYwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgb3BhY2l0eT0iMC43NSI+PHBhdGggZD0iTTUwIDI1MEg1MDBWMjAwSDUwVjI1MFoiIGZpbGw9IiMzNDk4ZGIiLz48cGF0aCBkPSJNMTUwIDI1MEg0NTBWMTAwSDE1MFYyNTBaIiBmaWxsPSIjMjdhZTYwIi8+PHBhdGggZD0iTTI1MCAyNTBINDUwWjUwSDI1MFYyNTBaIiBmaWxsPSIjMmMzZTUwIi8+PC9nPjxwYXRoIGQ9Ik01MCAyNTBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCAyMDBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCAxMDBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCA1MEg1MDAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMjUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNTAgMjUwSDUwMCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=" alt="Data Visualization Graphic" class="about-image">
+                
+                <div class="team-section">
+                    <h2>Meet Our Team</h2>
+                    <div class="team">
+                        <div class="member">
+                            <strong>Project Manager: Mr. Okoth Rodney</strong>
+                            <p>Rodney oversees the vision and execution of Data Safari Academy, ensuring every aspect aligns with our mission. With years of experience in project management, he keeps our team on track and our goals in sight.</p>
+                        </div>
+                        <div class="member">
+                            <strong>Data Collection Lead: Ms. Wanjiru Joy</strong>
+                            <p>Joy spearheaded our nationwide outreach, gathering critical insights from students and professionals. Her passion for data and education drives our platform’s user-centric approach.</p>
+                        </div>
+                        <div class="member">
+                            <strong>Data Analyst: Mr. Omarii Frankline</strong>
+                            <p>Frankline crunched the numbers from our research, turning raw data into actionable strategies. His analytical skills ensure our content is both relevant and impactful.</p>
+                        </div>
+                        <div class="member">
+                            <strong>UI/UX Designer: Ms. Otieno Effie</strong>
+                            <p>Effie crafted the intuitive and visually appealing interface you see today. Her design expertise makes learning on our platform a seamless and enjoyable experience.</p>
+                        </div>
+                        <div class="member">
+                            <strong>Front-End Developer: Sir Leslie Gedion</strong>
+                            <p>Leslie brought our designs to life with clean, responsive code. His technical prowess ensures the platform works flawlessly across all devices.</p>
+                        </div>
+                        <div class="member">
+                            <strong>Back-End Developer: Ms. Jebet Sandra</strong>
+                            <p>Sandra powers the engine behind Data Safari Academy, building robust systems to support our features. Her work keeps everything running smoothly under the hood.</p>
+                        </div>
+                        <div class="member">
+                            <strong>Content & Documentation: Mr. Genga Kandy</strong>
+                            <p>Kandy curates and creates the educational content that fuels our platform. His knack for clear, engaging writing helps learners grasp complex concepts with ease.</p>
+                        </div>
+                        <div class="member">
+                            <strong>Deployment & Maintenance: Mr. Alumeta Philip</strong>
+                            <p>Philip ensures our platform stays live and up-to-date, handling deployment and ongoing maintenance. His dedication keeps Data Safari Academy reliable and accessible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="documentation" class="content-section">
@@ -852,6 +1094,28 @@
             sessionStorage.clear();
             // Redirect to LoginPage.html
             window.location.href = 'LoginPage.html';
+        }
+
+        // FAQ toggle
+        function toggleAnswer(element) {
+            let answer = element.nextElementSibling;
+            answer.style.display = answer.style.display === "block" ? "none" : "block";
+        }
+
+        // FAQ search
+        function searchFAQ() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let faqs = document.getElementsByClassName('faq-item');
+            
+            for (let i = 0; i < faqs.length; i++) {
+                let question = faqs[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                
+                if (question.includes(input)) {
+                    faqs[i].style.display = "block";
+                } else {
+                    faqs[i].style.display = "none";
+                }
+            }
         }
     </script>
 </body>
