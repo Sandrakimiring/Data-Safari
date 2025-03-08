@@ -111,6 +111,13 @@
         .toggle-link:hover {
             color: #2980b9;
         }
+        .password-info {
+            font-size: 12px;
+            color: #555;
+            text-align: left;
+            margin: 10px 0 5px 0;
+            width: 100%;
+        }
 
         @media (max-width: 768px) {
             .signup-container {
@@ -174,8 +181,8 @@
         <form id="signup-form">
             <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
             <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-            <input type="number" id="age" name="age" placeholder="Age" min="13" max="120" required>
-            <select id="gender" name="gender" required>
+            <input type="number" id="age" name="age" placeholder="Age" min="13" max="120">
+            <select id="gender" name="gender">
                 <option value="" disabled selected>Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -188,7 +195,7 @@
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
             </select>
-            <select id="country" name="country" required>
+            <select id="country" name="country">
                 <option value="" disabled selected>Select Country</option>
                 <option value="kenya">Kenya</option>
                 <option value="usa">USA</option>
@@ -196,9 +203,10 @@
                 <option value="other">Other</option>
             </select>
             <input type="email" id="email" name="email" placeholder="Email" required>
+            <p class="password-info">Password must be at least 8 characters long and include: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (e.g., !@#$%^&*).</p>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
-            <textarea id="interest" name="interest" placeholder="Why are you interested in Data Science?" rows="4" required></textarea>
+            <textarea id="interest" name="interest" placeholder="Why are you interested in Data Science?" rows="4"></textarea>
             <button type="submit">Sign Up</button>
         </form>
         <p class="toggle-link" onclick="window.location.href='LoginPage.html'">Already have an account? Log in</p>
@@ -225,6 +233,12 @@
             const confirmPassword = document.getElementById("confirmPassword").value;
             const interest = document.getElementById("interest").value;
 
+            // Validate required fields
+            if (!firstName || !lastName || !email || !password || !confirmPassword || !proficiency) {
+                alert("Please fill in all required fields (First Name, Last Name, Email, Password, Confirm Password, Proficiency).");
+                return;
+            }
+
             // Password validation
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
             if (!passwordRegex.test(password)) {
@@ -238,27 +252,32 @@
             }
 
             try {
+                console.log("Attempting to sign up with:", email);
                 // Create user in Firebase Authentication
                 const userCredential = await signUp(email, password);
                 const user = userCredential.user;
+                console.log("User created:", user.uid);
 
                 // Store additional user data in Firestore
                 await setDoc(doc(db, "users", user.uid), {
                     firstName,
                     lastName,
-                    age: Number(age),
-                    gender,
+                    age: age ? Number(age) : null,
+                    gender: gender || null,
                     proficiency,
-                    country,
+                    country: country || null,
                     email,
-                    interest,
+                    interest: interest || null,
                     createdAt: new Date().toISOString()
                 });
+                console.log("User data stored in Firestore");
 
-                // Redirect to homepage with success message
+                // Set success flag and redirect
                 sessionStorage.setItem("signupSuccess", "true");
+                console.log("Redirecting to homepage.html");
                 window.location.href = "homepage.html";
             } catch (error) {
+                console.error("Signup error:", error.code, error.message);
                 if (error.code === "auth/email-already-in-use") {
                     alert("Email already in use. Please log in or use a different email.");
                 } else {
