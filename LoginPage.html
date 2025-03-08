@@ -4,78 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Data Safari</title>
+    <!-- Favicon: Simple data chart icon (SVG base64) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2kePSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            min-height: 100vh; /* Changed to min-height for better mobile fit */
             display: flex;
-            height: 100vh;
-            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            overflow: auto; /* Changed to auto to allow scrolling if needed */
+            background: radial-gradient(circle at center, #2c3e50 0%, #1a252f 100%);
+            position: relative;
         }
-        .left-container {
-            flex: 1;
-            background: url('https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/pexels-joshsorenson-1714208.jpg') no-repeat center center/cover;
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMzNDk4ZGIiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjIiPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjQwIiB5Mj0iNDAiIC8+PGxpbmUgeDE9IjQwIiB5MT0iMCIgeDI9IjAiIHkyPSI0MCIgLz48bGluZSB4MT0iMjAiIHkxPSIwIiB4Mj0iMjAiIHkyPSI0MCIgLz48bGluZSB4MT0iMCIgeTE9IjIwIiB4Mj0iNDAiIHkyPSIyMCIgLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNCIgLz48L2c+PC9zdmc+') repeat;
+            z-index: 0;
         }
         .login-container {
-            flex: 1;
+            position: relative;
+            z-index: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: white;
-            padding: 30px;
-            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
             text-align: center;
             max-width: 400px;
+            width: 90%; /* Responsive width */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 20px; /* Added margin for smaller screens */
         }
         .login-container img.logo {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .login-container img.logo:hover {
+            transform: scale(1.05);
         }
         .login-container h2 {
             margin-bottom: 20px;
             color: #2c3e50;
-            font-size: 24px;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .login-container form {
             width: 100%;
         }
         .login-container input {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .login-container input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+            outline: none;
         }
         .login-container button {
             background: #3498db;
             color: white;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 5px;
             width: 100%;
             cursor: pointer;
-            transition: background 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
         }
         .login-container button:hover {
             background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
         }
         .toggle-link {
-            margin-top: 10px;
+            margin-top: 12px;
             color: #3498db;
             cursor: pointer;
             text-decoration: underline;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .toggle-link:hover {
+            color: #2980b9;
+        }
+        .separator {
+            margin: 25px 0;
+            color: #7f8c8d;
+            font-size: 14px;
+            position: relative;
+        }
+        .separator::before,
+        .separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ddd;
+        }
+        .separator::before {
+            left: 0;
+        }
+        .separator::after {
+            right: 0;
+        }
+        #google-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: white;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #google-login img {
+            width: 24px;
+            height: 24px;
+        }
+        #google-login:hover {
+            background: #f8f9fa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px;
+                max-width: 350px;
+            }
+            .login-container img.logo {
+                width: 100px;
+                height: 100px;
+            }
+            .login-container h2 {
+                font-size: 22px;
+            }
+            .login-container input {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 13px;
+            }
+            .login-container button, #google-login {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .separator {
+                margin: 20px 0;
+            }
+            .toggle-link {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                max-width: 300px;
+                margin: 15px;
+            }
+            .login-container img.logo {
+                width: 80px;
+                height: 80px;
+            }
+            .login-container h2 {
+                font-size: 20px;
+            }
+            .login-container input {
+                padding: 8px;
+                margin: 8px 0;
+                font-size: 12px;
+            }
+            .login-container button, #google-login {
+                padding: 8px;
+                font-size: 13px;
+            }
+            .separator {
+                margin: 15px 0;
+                font-size: 12px;
+            }
+            .toggle-link {
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            #google-login img {
+                width: 20px;
+                height: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="left-container"></div>
     <div class="login-container">
         <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo" class="logo">
         <h2 id="form-title">Log into Data Safari</h2>
@@ -88,7 +241,7 @@
         <p class="toggle-link" id="forgot-password">Forgot Password?</p>
         <div class="separator">or</div>
         <button id="google-login">
-            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Login" width="30"> Sign in with Google
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo"> Sign in with Google
         </button>
     </div>
 
@@ -110,6 +263,7 @@
             submitBtn.textContent = isSignUp ? "Sign Up" : "Login";
             toggleForm.textContent = isSignUp ? "Already have an account? Log in" : "Don't have an account? Sign up";
         });
+
         authForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const email = emailInput.value;
@@ -130,12 +284,7 @@
             }
         });
         
-
-      
-        
         document.getElementById("google-login").addEventListener("click", googleLogin);
-    
-    
     </script>
 </body>
 </html>
