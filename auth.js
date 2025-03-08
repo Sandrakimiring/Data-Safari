@@ -1,54 +1,47 @@
+// auth.js
 import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  GoogleAuthProvider, 
-  signInWithPopup 
-}from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-import { app } from "./firebase.js";
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-// Function to handle sign-up
-function signUp(email, password) {
-  createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-          console.log("User signed up:", userCredential.user);
-          alert("Sign-up successful! You can now log in.");
-      })
-      .catch((error) => {
-          console.error("Sign-up error:", error.message);
-          alert("Sign-up failed: " + error.message);
-      });
-}
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    signInWithPopup 
+} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+import { auth, provider } from "./firebase.js";
 
 // Function to handle login
-function login(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-          console.log("User logged in:", userCredential.user);
-          alert("Login successful!");
-          window.location.href = "dashboard.html"; // Redirect after login
-      })
-      .catch((error) => {
-          console.error("Login error:", error.message);
-          alert("Login failed: " + error.message);
-      });
+export function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log("User logged in:", userCredential.user);
+            return userCredential; // Return for caller to handle redirect
+        })
+        .catch((error) => {
+            console.error("Login error:", error.code, error.message);
+            throw error; // Throw error for specific handling in LoginPage.html
+        });
+}
+
+// Function to handle sign-up
+export function signUp(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log("User signed up:", userCredential.user);
+            return userCredential; // Return for caller to handle Firestore storage and redirect
+        })
+        .catch((error) => {
+            console.error("Sign-up error:", error.code, error.message);
+            throw error; // Throw error for specific handling in SignUp.html
+        });
 }
 
 // Function for Google login
-function googleLogin() {
-  signInWithPopup(auth, provider)
-      .then((result) => {
-          console.log("Google login successful:", result.user);
-          alert("Google login successful!");
-          window.location.href = "dashboard.html";
-      })
-      .catch((error) => {
-          console.error("Google login error:", error.message);
-          alert("Google login failed: " + error.message);
-      });
+export function googleLogin() {
+    return signInWithPopup(auth, provider)
+        .then((result) => {
+            console.log("Google login successful:", result.user);
+            window.location.href = "homepage.html"; // Direct redirect for Google login
+            return result;
+        })
+        .catch((error) => {
+            console.error("Google login error:", error.code, error.message);
+            throw error; // Throw error for caller handling
+        });
 }
-
-export { signUp, login, googleLogin };
