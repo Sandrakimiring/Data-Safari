@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python For Data Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-light: #f8f9fa;
+            --text-dark: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        
+        body.dark-mode {
+            --light-bg: #1a1a1a;
+            --text-dark: #f8f9fa;
+            --text-light: #f8f9fa;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        .sidebar h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .sidebar ul li {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar ul li i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .sidebar ul li:hover, .sidebar ul li.active {
+            background: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .theme-switch {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .theme-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .theme-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .content {
+            margin-left: 280px;
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .header {
+            background: #2a2a2a;
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+        
+        body.dark-mode .content-section {
+            background: #2a2a2a;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-section h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+        }
+        
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .content-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .content-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .content-section a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .content-section a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        /* Mark as Complete Button */
+        .mark-complete-btn {
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            display: block;
+            margin-top: 20px;
+        }
+
+        .mark-complete-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* YouTube Video Embed */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .content-section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 240px;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--dark-bg);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            
+            .header {
+                margin-top: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-section {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .mark-complete-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <i class="fas fa-bars menu-toggle"></i>
+    
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h2>Python For Data Science</h2>
+            </div>
+        </div>
+        
+        <ul>
+            <li class="active" onclick="showContent('regression')"><i class="fas fa-chart-line"></i> Introduction</li>
+            <li onclick="showContent('classification')"><i class="fas fa-tags"></i> Numpy Basics</li>
+            <li onclick="showContent('clustering')"><i class="fas fa-object-group"></i> Panda Essentials</li>
+            <li onclick="showContent('feature-engineering')"><i class="fas fa-tools"></i> Data Visualization</li>
+            <li onclick="showContent('time-series')"><i class="fas fa-clock"></i> Machine Learning</li>
+            <li onclick="showContent('deep-learning')"><i class="fas fa-network-wired"></i> Deep Learning</li>
+        </ul>
+        
+        <div class="theme-switch">
+            <button class="theme-btn" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="header">
+            <h1>Python For Data Science</h1>
+        </div>
+        
+        <div id="regression" class="content-section active">
+            <h2><i class="fas fa-chart-line"></i> Introduction</h2>
+            <h3>What is Python For Data Science?</h3>
+            <p>Python is one of the most popular programming languages used in data science. It offers a range of powerful libraries, like Pandas, NumPy, Matplotlib, and Scikit-learn, that allow you to manipulate, analyze, and visualize data efficiently. Python is widely used for everything from data wrangling to machine learning, making it an essential skill for any data scientist.</p>
+            
+            <h3>Why Learn Python For Data Science?</h3>
+            <p>Learning Python for data science is fundamental for several reasons:</p>
+            <ul>
+                <li>Data Handling and Analysis: Python allows you to easily work with large datasets, clean and manipulate them using libraries like Pandas, and perform complex numerical operations with NumPy.</li>
+                <li>Data Visualization: With libraries like Matplotlib and Seaborn, you can create clear and insightful charts and graphs to communicate your findings.</li>
+                <li>Machine Learning: Python is the go-to language for machine learning tasks. Libraries such as Scikit-learn, TensorFlow, and PyTorch offer extensive functionality for building predictive models and analyzing data.</li>
+                <li>Versatility: Python is used in various fields, from finance to healthcare to entertainment, making it a versatile tool for many data-related applications.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>By mastering python for data science, you’ll be able to:</p>
+            <ul>
+                <li>Use Python for Data Manipulation: Leverage Pandas and NumPy to clean, transform, and analyze data, making it ready for analysis.</li>
+                <li>Visualize Data: Create meaningful visualizations with Matplotlib and Seaborn to better understand the data and communicate insights to others.</li>
+                <li>Implement Machine Learning Algorithms: Use Scikit-learn to build and evaluate machine learning models, such as regression and classification.</li>
+                <li>Automate Data Science Workflows: Python allows you to automate repetitive tasks like data cleaning and feature engineering, making the data science process more efficient.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Explore these resources:</p>
+            <ul>
+                <li><a href="https://www.simplilearn.com/introduction-to-data-science-with-python-article" target="_blank">Introduction to data science with Python</a> - Simplilearn</li>
+            </ul>
+            
+            <h3>Watch This Video</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/_uQrJ0TkZlc" allowfullscreen></iframe>
+            </div>
+            
+            <button class="mark-complete-btn" onclick="showContent('classification')">Mark as Complete</button>
+        </div>
+        
+        <div id="classification" class="content-section">
+            <h2><i class="fas fa-tags"></i> Numpy Basics</h2>
+            <h3>What is Numpy?</h3>
+            <p>NumPy is a powerful library in Python for numerical computing. It provides support for large multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays. NumPy is essential for data science and scientific computing as it allows for fast and efficient computation.</p>
+            
+            <h3>Why Learn Numpy?</h3>
+            <p>Learning NumPy is crucial because:</p>
+            <ul>
+                <li>Efficient Data Handling: NumPy allows you to handle large datasets and perform operations on them much more efficiently than standard Python lists.</li>
+                <li>Mathematical Operations: NumPy provides a wide range of mathematical functions to perform operations like linear algebra, statistical analysis, and Fourier transforms with minimal code.</li>
+                <li>Foundation for Data Science: NumPy is a foundational library that is widely used in data science, machine learning, and scientific computing. Mastering NumPy is essential for working with libraries like Pandas, Scikit-learn, and TensorFlow.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>After learning Numpy basics, you’ll be able to:</p>
+            <ul>
+                <li>Create and Manipulate Arrays: Use NumPy to create arrays (e.g., 1D, 2D) and perform operations like slicing, indexing, and reshaping.</li>
+                <li>Perform Mathematical Operations: Utilize NumPy’s built-in functions to perform element-wise arithmetic, statistical operations, and matrix manipulations.</li>
+                <li>Work with Random Data: Generate random numbers and data for simulations, modeling, and testing.</li>
+                <li>Optimize Performance: Leverage NumPy's optimized functions to perform large-scale computations much faster than using native Python lists.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Start with these:</p>
+            <ul>
+                <li><a href="https://numpy.org/doc/2.2/user/basics.html" target="_blank">Official documentation</a> - Numpy fundamentals</li>
+                <li><a href="https://numpy.org/doc/1.25/user/absolute_beginners.html" target="_blank">Numpy Basics</a> - Numpy Basics for beginners</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('clustering')">Mark as Complete</button>
+        </div>
+        
+        <div id="clustering" class="content-section">
+            <h2><i class="fas fa-object-group"></i> Panda Essentials</h2>
+            <h3>What is Panda</h3>
+            <p>Pandas is a powerful open-source data manipulation and analysis library for Python. It provides flexible data structures (like DataFrames and Series) that allow you to handle, manipulate, and analyze large datasets efficiently. It's widely used for tasks like data cleaning, exploration, transformation, and analysis.</p>
+            
+            <h3>Why Learn Panda Essentials?</h3>
+            <p>Learning Pandas is essential for data analysis because it simplifies tasks such as:</p>
+            <ul>
+                <li>Data Cleaning: Handling missing values, duplicates, and converting data types.</li>
+                <li>Data Exploration: Filtering, grouping, and aggregating data for insights.</li>
+                <li>Data Transformation: Merging, joining, reshaping, and pivoting data.</li>
+                <li>Time Series Analysis: Handling date and time data effectively.</li>
+                <li>Visualization: Integration with visualization libraries like Matplotlib and Seaborn.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>By mastering Pandas, you’ll be able to:</p>
+            <ul>
+                <li>Create and manipulate DataFrames: Learn how to load, modify, and filter data.</li>
+                <li>Handle missing data: Impute, drop, or fill missing values effectively.</li>
+                <li>Group data: Group data for aggregation and perform operations like sum, mean, or count.</li>
+                <li>Merge and join datasets: Combine different datasets to perform more complex analysis.</li>
+                <li>Perform time series analysis: Work with datetime objects and time-based data.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Check these out:</p>
+            <ul>
+                <li><a href="https://pandas.pydata.org/docs/" target="_blank">Pandas documentation</a> - Official docs</li>
+                <li><a href="https://www.w3schools.com/python/pandas/default.asp" target="_blank">Pandas tutorial</a> - W3School tutorial.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('feature-engineering')">Mark as Complete</button>
+        </div>
+        
+        <div id="feature-engineering" class="content-section">
+            <h2><i class="fas fa-tools"></i> Data Visualization</h2>
+            <h3>What is Data Visualization?</h3>
+            <p>Data visualization is the graphical representation of data and information. It uses visual elements like charts, graphs, and maps to help people understand patterns, trends, and insights within a dataset. In machine learning, visualization is key to both understanding the data itself and interpreting the results of various algorithms</p>
+            
+            <h3>Why Learn Data Visualization?</h3>
+            <p>Learning data visualization is important for several reasons:</p>
+            <ul>
+                <li>Understanding data: Before diving into machine learning algorithms, you need to explore your data and understand its structure, distributions, and relationships. Visualization helps make sense of raw data.</li>
+                <li>Interpreting results: After applying machine learning models like clustering, visualizing the results can help you understand how well the model is working, assess the quality of clusters, or identify any patterns that were not previously evident.</li>
+                <li>Communicating findings: Data visualization is essential for presenting your analysis and insights to stakeholders. Clear visualizations allow others to grasp complex information quickly and intuitively.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>By mastering Data Visualization, you’ll be able to:</p>
+            <ul>
+                <li>Use visualization tools: Learn and use popular tools for data visualization.</li>
+                <li>Visualize different types of data: Learn how to visualize.</li>
+                <li>Visualize clustering results: After applying clustering algorithms like K-Means or DBSCAN, you can visualize the clusters to see how well the data has been grouped.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Check these out:</p>
+            <ul>
+                <li><a href="https://www.kaggle.com/learn/data-visualization" target="_blank">Learn data visualization</a> - Free notes</li>
+                <li><a href="https://www.coursera.org/articles/data-visualization" target="_blank">Data Visualization:Definitions, Benefits and Examples</a> - Free course.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('time-series')">Mark as Complete</button>
+        </div>
+        
+        <div id="time-series" class="content-section">
+            <h2><i class="fas fa-clock"></i> Machine Learning</h2>
+            <h3>What is Machine Learning</h3>
+            <p>Machine Learning (ML) is a field of artificial intelligence (AI) that focuses on building systems that can learn from data, identify patterns, and make decisions with minimal human intervention. ML algorithms allow systems to improve their performance over time through experience.</p>
+            
+            <h3>Why Learn Machine Learning?</h3>
+            <p>Machine learning is critical for a wide variety of applications, such as:</p>
+            <ul>
+                <li>Predictive Analytics: Predict future outcomes (e.g., stock prices, customer churn).</li>
+                <li>Recommendation Systems: Suggest products or content based on user behavior.</li>
+                <li>Computer Vision: Allow computers to interpret and understand visual data (e.g., images, videos).</li>
+                <li>Anomaly Detection: Identify unusual patterns (e.g., fraud detection, network security).</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>By mastering Machine Learning, you’ll be able to:</p>
+            <ul>
+                <li>Understand different types of machine learning: Supervised, unsupervised, and reinforcement learning.</li>
+                <li>Apply common algorithms: Linear regression, decision trees, random forests, K-Means, and more.</li>
+                <li>Preprocess data: Clean and prepare data for use in machine learning models.</li>
+                <li>Evaluate models: Use evaluation metrics to assess model performance and improve it.</li>
+                <li>Deploy models: Put machine learning models into production for real-world use cases.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Get started with:</p>
+            <ul>
+                <li><a href="https://www.coursera.org/learn/machine-learning" target="_blank">Machine Learning</a> - Free Course.</li>
+                <li><a href="https://www.cs.cmu.edu/~hn1/documents/machine-learning/notes.pdf" target="_blank">Free Notes</a> - Introduction to Machine Learning.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('deep-learning')">Mark as Complete</button>
+        </div>
+        
+        <div id="deep-learning" class="content-section">
+            <h2><i class="fas fa-network-wired"></i> Deep Learning</h2>
+            <h3>What is Deep Learning?</h3>
+            <p>Deep Learning is a subset of machine learning using neural networks with multiple layers to model complex patterns in data, like images or speech.</p>
+            
+            <h3>Why Learn Deep Learning?</h3>
+            <p>It powers cutting-edge tech. Benefits include:</p>
+            <ul>
+                <li>Solving problems like image recognition and NLP.</li>
+                <li>Handling large, unstructured datasets effectively.</li>
+                <li>Advancing your career in AI and research.</li>
+            </ul>
+            
+            <h3>Learning Outcomes</h3>
+            <p>After learning deep learning, you’ll be able to:</p>
+            <ul>
+                <li>Build neural networks with frameworks like TensorFlow or PyTorch.</li>
+                <li>Train models with backpropagation and optimization techniques.</li>
+                <li>Apply CNNs and RNNs to specific tasks.</li>
+            </ul>
+            
+            <h3>Resources</h3>
+            <p>Check these out:</p>
+            <ul>
+                <li><a href="https://www.tensorflow.org/tutorials" target="_blank">TensorFlow Tutorials</a> - Official guide.</li>
+                <li><a href="https://pytorch.org/tutorials/" target="_blank">PyTorch Tutorials</a> - Beginner resources.</li>
+                <li><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.AI</a> - Courses by Andrew Ng.</li>
+            </ul>
+            
+            <button class="mark-complete-btn" onclick="showContent('regression')">Mark as Complete</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+            
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+                if (sidebar.classList.contains('open')) {
+                    menuToggle.classList.remove('fa-bars');
+                    menuToggle.classList.add('fa-times');
+                } else {
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        function showContent(id) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+            
+            const menuItems = document.querySelectorAll('.sidebar ul li');
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent.toLowerCase().includes(id.toLowerCase())) {
+                    item.classList.add('active');
+                }
+            });
+            
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('open');
+                document.querySelector('.menu-toggle').classList.remove('fa-times');
+                document.querySelector('.menu-toggle').classList.add('fa-bars');
+            }
+        }
+    </script>
+</body>
+</html>
