@@ -7,7 +7,6 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Same CSS as provided, no changes needed here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -270,7 +269,13 @@
             }
         });
 
-        document.getElementById("google-login").addEventListener("click", googleLogin);
+        document.getElementById("google-login").addEventListener("click", async () => {
+            try {
+                await googleLogin();
+            } catch (error) {
+                // Error already handled in auth.js with alert and redirect
+            }
+        });
     </script>
 </body>
 </html>
