@@ -50,6 +50,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: padding 0.3s ease;
         }
 
         .header {
@@ -57,6 +58,15 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            transition: opacity 0.3s ease;
+        }
+
+        .header.hidden {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         .logo-container {
@@ -67,8 +77,8 @@
 
         .logo-container img {
             width: 100px;
-            height: 100px; /* Fixed height for circular shape */
-            border-radius: 50%; /* Makes logo circular */
+            height: 100px;
+            border-radius: 50%;
             object-fit: cover;
             transition: transform 0.3s;
         }
@@ -423,7 +433,7 @@
         }
 
         #faqs .faq-item h3::before {
-            content: "\f059"; /* Font Awesome question-circle */
+            content: "\f059";
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             color: var(--accent-color);
@@ -498,6 +508,30 @@
         #about .member p {
             font-size: 14px;
             margin: 0;
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            animation: fadeInOut 3s ease forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
 
         /* Responsive Design */
@@ -736,8 +770,8 @@
                 </div>
             </div>
             <div class="profile-container">
-                <div class="profile-pic">JD</div>
-                <span class="profile-name">John Doe</span>
+                <div class="profile-pic" id="profile-pic">JD</div>
+                <span class="profile-name" id="profile-name">Loading...</span>
                 <span class="dropdown-arrow">▾</span>
                 <div class="dropdown-menu">
                     <a href="edit-profile.html">Edit My Profile</a>
@@ -1012,7 +1046,12 @@
         © Data Safari Academy 2025
     </div>
 
-    <script>
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { db } from "./firebase.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
         // Dropdown toggle
         document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1062,6 +1101,56 @@
                     menuToggle.classList.add('fa-bars');
                 }
             });
+
+            // Show signup success message
+            if (sessionStorage.getItem("signupSuccess") === "true") {
+                const message = document.createElement('div');
+                message.className = 'success-message';
+                message.textContent = 'Sign Up Successful!';
+                document.body.appendChild(message);
+                setTimeout(() => message.remove(), 3000);
+                sessionStorage.removeItem("signupSuccess");
+            }
+
+            // Hide header on scroll
+            const header = document.querySelector('.header');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 50) { // Scrolling down past 50px
+                    header.classList.add('hidden');
+                } else if (scrollTop <= 50) { // Near top
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+            });
+
+            // Fetch user data from Firestore
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    try {
+                        const userDocRef = doc(db, "UserSignUpData", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            const fullName = `${userData.firstName} ${userData.lastName}`;
+                            const initials = userData.firstName[0] + userData.lastName[0];
+                            document.getElementById("profile-name").textContent = fullName;
+                            document.getElementById("profile-pic").textContent = initials;
+                        } else {
+                            console.error("No such document!");
+                            document.getElementById("profile-name").textContent = "User Not Found";
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                        document.getElementById("profile-name").textContent = "Error Loading Name";
+                    }
+                } else {
+                    // User not logged in, redirect to login page
+                    window.location.href = "LoginPage.html";
+                }
+            });
         });
 
         // Show content section
@@ -1078,7 +1167,6 @@
                 }
             });
 
-            // Close mobile menu after selection
             if (window.innerWidth <= 768) {
                 const navLinks = document.querySelector('.nav-links');
                 const menuToggle = document.querySelector('.menu-toggle');
@@ -1090,10 +1178,12 @@
 
         // Logout function
         function logout() {
-            // Simulate ending the session by clearing sessionStorage (client-side example)
-            sessionStorage.clear();
-            // Redirect to LoginPage.html
-            window.location.href = 'LoginPage.html';
+            auth.signOut().then(() => {
+                sessionStorage.clear();
+                window.location.href = "LoginPage.html";
+            }).catch((error) => {
+                console.error("Logout error:", error);
+            });
         }
 
         // FAQ toggle
