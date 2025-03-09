@@ -283,6 +283,7 @@
 
       .progress-bar-container {
         background: white;
+        width: 100%;
         border-radius: 15px;
         padding: 20px;
         margin-bottom: 20px;
@@ -327,7 +328,7 @@
 
       .progress-bar {
         width: 100%;
-        max-width: 250px;
+        
         height: 10px;
         background: var(--light-bg);
         border-radius: 5px;
@@ -367,7 +368,7 @@
         margin-top: 6px;
         text-align: right;
         width: 100%;
-        max-width: 250px;
+        
         font-family: "Roboto", sans-serif;
       }
 
@@ -566,7 +567,7 @@
           font-size: 12px;
         }
       }
-    </style>
+    </style
   </head>
   <body>
     <div class="header-container">
@@ -579,12 +580,12 @@
                 </div>
             </div>
             <div class="profile-container">
-                <div class="profile-pic" id="profile-pic">JD</div>
+                <div class="profile-pic" id="profile-pic"></div>
                 <span class="profile-name" id="profile-name">Loading...</span>
                 <span class="dropdown-arrow">▾</span>
                 <div class="dropdown-menu">
                     <a href="edit-profile.html">Edit My Profile</a>
-                    <a href="#" onclick="logout()">Log Out</a>
+                    <a href="LoginPage.html" onclick="logout()">Log Out</a>
                 </div>
             </div>
         </div>
@@ -659,7 +660,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 55%;"></div>
                 </div>
-                <div class="progress-percentage">55%</div>
+                <div class="progress-percentage">0%</div>
             </div>
         </div>
     </div>
@@ -701,6 +702,23 @@
           dropdown.classList.remove("active");
         }
       });
+
+      function setProfileInitials(firstName, lastName) {
+       const profilePic = document.getElementById("profile-pic");
+
+      if (!firstName) return; 
+
+      // Extract initials (default to just first name if last name is missing)
+      let initials = firstName.charAt(0).toUpperCase();
+      if (lastName) {
+        initials += lastName.charAt(0).toUpperCase();
+      }
+
+      profilePic.textContent = initials;
+}
+
+
+
 
       // Theme toggle
       function toggleTheme() {
