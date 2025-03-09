@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Questionnaire | Data Safari Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        /* Copy the :root, body, .questionnaire-section, .questionnaire-form, .form-group, and .success-message styles from outreach.html */
+    </style>
+</head>
+<body>
+    <div class="questionnaire-section">
+        <h2><i class="fas fa-question-circle"></i> Data Science Beginners Questionnaire</h2>
+        <p>Share your thoughts to help us improve Data Science education!</p>
+        <form class="questionnaire-form" id="questionnaire-form">
+            <!-- Copy the form from outreach.html -->
+        </form>
+    </div>
+    <div class="success-message" id="success-message">Response Submitted Successfully!</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDhxpGFyU8yq3XE3Fc3zyObsTXNx--u3uQ",
+            authDomain: "datasafari-7.firebaseapp.com",
+            projectId: "datasafari-7",
+            storageBucket: "datasafari-7.appspot.com",
+            messagingSenderId: "642918285264",
+            appId: "1:642918285264:web:2d8bfc24959bb891ff83d5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const questionnaireForm = document.getElementById("questionnaire-form");
+        const successMessage = document.getElementById("success-message");
+
+        questionnaireForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const experience = document.getElementById("experience").value;
+            const learningPrefs = Array.from(document.querySelectorAll('input[name="learning-preference"]:checked')).map(cb => cb.value);
+            const understanding = document.getElementById("understanding").value;
+            const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+            const challenges = document.getElementById("challenges").value.trim();
+            const goals = document.getElementById("goals").value.trim();
+
+            if (!email || !experience || learningPrefs.length === 0 || !understanding || interests.length === 0 || !challenges || !goals) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            try {
+                const q = query(collection(db, "OutreachResponse"), where("email", "==", email));
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    alert("This email has already been used to submit a response.");
+                    return;
+                }
+
+                const responseDocId = `${email}_${Date.now()}`;
+                await setDoc(doc(db, "OutreachResponse", responseDocId), {
+                    email: email,
+                    experience: experience,
+                    learningPreferences: learningPrefs,
+                    understanding: parseInt(understanding),
+                    interests: interests,
+                    challenges: challenges,
+                    goals: goals,
+                    timestamp: new Date().toISOString()
+                });
+
+                successMessage.classList.add("show");
+                setTimeout(() => {
+                    successMessage.classList.remove("show");
+                    questionnaireForm.reset();
+                }, 3000);
+            } catch (error) {
+                console.error("Error submitting questionnaire:", error.message);
+                alert(`Failed to submit response: ${error.message}. Please try again.`);
+            }
+        });
+    </script>
+</body>
+</html>
