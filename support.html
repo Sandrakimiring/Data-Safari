@@ -276,25 +276,34 @@
             gap: 20px;
         }
 
-        .support-form label {
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             color: var(--text-dark);
         }
 
-        .support-form textarea {
+        .form-group select, .form-group textarea {
             width: 100%;
-            min-height: 150px;
-            padding: 15px;
+            padding: 12px;
             border: 2px solid var(--primary-color);
             border-radius: 8px;
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
-            resize: vertical;
             transition: border-color 0.3s ease;
         }
 
-        .support-form textarea:focus {
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: #2980b9;
         }
@@ -317,25 +326,22 @@
             transform: translateY(-2px);
         }
 
-        /* Popup Styling */
-        .popup {
+        /* Success Message */
+        .success-message {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            bottom: 20px;
+            right: 20px;
             background: var(--accent-color);
             color: white;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px var(--shadow);
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            z-index: 2000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px var(--shadow);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
         }
 
-        .popup.show {
+        .success-message.show {
             opacity: 1;
         }
 
@@ -395,11 +401,6 @@
                 width: 80px;
                 height: 80px;
             }
-
-            .popup {
-                font-size: 16px;
-                padding: 15px 30px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -429,16 +430,11 @@
                 font-size: 14px;
             }
 
-            .support-form textarea {
+            .form-group select, .form-group textarea {
                 font-size: 14px;
             }
 
             .support-form button {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-
-            .popup {
                 font-size: 14px;
                 padding: 10px 20px;
             }
@@ -471,7 +467,7 @@
             </div>
         </div>
 
-        <!-- Navigation Bar (Support Removed) -->
+        <!-- Navigation Bar -->
         <div class="nav-bar">
             <i class="fas fa-bars menu-toggle"></i>
             <div class="nav-links">
@@ -481,6 +477,7 @@
                 <a href="faqs.html">FAQs</a>
                 <a href="about.html">About Us</a>
                 <a href="documentation.html">Documentation</a>
+                <a href="support.html" class="active">Support</a>
             </div>
             <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
         </div>
@@ -490,22 +487,34 @@
     <div class="content">
         <div class="content-section">
             <h2><i class="fas fa-headset"></i> Support</h2>
-            <p>We’re here to help! Please let us know your issue, and our team will get back to you as soon as possible.</p>
+            <p>We’re here to help! Please provide details about your issue, and our team will get back to you as soon as possible.</p>
             <div class="user-info">
                 <p>Contact Information:</p>
                 <p><span>First Name:</span> <span id="first-name">Loading...</span></p>
                 <p><span>Email:</span> <span id="user-email">Loading...</span></p>
             </div>
             <form class="support-form" id="support-form">
-                <label for="support-issue">Describe Your Issue:</label>
-                <textarea id="support-issue" placeholder="Type your issue here..." required></textarea>
+                <div class="form-group">
+                    <label for="issue-category">Issue Category</label>
+                    <select id="issue-category" required>
+                        <option value="">Select a category</option>
+                        <option value="Technical">Technical Issue</option>
+                        <option value="Account">Account Problem</option>
+                        <option value="Billing">Billing Inquiry</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="support-issue">Describe Your Issue</label>
+                    <textarea id="support-issue" placeholder="Type your issue here..." required></textarea>
+                </div>
                 <button type="submit">Submit Issue</button>
             </form>
         </div>
     </div>
 
-    <!-- Popup -->
-    <div class="popup" id="success-popup">Submitted Successfully!</div>
+    <!-- Success Message -->
+    <div class="success-message" id="success-message">Submitted Successfully!</div>
 
     <!-- Footer -->
     <div class="footer">
@@ -592,50 +601,58 @@
                             const initials = userData.firstName[0] + userData.lastName[0];
                             document.getElementById("profile-name").textContent = fullName;
                             document.getElementById("profile-pic").textContent = initials;
-                            document.getElementById("first-name").textContent = userData.firstName;
-                            document.getElementById("user-email").textContent = user.email;
+                            document.getElementById("first-name").textContent = userData.firstName || "Not Set";
+                            document.getElementById("user-email").textContent = user.email || "Not Set";
                         } else {
-                            console.error("No such document!");
+                            console.error("No such document in UserSignUpData for user:", user.uid);
                             document.getElementById("profile-name").textContent = "User Not Found";
                             document.getElementById("first-name").textContent = "Not Found";
                             document.getElementById("user-email").textContent = "Not Found";
                         }
                     } catch (error) {
-                        console.error("Error fetching user data:", error);
+                        console.error("Error fetching user data:", error.message);
                         document.getElementById("profile-name").textContent = "Error";
                         document.getElementById("first-name").textContent = "Error";
                         document.getElementById("user-email").textContent = "Error";
                     }
 
-                    // Support form submission with popup and redirect
+                    // Support form submission
                     const supportForm = document.getElementById("support-form");
-                    const popup = document.getElementById("success-popup");
+                    const successMessage = document.getElementById("success-message");
                     supportForm.addEventListener("submit", async (e) => {
                         e.preventDefault();
+                        const category = document.getElementById("issue-category").value;
                         const issue = document.getElementById("support-issue").value.trim();
-                        if (issue) {
+
+                        if (category && issue) {
                             try {
-                                await setDoc(doc(db, "UserSupport", `${user.uid}_${Date.now()}`), {
+                                const supportDocId = `${user.uid}_${Date.now()}`; // Unique ID for each ticket
+                                await setDoc(doc(db, "UserSupport", supportDocId), {
                                     userId: user.uid,
                                     firstName: document.getElementById("first-name").textContent,
                                     email: user.email,
+                                    category: category,
                                     issue: issue,
                                     timestamp: new Date().toISOString(),
                                     status: "Pending"
                                 });
-                                // Show popup
-                                popup.classList.add("show");
+
+                                // Show success message and redirect
+                                successMessage.classList.add("show");
                                 setTimeout(() => {
-                                    popup.classList.remove("show");
+                                    successMessage.classList.remove("show");
                                     window.location.href = "homepage.html";
-                                }, 1500); // Popup visible for 1.5 seconds
+                                }, 3000); // Message visible for 3 seconds
                             } catch (error) {
-                                console.error("Error submitting support issue:", error);
-                                alert("Failed to submit your issue. Please try again.");
+                                console.error("Error submitting support issue:", error.message, error.code);
+                                alert(`Failed to submit your issue: ${error.message}. Please try again.`);
                             }
+                        } else {
+                            alert("Please fill out all required fields.");
                         }
                     });
                 } else {
+                    console.log("No user is signed in, redirecting to login...");
                     window.location.href = "LoginPage.html";
                 }
             });
@@ -647,7 +664,8 @@
                 sessionStorage.clear();
                 window.location.href = "LoginPage.html";
             }).catch((error) => {
-                console.error("Logout error:", error);
+                console.error("Logout error:", error.message);
+                alert("Failed to log out. Please try again.");
             });
         }
     </script>
