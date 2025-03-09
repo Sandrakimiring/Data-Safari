@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up | Data Safari</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Font Awesome for eye icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,7 +91,7 @@
         }
         .password-container input {
             width: 100%;
-            padding-right: 40px; /* Space for eye icon */
+            padding-right: 40px;
         }
         .password-toggle {
             position: absolute;
@@ -142,63 +142,63 @@
             width: 100%;
         }
 
-      @media (max-width: 768px) {
-        .signup-container {
-          padding: 30px;
-          max-width: 400px;
+        @media (max-width: 768px) {
+            .signup-container {
+                padding: 30px;
+                max-width: 400px;
+            }
+            .signup-container img.logo {
+                width: 100px;
+                height: 100px;
+            }
+            .signup-container h2 {
+                font-size: 22px;
+            }
+            .signup-container input,
+            .signup-container select,
+            .signup-container textarea {
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 13px;
+            }
+            .signup-container button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .toggle-link {
+                font-size: 13px;
+            }
         }
-        .signup-container img.logo {
-          width: 100px;
-          height: 100px;
-        }
-        .signup-container h2 {
-          font-size: 22px;
-        }
-        .signup-container input,
-        .signup-container select,
-        .signup-container textarea {
-          padding: 10px;
-          margin: 10px 0;
-          font-size: 13px;
-        }
-        .signup-container button {
-          padding: 10px;
-          font-size: 14px;
-        }
-        .toggle-link {
-          font-size: 13px;
-        }
-      }
 
-      @media (max-width: 480px) {
-        .signup-container {
-          padding: 20px;
-          max-width: 320px;
-          margin: 15px;
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 20px;
+                max-width: 320px;
+                margin: 15px;
+            }
+            .signup-container img.logo {
+                width: 80px;
+                height: 80px;
+            }
+            .signup-container h2 {
+                font-size: 20px;
+            }
+            .signup-container input,
+            .signup-container select,
+            .signup-container textarea {
+                padding: 8px;
+                margin: 8px 0;
+                font-size: 12px;
+            }
+            .signup-container button {
+                padding: 8px;
+                font-size: 13px;
+            }
+            .toggle-link {
+                font-size: 12px;
+                margin-top: 10px;
+            }
         }
-        .signup-container img.logo {
-          width: 80px;
-          height: 80px;
-        }
-        .signup-container h2 {
-          font-size: 20px;
-        }
-        .signup-container input,
-        .signup-container select,
-        .signup-container textarea {
-          padding: 8px;
-          margin: 8px 0;
-          font-size: 12px;
-        }
-        .signup-container button {
-          padding: 8px;
-          font-size: 13px;
-        }
-        .toggle-link {
-          font-size: 12px;
-          margin-top: 10px;
-        }
-      }
     </style>
   </head>
   <body>
@@ -230,7 +230,6 @@
                 <option value="other">Other</option>
             </select>
             <input type="email" id="email" name="email" placeholder="Email" required>
-          
             <div class="password-container">
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <i class="fas fa-eye password-toggle" id="togglePassword"></i>
@@ -247,17 +246,18 @@
     </div>
 
     <script type="module">
-      import { db } from "./firebase.js";
-import { auth } from "./firebase-config.js";
-import { 
-    createUserWithEmailAndPassword, 
-    sendEmailVerification 
-} from "firebase/auth";
-import { 
-    doc, 
-    setDoc 
-} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+        import { db } from './firebase.js';
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            sendEmailVerification 
+        } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js';
+        import { 
+            doc, 
+            setDoc 
+        } from 'https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js';
 
+        const auth = getAuth();
         const signupForm = document.getElementById("signup-form");
         const passwordInput = document.getElementById("password");
         const confirmPasswordInput = document.getElementById("confirmPassword");
@@ -279,8 +279,8 @@ import {
             toggleConfirmPassword.classList.toggle("fa-eye-slash");
         });
 
-signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+        signupForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
             const firstName = document.getElementById("firstName").value;
             const lastName = document.getElementById("lastName").value;
@@ -306,19 +306,26 @@ signupForm.addEventListener("submit", async (e) => {
                 return;
             }
 
-    // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-    if (!passwordRegex.test(password)) {
-        alert("Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
-        return;
-    }
+            // Password validation
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
+                return;
+            }
+
+            // Confirm password match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
 
             try {
-                console.log("Attempting to sign up with:", email);
-                // Create user with Firebase Authentication using auth.js
-                const userCredential = await signUp(email, password);
+                // Create user with Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
-                console.log("User created:", user.uid);
+                
+                // Send email verification
+                await sendEmailVerification(user);
 
                 // Store user data in Firestore under UserSignUpData collection
                 await setDoc(doc(db, "UserSignUpData", user.uid), {
@@ -332,7 +339,6 @@ signupForm.addEventListener("submit", async (e) => {
                     interest: interest || null,
                     createdAt: new Date().toISOString()
                 });
-                console.log("User data stored in Firestore under UserSignUpData");
 
                 // Set success flag and redirect to homepage
                 sessionStorage.setItem("signupSuccess", "true");
