@@ -58,7 +58,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, height 0.3s ease;
         }
 
         .header.hidden {
@@ -1077,7 +1077,7 @@
             }
         }
 
-        // Navigation toggle for mobile
+        // Navigation toggle for mobile and content display
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
@@ -1155,11 +1155,20 @@
 
         // Show content section
         function showContent(id) {
+            // Hide all sections
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
-            document.getElementById(id).classList.add('active');
 
+            // Show the selected section
+            const selectedSection = document.getElementById(id);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            } else {
+                console.error(`Section with id '${id}' not found`);
+            }
+
+            // Update active link
             document.querySelectorAll('.nav-bar a').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${id}`) {
@@ -1167,6 +1176,7 @@
                 }
             });
 
+            // Close mobile menu if open
             if (window.innerWidth <= 768) {
                 const navLinks = document.querySelector('.nav-links');
                 const menuToggle = document.querySelector('.menu-toggle');
