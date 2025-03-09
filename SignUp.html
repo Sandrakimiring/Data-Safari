@@ -4,123 +4,143 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up | Data Safari</title>
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4="
-    />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Font Awesome for eye icon -->
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: auto;
-        background: radial-gradient(circle at center, #2c3e50 0%, #1a252f 100%);
-        position: relative;
-      }
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMzNDk4ZGIiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjIiPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjQwIiB5Mj0iNDAiIC8+PGxpbmUgeDE9IjQwIiB5MT0iMCIgeDI9IjAiIHkyPSI0MCIgLz48bGluZSB4MT0iMjAiIHkxPSIwIiB4Mj0iMjAiIHkyPSI0MCIgLz48bGluZSB4MT0iMCIgeTE9IjIwIiB4Mj0iNDAiIHkyPSIyMCIgLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNCIgLz48L2c+PC9zdmc+")
-          repeat;
-        z-index: 0;
-      }
-      .signup-container {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-          0 4px 12px rgba(0, 0, 0, 0.15);
-        text-align: center;
-        max-width: 450px;
-        width: 90%;
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        margin: 20px;
-      }
-      .signup-container img.logo {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        margin-bottom: 25px;
-        object-fit: cover;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-      }
-      .signup-container img.logo:hover {
-        transform: scale(1.05);
-      }
-      .signup-container h2 {
-        margin-bottom: 20px;
-        color: #2c3e50;
-        font-size: 26px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-      }
-      .signup-container form {
-        width: 100%;
-      }
-      .signup-container input,
-      .signup-container select,
-      .signup-container textarea {
-        width: 100%;
-        padding: 12px;
-        margin: 12px 0;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 14px;
-        transition: border-color 0.3s, box-shadow 0.3s;
-      }
-      .signup-container input:focus,
-      .signup-container select:focus,
-      .signup-container textarea:focus {
-        border-color: #3498db;
-        box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
-        outline: none;
-      }
-      .signup-container button {
-        background: #3498db;
-        color: white;
-        padding: 12px;
-        border: none;
-        border-radius: 5px;
-        width: 100%;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 500;
-        transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-      }
-      .signup-container button:hover {
-        background: #2980b9;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
-      }
-      .toggle-link {
-        margin-top: 12px;
-        color: #3498db;
-        cursor: pointer;
-        text-decoration: underline;
-        font-size: 14px;
-        transition: color 0.3s;
-      }
-      .toggle-link:hover {
-        color: #2980b9;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            background: radial-gradient(circle at center, #2c3e50 0%, #1a252f 100%);
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMzNDk4ZGIiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjIiPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjQwIiB5Mj0iNDAiIC8+PGxpbmUgeDE9IjQwIiB5MT0iMCIgeDI9IjAiIHkyPSI0MCIgLz48bGluZSB4MT0iMjAiIHkxPSIwIiB4Mj0iMjAiIHkyPSI0MCIgLz48bGluZSB4MT0iMCIgeTE9IjIwIiB4Mj0iNDAiIHkyPSIyMCIgLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNCIgLz48L2c+PC9zdmc+') repeat;
+            z-index: 0;
+        }
+        .signup-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 20px;
+        }
+        .signup-container img.logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .signup-container img.logo:hover {
+            transform: scale(1.05);
+        }
+        .signup-container h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .signup-container form {
+            width: 100%;
+        }
+        .signup-container input, .signup-container select, .signup-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .signup-container input:focus, .signup-container select:focus, .signup-container textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+            outline: none;
+        }
+        .password-container {
+            position: relative;
+            width: 100%;
+            margin: 12px 0;
+        }
+        .password-container input {
+            width: 100%;
+            padding-right: 40px; /* Space for eye icon */
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #555;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .password-toggle:hover {
+            color: #3498db;
+        }
+        .signup-container button {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+        .signup-container button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+        }
+        .toggle-link {
+            margin-top: 12px;
+            color: #3498db;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .toggle-link:hover {
+            color: #2980b9;
+        }
+        .password-info {
+            font-size: 12px;
+            color: #555;
+            text-align: left;
+            margin: 10px 0 5px 0;
+            width: 100%;
+        }
 
       @media (max-width: 768px) {
         .signup-container {
@@ -183,89 +203,46 @@
   </head>
   <body>
     <div class="signup-container">
-      <img
-        src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg"
-        alt="Data Safari Logo"
-        class="logo"
-      />
-      <h2>Sign Up for Data Safari</h2>
-      <form id="signup-form">
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          placeholder="First Name"
-          required
-        />
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          placeholder="Last Name"
-          required
-        />
-        <input
-          type="number"
-          id="age"
-          name="age"
-          placeholder="Age"
-          min="13"
-          max="120"
-          required
-        />
-        <select id="gender" name="gender" required>
-          <option value="" disabled selected>Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-          <option value="prefer-not-to-say">Prefer not to say</option>
-        </select>
-        <select id="proficiency" name="proficiency" required>
-          <option value="" disabled selected>Data Science Proficiency</option>
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
-        </select>
-        <select id="country" name="country" required>
-          <option value="" disabled selected>Select Country</option>
-          <option value="kenya">Kenya</option>
-          <option value="usa">USA</option>
-          <option value="uk">UK</option>
-          <option value="other">Other</option>
-        </select>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          required
-        />
-        <textarea
-          id="interest"
-          name="interest"
-          placeholder="Why are you interested in Data Science?"
-          rows="4"
-          required
-        ></textarea>
-        <button type="submit">Sign Up</button>
-      </form>
-      <p class="toggle-link" onclick="window.location.href='LoginPage.html'">
-        Already have an account? Log in
-      </p>
+        <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo" class="logo">
+        <h2>Sign Up for Data Safari</h2>
+        <form id="signup-form">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            <input type="number" id="age" name="age" placeholder="Age" min="13" max="120">
+            <select id="gender" name="gender">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+            <select id="proficiency" name="proficiency" required>
+                <option value="" disabled selected>Data Science Proficiency</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+            <select id="country" name="country">
+                <option value="" disabled selected>Select Country</option>
+                <option value="kenya">Kenya</option>
+                <option value="usa">USA</option>
+                <option value="uk">UK</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <p class="password-info">Password must be at least 8 characters long and include: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (e.g., !@#$%^&*).</p>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            </div>
+            <div class="password-container">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <i class="fas fa-eye password-toggle" id="toggleConfirmPassword"></i>
+            </div>
+            <textarea id="interest" name="interest" placeholder="Why are you interested in Data Science?" rows="4"></textarea>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="toggle-link" onclick="window.location.href='LoginPage.html'">Already have an account? Log in</p>
     </div>
 
     <script type="module">
@@ -280,26 +257,53 @@ import {
     setDoc 
 } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-const signupForm = document.getElementById("signup-form");
+        const signupForm = document.getElementById("signup-form");
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+        const togglePassword = document.getElementById("togglePassword");
+        const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+
+        // Password toggle functionality
+        togglePassword.addEventListener("click", () => {
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        });
+
+        toggleConfirmPassword.addEventListener("click", () => {
+            const type = confirmPasswordInput.type === "password" ? "text" : "password";
+            confirmPasswordInput.type = type;
+            toggleConfirmPassword.classList.toggle("fa-eye");
+            toggleConfirmPassword.classList.toggle("fa-eye-slash");
+        });
 
 signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const age = document.getElementById("age").value;
-    const gender = document.getElementById("gender").value;
-    const proficiency = document.getElementById("proficiency").value;
-    const country = document.getElementById("country").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    const interest = document.getElementById("interest").value;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+            const proficiency = document.getElementById("proficiency").value;
+            const country = document.getElementById("country").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const interest = document.getElementById("interest").value;
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-    }
+            // Validate required fields
+            if (!firstName || !lastName || !email || !password || !confirmPassword || !proficiency) {
+                alert("Please fill in all required fields (First Name, Last Name, Email, Password, Confirm Password, Proficiency).");
+                return;
+            }
+
+            // Email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address (e.g., user@domain.com).");
+                return;
+            }
 
     // Password validation
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -308,40 +312,40 @@ signupForm.addEventListener("submit", async (e) => {
         return;
     }
 
-    try {
-        // Register user in Firebase Authentication
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+            try {
+                console.log("Attempting to sign up with:", email);
+                // Create user with Firebase Authentication using auth.js
+                const userCredential = await signUp(email, password);
+                const user = userCredential.user;
+                console.log("User created:", user.uid);
 
-        // Send email verification
-        await sendEmailVerification(user);
-        alert("Verification email sent! Please check your inbox.");
+                // Store user data in Firestore under UserSignUpData collection
+                await setDoc(doc(db, "UserSignUpData", user.uid), {
+                    firstName,
+                    lastName,
+                    age: age ? Number(age) : null,
+                    gender: gender || null,
+                    proficiency,
+                    country: country || null,
+                    email,
+                    interest: interest || null,
+                    createdAt: new Date().toISOString()
+                });
+                console.log("User data stored in Firestore under UserSignUpData");
 
-        // Store additional user data in Firestore
-        await setDoc(doc(db, "users", user.uid), {
-            firstName,
-            lastName,
-            age: Number(age),
-            gender,
-            proficiency,
-            country,
-            email,
-            interest,
-            createdAt: new Date().toISOString(),
+                // Set success flag and redirect to homepage
+                sessionStorage.setItem("signupSuccess", "true");
+                window.location.href = "homepage.html";
+            } catch (error) {
+                console.error("Signup error:", error.code, error.message);
+                if (error.code === "auth/email-already-in-use") {
+                    alert("Email already in use. Please log in or use a different email.");
+                } else {
+                    alert("Sign up failed: " + error.message);
+                }
+            }
         });
-
-        // Redirect to homepage with success message
-        sessionStorage.setItem("signupSuccess", "true");
-        window.location.href = "homepage.html";
-    } catch (error) {
-        if (error.code === "auth/email-already-in-use") {
-            alert("Email already in use. Please log in or use a different email.");
-        } else {
-            alert("Sign up failed: " + error.message);
-        }
-    }
-});
-</script
-  </body>
+    </script>
+</body>
 </html>
 sandra/777

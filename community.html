@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | Data Safari Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-light: #f8f9fa;
+            --text-dark: #333;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --light-bg: #1a1a1a;
+            --text-dark: #f8f9fa;
+            --text-light: #f8f9fa;
+            --dark-bg: #4a5568;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        /* Header Styling */
+        .header-container {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 20px 25px;
+            box-shadow: 0 4px 12px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            transition: opacity 0.3s ease, height 0.3s ease;
+        }
+
+        .header.hidden {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .profile-name {
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+        }
+
+        .dropdown-arrow {
+            margin-left: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: var(--dark-bg);
+            box-shadow: 0 6px 12px var(--shadow);
+            border-radius: 8px;
+            width: 160px;
+            z-index: 10;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--primary-color);
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background: transparent;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-bar a:hover, .nav-bar a.active {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .theme-toggle {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #2980b9;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .content-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .content-section {
+            background: #2a2a2a;
+        }
+
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        /* Support Section */
+        .support-section {
+            padding: 30px 20px;
+            background: var(--light-bg);
+            margin: 0 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px var(--shadow);
+            text-align: center;
+        }
+
+        .support-text {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        .support-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .support-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            padding: 15px 30px;
+            text-align: left;
+            color: var(--text-light);
+            font-size: 14px;
+            box-shadow: 0 -2px 10px var(--shadow);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 15px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+                background: var(--dark-bg);
+                padding: 15px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .theme-toggle {
+                margin-top: 15px;
+                align-self: flex-end;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .support-section {
+                margin: 0 15px 15px;
+                padding: 20px 15px;
+            }
+
+            .support-text {
+                font-size: 14px;
+            }
+
+            .support-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .logo-container img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .logo-text p {
+                font-size: 12px;
+            }
+
+            .profile-pic {
+                width: 36px;
+                height: 36px;
+            }
+
+            .profile-name {
+                font-size: 14px;
+            }
+
+            .nav-bar a {
+                font-size: 14px;
+            }
+
+            .support-text {
+                font-size: 13px;
+            }
+
+            .support-button {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+
+            .footer {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
+                <div class="logo-text">
+                    <h1>Data Safari Academy</h1>
+                    <p>Empowering Young Minds in Data Science</p>
+                </div>
+            </div>
+            <div class="profile-container">
+                <div class="profile-pic" id="profile-pic">JD</div>
+                <span class="profile-name" id="profile-name">Loading...</span>
+                <span class="dropdown-arrow">▾</span>
+                <div class="dropdown-menu">
+                    <a href="edit-profile.html">Edit My Profile</a>
+                    <a href="#" onclick="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <i class="fas fa-bars menu-toggle"></i>
+            <div class="nav-links">
+                <a href="homepage.html">Learning</a>
+                <a href="community.html" class="active">Community</a>
+                <a href="outreach.html">Outreach</a>
+                <a href="faqs.html">FAQs</a>
+                <a href="about.html">About Us</a>
+                <a href="documentation.html">Documentation</a>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div id="community" class="content-section">
+            <h2><i class="fas fa-users"></i> Community Engagement</h2>
+            <h3>Building a Learning Community</h3>
+            <p>Data Safari Academy is committed to fostering a vibrant community of young learners in Kenya and beyond. Our community engagement strategy focuses on providing access to data science resources, tutorials, and tools that simplify complex concepts for beginners.</p>
+            
+            <h3>Features for Community Engagement</h3>
+            <ul>
+                <li><strong>Discussion Forums:</strong> A space for learners to ask questions, share projects, and collaborate on data science challenges.</li>
+                <li><strong>Mentorship Program:</strong> Connect with experienced data professionals who offer guidance and feedback on projects.</li>
+                <li><strong>Weekly Webinars:</strong> Live sessions with industry experts covering topics like data cleaning, visualization, and machine learning.</li>
+                <li><strong>Project Showcase:</strong> Upload your data science projects to our gallery, receive peer reviews, and build a portfolio.</li>
+                <li><strong>Local Meetups:</strong> Partnering with polytechnics to host in-person workshops and hackathons.</li>
+            </ul>
+            
+            <h3>Simplifying Complex Concepts</h3>
+            <p>We break down intricate topics into digestible lessons:</p>
+            <ul>
+                <li><strong>Data Science Basics:</strong> Interactive tutorials with real-world examples (e.g., analyzing Kenyan weather data).</li>
+                <li><strong>Hands-On Exercises:</strong> Code-along sessions in Python and SQL, accessible via our platform.</li>
+                <li><strong>Visual Learning Tools:</strong> Animated explainers and infographics to demystify algorithms.</li>
+            </ul>
+            
+            <h3>Community Benefits</h3>
+            <p>By joining our community, young learners gain:</p>
+            <ul>
+                <li>Access to free and low-cost resources tailored for beginners.</li>
+                <li>Peer support to overcome learning hurdles.</li>
+                <li>Opportunities to network with peers and professionals across Kenya.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Support Section -->
+    <div class="support-section">
+        <div class="support-text">Need help? Reach out to our support team!</div>
+        <button class="support-button" onclick="window.location.href='support.html'">Support</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © Data Safari Academy 2025
+    </div>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { db } from "./firebase.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+        // Dropdown toggle
+        document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = document.querySelector('.dropdown-menu');
+            dropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function(event) {
+            const profileContainer = document.querySelector('.profile-container');
+            const dropdown = document.querySelector('.dropdown-menu');
+            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // Navigation toggle for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuToggle.classList.remove('fa-bars');
+                    menuToggle.classList.add('fa-times');
+                } else {
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('fa-times');
+                    menuToggle.classList.add('fa-bars');
+                }
+            });
+
+            // Hide header on scroll
+            const header = document.querySelector('.header');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 50) { // Scrolling down past 50px
+                    header.classList.add('hidden');
+                } else if (scrollTop <= 50) { // Near top
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+            });
+
+            // Fetch user data from Firestore
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    try {
+                        const userDocRef = doc(db, "UserSignUpData", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+                            const fullName = `${userData.firstName} ${userData.lastName}`;
+                            const initials = userData.firstName[0] + userData.lastName[0];
+                            document.getElementById("profile-name").textContent = fullName;
+                            document.getElementById("profile-pic").textContent = initials;
+                        } else {
+                            console.error("No such document!");
+                            document.getElementById("profile-name").textContent = "User Not Found";
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                        document.getElementById("profile-name").textContent = "Error Loading Name";
+                    }
+                } else {
+                    // User not logged in, redirect to login page
+                    window.location.href = "LoginPage.html";
+                }
+            });
+
+            // Highlight current page in nav
+            const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
+            document.querySelectorAll('.nav-bar a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+
+        // Logout function
+        function logout() {
+            auth.signOut().then(() => {
+                sessionStorage.clear();
+                window.location.href = "LoginPage.html";
+            }).catch((error) => {
+                console.error("Logout error:", error);
+            });
+        }
+    </script>
+</body>
+</html>

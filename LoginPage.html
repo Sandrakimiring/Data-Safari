@@ -6,6 +6,7 @@
     <title>Login | Data Safari</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Font Awesome for eye icon -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -84,6 +85,28 @@
             box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
             outline: none;
         }
+        .password-container {
+            position: relative;
+            width: 100%;
+            margin: 12px 0;
+        }
+        .password-container input {
+            width: 100%;
+            padding-right: 40px; /* Space for eye icon */
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #555;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .password-toggle:hover {
+            color: #3498db;
+        }
         .login-container button {
             background: #3498db;
             color: white;
@@ -159,6 +182,27 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transform: translateY(-2px);
         }
+        .error-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            animation: fadeInOut 3s ease forwards;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
 
         @media (max-width: 768px) {
             .login-container {
@@ -232,7 +276,10 @@
         <h2 id="form-title">Log into Data Safari</h2>
         <form id="auth-form">
             <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            </div>
             <button type="submit" id="submit-btn">Login</button>
         </form>
         <p class="toggle-link" id="toggle-form" onclick="window.location.href='SignUp.html'">Don't have an account? Sign up</p>
@@ -249,6 +296,24 @@
         const authForm = document.getElementById("auth-form");
         const emailInput = document.getElementById("email");
         const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        // Password toggle functionality
+        togglePassword.addEventListener("click", () => {
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        });
+
+        // Function to show error popup
+        function showErrorPopup(message) {
+            const popup = document.createElement("div");
+            popup.className = "error-message";
+            popup.textContent = message;
+            document.body.appendChild(popup);
+            setTimeout(() => popup.remove(), 3000); // Remove after 3 seconds
+        }
 
         authForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -259,12 +324,13 @@
                 await login(email, password);
                 window.location.href = "homepage.html"; // Redirect on success
             } catch (error) {
+                console.error("Login error:", error.code, error.message);
                 if (error.code === "auth/wrong-password") {
-                    alert("Wrong password, try again!");
+                    showErrorPopup("Invalid password!");
                 } else if (error.code === "auth/user-not-found") {
-                    alert("Invalid User. Sign up please");
+                    showErrorPopup("Not Registered! Sign Up instead.");
                 } else {
-                    alert("Login failed: " + error.message);
+                    showErrorPopup("Login failed: " + error.message);
                 }
             }
         });
@@ -273,7 +339,8 @@
             try {
                 await googleLogin();
             } catch (error) {
-                // Error already handled in auth.js with alert and redirect
+                console.error("Google login error:", error.code, error.message);
+                showErrorPopup("Google login failed: " + error.message);
             }
         });
     </script>
