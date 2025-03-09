@@ -1,1122 +1,1503 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home | Data Safari Academy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <!-- Favicon: Data chart icon in #3498db -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4="
+    />
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-light: #f8f9fa;
-            --text-dark: #333;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2c3e50;
+        --accent-color: #27ae60;
+        --light-bg: #f8f9fa;
+        --dark-bg: #2c3e50;
+        --text-light: #f8f9fa;
+        --text-dark: #333;
+        --shadow: rgba(0, 0, 0, 0.08);
+        --transition: all 0.3s ease;
+      }
 
-        [data-theme="dark"] {
-            --light-bg: #1a1a1a;
-            --text-dark: #f8f9fa;
-            --text-light: #f8f9fa;
-            --dark-bg: #4a5568;
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
+      [data-theme="dark"] {
+        --light-bg: #1a1a1a;
+        --text-dark: #f8f9fa;
+        --text-light: #f8f9fa;
+        --dark-bg: #4a5568;
+        --shadow: rgba(0, 0, 0, 0.3);
+      }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-        }
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--light-bg);
+        color: var(--text-dark);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        transition: var(--transition);
+      }
 
-        /* Header Styling */
-        .header-container {
-            background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 20px 25px;
-            box-shadow: 0 4px 12px var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+      /* Header Styling */
+      .header-container {
+        background: var(--dark-bg);
+        color: var(--text-light);
+        padding: 20px 25px;
+        box-shadow: 0 4px 12px var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
 
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-container img {
+        width: 100px;
+        height: 100px; /* Fixed height for circular shape */
+        border-radius: 50%; /* Makes logo circular */
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .logo-container img:hover {
+        transform: scale(1.05);
+      }
+
+      .logo-text h1 {
+        font-family: "Poppins", sans-serif;
+        font-size: 24px;
+        margin: 0;
+      }
+
+      .logo-text p {
+        font-size: 14px;
+        color: var(--text-light);
+        opacity: 0.8;
+      }
+
+      .profile-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 10px;
+        box-shadow: 0 2px 4px var(--shadow);
+      }
+
+      .profile-name {
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        color: var(--text-light);
+      }
+
+      .dropdown-arrow {
+        margin-left: 8px;
+        font-size: 14px;
+        color: var(--text-light);
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: var(--dark-bg);
+        box-shadow: 0 6px 12px var(--shadow);
+        border-radius: 8px;
+        width: 160px;
+        z-index: 10;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 12px;
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.2s;
+      }
+
+      .dropdown-menu a:hover {
+        background: var(--primary-color);
+      }
+
+      /* Navigation Bar */
+      .nav-bar {
+        background: transparent;
+        padding: 10px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+      }
+
+      .nav-bar a {
+        text-decoration: none;
+        color: var(--text-light);
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background 0.3s, color 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-bar a:hover,
+      .nav-bar a.active {
+        background: var(--primary-color);
+        color: var(--text-light);
+      }
+
+      .theme-toggle {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
+
+      .theme-toggle:hover {
+        background: #2980b9;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 24px;
+        color: var(--text-light);
+        cursor: pointer;
+        padding: 10px;
+      }
+
+      /* Main Content */
+      .content {
+        padding: 30px;
+        flex-grow: 1;
+      }
+
+      .content-section {
+        display: none;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px var(--shadow);
+        margin-bottom: 30px;
+        transition: var(--transition);
+      }
+
+      [data-theme="dark"] .content-section {
+        background: #2a2a2a;
+      }
+
+      .content-section.active {
+        display: block;
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content-section h2 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .content-section p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+      }
+
+      /* Learning Section Specific Styling */
+      #learning {
+        padding: 40px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .welcome-message {
+        font-size: 26px;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+      }
+
+      .progress-bar-container {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      [data-theme="dark"] .progress-bar-container {
+        background: #2a2a2a;
+      }
+
+      .progress-bar-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px var(--shadow);
+      }
+
+      .progress-bar-container:nth-child(2) {
+        border-left: 4px solid var(--primary-color);
+      }
+      .progress-bar-container:nth-child(3) {
+        border-left: 4px solid var(--accent-color);
+      }
+      .progress-bar-container:nth-child(4) {
+        border-left: 4px solid #805ad5;
+      }
+      .progress-bar-container:nth-child(5) {
+        border-left: 4px solid #dd6b20;
+      }
+      .progress-bar-container:nth-child(6) {
+        border-left: 4px solid #d53f8c;
+      }
+
+      .progress-title {
+        font-size: 18px;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+        text-decoration: none;
+      }
+
+      .progress-bar {
+        width: 100%;
+        max-width: 250px;
+        height: 10px;
+        background: var(--light-bg);
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      [data-theme="dark"] .progress-bar {
+        background: #718096;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 5px;
+        transition: width 0.5s ease;
+      }
+
+      .progress-bar-container:nth-child(2) .progress-fill {
+        background: var(--primary-color);
+      }
+      .progress-bar-container:nth-child(3) .progress-fill {
+        background: var(--accent-color);
+      }
+      .progress-bar-container:nth-child(4) .progress-fill {
+        background: #805ad5;
+      }
+      .progress-bar-container:nth-child(5) .progress-fill {
+        background: #dd6b20;
+      }
+      .progress-bar-container:nth-child(6) .progress-fill {
+        background: #d53f8c;
+      }
+
+      .progress-percentage {
+        font-size: 14px;
+        color: var(--secondary-color);
+        margin-top: 6px;
+        text-align: right;
+        width: 100%;
+        max-width: 250px;
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Support Section */
+      .support-section {
+        padding: 30px 20px;
+        background: var(--light-bg);
+        margin: 0 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px var(--shadow);
+        text-align: center;
+      }
+
+      .support-text {
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: var(--text-dark);
+      }
+
+      .support-button {
+        background: var(--primary-color);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      .support-button:hover {
+        background: #2980b9;
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--dark-bg);
+        padding: 15px 30px;
+        text-align: left;
+        color: var(--text-light);
+        font-size: 14px;
+        box-shadow: 0 -2px 10px var(--shadow);
+      }
+
+      /* FAQs Section Specific Styling */
+      #faqs .faq-search {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      #faqs .faq-search:focus {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+
+      #faqs .faq-item {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+      }
+
+      #faqs .faq-item h3 {
+        margin: 0;
+        cursor: pointer;
+        color: var(--primary-color);
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: color 0.3s;
+      }
+
+      #faqs .faq-item h3:hover {
+        color: #2980b9;
+      }
+
+      #faqs .faq-item h3::before {
+        content: "\f059"; /* Font Awesome question-circle */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: var(--accent-color);
+      }
+
+      #faqs .faq-item p {
+        display: none;
+        margin-top: 10px;
+        line-height: 1.6;
+        color: var(--text-dark);
+        font-size: 16px;
+      }
+
+      /* About Section Specific Styling */
+      #about .about-image {
+        width: 100%;
+        max-width: 600px;
+        display: block;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px var(--shadow);
+        transition: transform 0.3s;
+      }
+
+      #about .about-image:hover {
+        transform: scale(1.02);
+      }
+
+      #about .team-section h2 {
+        color: var(--primary-color);
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        font-size: 24px;
+        margin: 30px 0 20px;
+      }
+
+      #about .team {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      #about .member {
+        background: var(--light-bg);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        flex: 1 1 300px;
+        max-width: 300px;
+        box-shadow: 0 2px 6px var(--shadow);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      [data-theme="dark"] #about .member {
+        background: #333;
+      }
+
+      #about .member:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px var(--shadow);
+      }
+
+      #about .member strong {
+        color: var(--secondary-color);
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      #about .member p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+          padding: 15px;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-container img {
-            width: 100px;
-            height: 100px; /* Fixed height for circular shape */
-            border-radius: 50%; /* Makes logo circular */
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .logo-container img:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-text h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            margin: 0;
-        }
-
-        .logo-text p {
-            font-size: 14px;
-            color: var(--text-light);
-            opacity: 0.8;
-        }
-
-        .profile-container {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            margin-right: 10px;
-            box-shadow: 0 2px 4px var(--shadow);
-        }
-
-        .profile-name {
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
-        }
-
-        .dropdown-arrow {
-            margin-left: 8px;
-            font-size: 14px;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background: var(--dark-bg);
-            box-shadow: 0 6px 12px var(--shadow);
-            border-radius: 8px;
-            width: 160px;
-            z-index: 10;
-        }
-
-        .dropdown-menu.active {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 12px;
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--primary-color);
-        }
-
-        /* Navigation Bar */
         .nav-bar {
-            background: transparent;
-            padding: 10px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            position: relative;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 10px 15px;
         }
 
         .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          gap: 15px;
+          background: var(--dark-bg);
+          padding: 15px 0;
         }
 
-        .nav-bar a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: background 0.3s, color 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-bar a:hover, .nav-bar a.active {
-            background: var(--primary-color);
-            color: var(--text-light);
-        }
-
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #2980b9;
+        .nav-links.active {
+          display: flex;
         }
 
         .menu-toggle {
-            display: none;
-            font-size: 24px;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 10px;
+          display: block;
         }
 
-        /* Main Content */
+        .theme-toggle {
+          margin-top: 15px;
+          align-self: flex-end;
+        }
+
         .content {
-            padding: 30px;
-            flex-grow: 1;
+          padding: 20px;
         }
 
-        .content-section {
-            display: none;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow);
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .content-section {
-            background: #2a2a2a;
-        }
-
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .content-section p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        /* Learning Section Specific Styling */
         #learning {
-            padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
+          padding: 20px;
         }
 
         .welcome-message {
-            font-size: 26px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary-color);
+          font-size: 20px;
         }
-
-        .progress-bar-container {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        [data-theme="dark"] .progress-bar-container {
-            background: #2a2a2a;
-        }
-
-        .progress-bar-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px var(--shadow);
-        }
-
-        .progress-bar-container:nth-child(2) { border-left: 4px solid var(--primary-color); }
-        .progress-bar-container:nth-child(3) { border-left: 4px solid var(--accent-color); }
-        .progress-bar-container:nth-child(4) { border-left: 4px solid #805ad5; }
-        .progress-bar-container:nth-child(5) { border-left: 4px solid #dd6b20; }
-        .progress-bar-container:nth-child(6) { border-left: 4px solid #d53f8c; }
 
         .progress-title {
-            font-size: 18px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-            text-decoration: none;
+          font-size: 16px;
         }
 
-        .progress-bar {
-            width: 100%;
-            max-width: 250px;
-            height: 10px;
-            background: var(--light-bg);
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .progress-bar {
-            background: #718096;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-
-        .progress-bar-container:nth-child(2) .progress-fill { background: var(--primary-color); }
-        .progress-bar-container:nth-child(3) .progress-fill { background: var(--accent-color); }
-        .progress-bar-container:nth-child(4) .progress-fill { background: #805ad5; }
-        .progress-bar-container:nth-child(5) .progress-fill { background: #dd6b20; }
-        .progress-bar-container:nth-child(6) .progress-fill { background: #d53f8c; }
-
+        .progress-bar,
         .progress-percentage {
-            font-size: 14px;
-            color: var(--secondary-color);
-            margin-top: 6px;
-            text-align: right;
-            width: 100%;
-            max-width: 250px;
-            font-family: 'Roboto', sans-serif;
+          max-width: 100%;
         }
 
-        /* Support Section */
         .support-section {
-            padding: 30px 20px;
-            background: var(--light-bg);
-            margin: 0 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px var(--shadow);
-            text-align: center;
+          margin: 0 15px 15px;
+          padding: 20px 15px;
         }
 
         .support-text {
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: var(--text-dark);
+          font-size: 14px;
         }
 
         .support-button {
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            transition: background 0.3s, transform 0.2s;
+          padding: 10px 20px;
+          font-size: 14px;
         }
 
-        .support-button:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+        #faqs .faq-section {
+          padding: 20px;
         }
 
-        /* Footer */
-        .footer {
-            background: var(--dark-bg);
-            padding: 15px 30px;
-            text-align: left;
-            color: var(--text-light);
-            font-size: 14px;
-            box-shadow: 0 -2px 10px var(--shadow);
-        }
-
-        /* FAQs Section Specific Styling */
-        #faqs .faq-search {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        #faqs .faq-search:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-
-        #faqs .faq-item {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
+        #faqs .faq-section h1 {
+          font-size: 24px;
         }
 
         #faqs .faq-item h3 {
-            margin: 0;
-            cursor: pointer;
-            color: var(--primary-color);
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: color 0.3s;
-        }
-
-        #faqs .faq-item h3:hover {
-            color: #2980b9;
-        }
-
-        #faqs .faq-item h3::before {
-            content: "\f059"; /* Font Awesome question-circle */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--accent-color);
+          font-size: 16px;
         }
 
         #faqs .faq-item p {
-            display: none;
-            margin-top: 10px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            font-size: 16px;
+          font-size: 14px;
         }
 
-        /* About Section Specific Styling */
-        #about .about-image {
-            width: 100%;
-            max-width: 600px;
-            display: block;
-            margin: 20px auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px var(--shadow);
-            transition: transform 0.3s;
+        #faqs .faq-search {
+          padding: 10px;
         }
 
-        #about .about-image:hover {
-            transform: scale(1.02);
+        #about .about-section {
+          padding: 20px;
+        }
+
+        #about .about-section h1 {
+          font-size: 24px;
+        }
+
+        #about .about-section p {
+          font-size: 14px;
         }
 
         #about .team-section h2 {
-            color: var(--primary-color);
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            font-size: 24px;
-            margin: 30px 0 20px;
-        }
-
-        #about .team {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+          font-size: 20px;
         }
 
         #about .member {
-            background: var(--light-bg);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            flex: 1 1 300px;
-            max-width: 300px;
-            box-shadow: 0 2px 6px var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        [data-theme="dark"] #about .member {
-            background: #333;
-        }
-
-        #about .member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px var(--shadow);
+          flex: 1 1 250px;
+          max-width: 250px;
         }
 
         #about .member strong {
-            color: var(--secondary-color);
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            display: block;
-            margin-bottom: 10px;
+          font-size: 16px;
         }
 
         #about .member p {
-            font-size: 14px;
-            margin: 0;
+          font-size: 13px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px;
-            }
+        .logo-container img {
+          width: 80px;
+          height: 80px;
+        }
+      }
 
-            .nav-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px 15px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            #learning {
-                padding: 20px;
-            }
-
-            .welcome-message {
-                font-size: 20px;
-            }
-
-            .progress-title {
-                font-size: 16px;
-            }
-
-            .progress-bar, .progress-percentage {
-                max-width: 100%;
-            }
-
-            .support-section {
-                margin: 0 15px 15px;
-                padding: 20px 15px;
-            }
-
-            .support-text {
-                font-size: 14px;
-            }
-
-            .support-button {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            #faqs .faq-section {
-                padding: 20px;
-            }
-
-            #faqs .faq-section h1 {
-                font-size: 24px;
-            }
-
-            #faqs .faq-item h3 {
-                font-size: 16px;
-            }
-
-            #faqs .faq-item p {
-                font-size: 14px;
-            }
-
-            #faqs .faq-search {
-                padding: 10px;
-            }
-
-            #about .about-section {
-                padding: 20px;
-            }
-
-            #about .about-section h1 {
-                font-size: 24px;
-            }
-
-            #about .about-section p {
-                font-size: 14px;
-            }
-
-            #about .team-section h2 {
-                font-size: 20px;
-            }
-
-            #about .member {
-                flex: 1 1 250px;
-                max-width: 250px;
-            }
-
-            #about .member strong {
-                font-size: 16px;
-            }
-
-            #about .member p {
-                font-size: 13px;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
-            }
+      @media (max-width: 480px) {
+        .logo-container img {
+          width: 60px;
+          height: 60px;
         }
 
-        @media (max-width: 480px) {
-            .logo-container img {
-                width: 60px;
-                height: 60px;
-            }
-
-            .logo-text h1 {
-                font-size: 20px;
-            }
-
-            .logo-text p {
-                font-size: 12px;
-            }
-
-            .profile-pic {
-                width: 36px;
-                height: 36px;
-            }
-
-            .profile-name {
-                font-size: 14px;
-            }
-
-            .nav-bar a {
-                font-size: 14px;
-            }
-
-            .welcome-message {
-                font-size: 18px;
-            }
-
-            .progress-title {
-                font-size: 14px;
-            }
-
-            .progress-percentage {
-                font-size: 12px;
-            }
-
-            .support-text {
-                font-size: 13px;
-            }
-
-            .support-button {
-                padding: 8px 15px;
-                font-size: 13px;
-            }
-
-            #faqs .faq-section {
-                padding: 15px;
-            }
-
-            #faqs .faq-section h1 {
-                font-size: 20px;
-            }
-
-            #faqs .faq-item h3 {
-                font-size: 15px;
-            }
-
-            #faqs .faq-item p {
-                font-size: 13px;
-            }
-
-            #faqs .faq-search {
-                padding: 8px;
-                font-size: 12px;
-            }
-
-            #about .about-section {
-                padding: 15px;
-            }
-
-            #about .about-section h1 {
-                font-size: 20px;
-            }
-
-            #about .about-image {
-                max-width: 100%;
-            }
-
-            #about .team-section h2 {
-                font-size: 18px;
-            }
-
-            #about .member {
-                flex: 1 1 100%;
-                max-width: 100%;
-                padding: 15px;
-            }
-
-            #about .member strong {
-                font-size: 15px;
-            }
-
-            .footer {
-                padding: 10px 15px;
-                font-size: 12px;
-            }
+        .logo-text h1 {
+          font-size: 20px;
         }
+
+        .logo-text p {
+          font-size: 12px;
+        }
+
+        .profile-pic {
+          width: 36px;
+          height: 36px;
+        }
+
+        .profile-name {
+          font-size: 14px;
+        }
+
+        .nav-bar a {
+          font-size: 14px;
+        }
+
+        .welcome-message {
+          font-size: 18px;
+        }
+
+        .progress-title {
+          font-size: 14px;
+        }
+
+        .progress-percentage {
+          font-size: 12px;
+        }
+
+        .support-text {
+          font-size: 13px;
+        }
+
+        .support-button {
+          padding: 8px 15px;
+          font-size: 13px;
+        }
+
+        #faqs .faq-section {
+          padding: 15px;
+        }
+
+        #faqs .faq-section h1 {
+          font-size: 20px;
+        }
+
+        #faqs .faq-item h3 {
+          font-size: 15px;
+        }
+
+        #faqs .faq-item p {
+          font-size: 13px;
+        }
+
+        #faqs .faq-search {
+          padding: 8px;
+          font-size: 12px;
+        }
+
+        #about .about-section {
+          padding: 15px;
+        }
+
+        #about .about-section h1 {
+          font-size: 20px;
+        }
+
+        #about .about-image {
+          max-width: 100%;
+        }
+
+        #about .team-section h2 {
+          font-size: 18px;
+        }
+
+        #about .member {
+          flex: 1 1 100%;
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        #about .member strong {
+          font-size: 15px;
+        }
+
+        .footer {
+          padding: 10px 15px;
+          font-size: 12px;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header-container">
-        <div class="header">
-            <div class="logo-container">
-                <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
-                <div class="logo-text">
-                    <h1>Data Safari Academy</h1>
-                    <p>Empowering Young Minds in Data Science</p>
-                </div>
-            </div>
-            <div class="profile-container">
-                <div class="profile-pic">JD</div>
-                <span class="profile-name">John Doe</span>
-                <span class="dropdown-arrow">▾</span>
-                <div class="dropdown-menu">
-                    <a href="edit-profile.html">Edit My Profile</a>
-                    <a href="#" onclick="logout()">Log Out</a>
-                </div>
-            </div>
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg"
+            alt="Data Safari Logo"
+          />
+          <div class="logo-text">
+            <h1>Data Safari Academy</h1>
+            <p>Empowering Young Minds in Data Science</p>
+          </div>
         </div>
+        <div class="profile-container">
+          <div class="profile-pic">SK</div>
+          <span class="profile-name">Loading...</span>
+          <span class="dropdown-arrow">▾</span>
+          <div class="dropdown-menu">
+            <a href="edit-profile.html">Edit My Profile</a>
+            <a href="LoginPage.html" onclick="logout()">Log Out</a>
+          </div>
+        </div>
+      </div>
 
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <i class="fas fa-bars menu-toggle"></i>
-            <div class="nav-links">
-                <a href="#learning" class="active" onclick="showContent('learning')">Learning</a>
-                <a href="#community" onclick="showContent('community')">Community</a>
-                <a href="#outreach" onclick="showContent('outreach')">Outreach</a>
-                <a href="#faqs" onclick="showContent('faqs')">FAQs</a>
-                <a href="#about" onclick="showContent('about')">About Us</a>
-                <a href="#documentation" onclick="showContent('documentation')">Documentation</a>
-            </div>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+      <!-- Navigation Bar -->
+      <div class="nav-bar">
+        <i class="fas fa-bars menu-toggle"></i>
+        <div class="nav-links">
+          <a href="#learning" class="active" onclick="showContent('learning')"
+            >Learning</a
+          >
+          <a href="#community" onclick="showContent('community')">Community</a>
+          <a href="#outreach" onclick="showContent('outreach')">Outreach</a>
+          <a href="#faqs" onclick="showContent('faqs')">FAQs</a>
+          <a href="#about" onclick="showContent('about')">About Us</a>
+          <a href="#documentation" onclick="showContent('documentation')"
+            >Documentation</a
+          >
         </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+          Toggle Dark Mode
+        </button>
+      </div>
     </div>
 
     <!-- Main Content -->
     <div class="content">
-        <div id="learning" class="content-section active">
-            <h2><i class="fas fa-book-open"></i> Learning Hub</h2>
-            <div class="welcome-message">Welcome to Data Safari!</div>
+      <div id="learning" class="content-section active">
+        <h2><i class="fas fa-book-open"></i> Learning Hub</h2>
+        <div class="welcome-message">Welcome to Data Safari!</div>
 
-            <div class="progress-bar-container" onclick="window.location.href='Introduction to Data Science.html'">
-                <div class="progress-title">Introduction to Data Science</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%;"></div>
-                </div>
-                <div class="progress-percentage">85%</div>
-            </div>
-
-            <div class="progress-bar-container" onclick="window.location.href='dataanalysis1.html'">
-                <div class="progress-title">Data Analysis</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 75%;"></div>
-                </div>
-                <div class="progress-percentage">75%</div>
-            </div>
-
-            <div class="progress-bar-container" onclick="window.location.href='SQL.html'">
-                <div class="progress-title">SQL Databases</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 60%;"></div>
-                </div>
-                <div class="progress-percentage">60%</div>
-            </div>
-
-            <div class="progress-bar-container" onclick="window.location.href='pythonfords.html'">
-                <div class="progress-title">Python for Data Science</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 70%;"></div>
-                </div>
-                <div class="progress-percentage">70%</div>
-            </div>
-
-            <div class="progress-bar-container" onclick="window.location.href='machine learning.html'">
-                <div class="progress-title">Machine Learning</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 55%;"></div>
-                </div>
-                <div class="progress-percentage">55%</div>
-            </div>
+        <div
+          class="progress-bar-container"
+          onclick="window.location.href='Introduction to Data Science.html'"
+        >
+          <div class="progress-title">Introduction to Data Science</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%"></div>
+          </div>
+          <div class="progress-percentage">completed</div>
         </div>
 
-        <div id="community" class="content-section">
-            <h2><i class="fas fa-users"></i> Community Engagement</h2>
-            <h3>Building a Learning Community</h3>
-            <p>Data Safari Academy is committed to fostering a vibrant community of young learners in Kenya and beyond. Our community engagement strategy focuses on providing access to data science resources, tutorials, and tools that simplify complex concepts for beginners.</p>
-            
-            <h3>Features for Community Engagement</h3>
-            <ul>
-                <li><strong>Discussion Forums:</strong> A space for learners to ask questions, share projects, and collaborate on data science challenges.</li>
-                <li><strong>Mentorship Program:</strong> Connect with experienced data professionals who offer guidance and feedback on projects.</li>
-                <li><strong>Weekly Webinars:</strong> Live sessions with industry experts covering topics like data cleaning, visualization, and machine learning.</li>
-                <li><strong>Project Showcase:</strong> Upload your data science projects to our gallery, receive peer reviews, and build a portfolio.</li>
-                <li><strong>Local Meetups:</strong> Partnering with polytechnics to host in-person workshops and hackathons.</li>
-            </ul>
-            
-            <h3>Simplifying Complex Concepts</h3>
-            <p>We break down intricate topics into digestible lessons:</p>
-            <ul>
-                <li><strong>Data Science Basics:</strong> Interactive tutorials with real-world examples (e.g., analyzing Kenyan weather data).</li>
-                <li><strong>Hands-On Exercises:</strong> Code-along sessions in Python and SQL, accessible via our platform.</li>
-                <li><strong>Visual Learning Tools:</strong> Animated explainers and infographics to demystify algorithms.</li>
-            </ul>
-            
-            <h3>Community Benefits</h3>
-            <p>By joining our community, young learners gain:</p>
-            <ul>
-                <li>Access to free and low-cost resources tailored for beginners.</li>
-                <li>Peer support to overcome learning hurdles.</li>
-                <li>Opportunities to network with peers and professionals across Kenya.</li>
-            </ul>
+        <div
+          class="progress-bar-container"
+          onclick="window.location.href='dataanalysis1.html'"
+        >
+          <div class="progress-title">Data Analysis</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 75%"></div>
+          </div>
+          <div class="progress-percentage">75%</div>
         </div>
 
-        <div id="outreach" class="content-section">
-            <h2><i class="fas fa-bullhorn"></i> Outreach Strategy</h2>
-            <h3>Reaching Kenyan Polytechnics</h3>
-            <p>Our outreach strategy aims to engage students from polytechnics across Kenya, ensuring inclusivity and accessibility:</p>
-            
-            <h3>Plan</h3>
-            <ul>
-                <li><strong>Partnerships:</strong> Collaborate with polytechnic institutions to integrate Data Safari resources into their curricula.</li>
-                <li><strong>Mobile Access:</strong> Optimize our website for low-bandwidth environments and mobile devices, common among rural students.</li>
-                <li><strong>Workshops:</strong> Conduct free data science bootcamps in underserved regions like Kisumu, Eldoret, and Mombasa.</li>
-                <li><strong>Scholarships:</strong> Offer sponsored access to premium content for top performers from disadvantaged backgrounds.</li>
-                <li><strong>Social Media Campaigns:</strong> Use platforms like WhatsApp and Instagram to share bite-sized lessons and event updates.</li>
-            </ul>
-            
-            <h3>Inclusivity Measures</h3>
-            <p>We ensure broad reach by:</p>
-            <ul>
-                <li>Providing content in English and Swahili to accommodate diverse learners.</li>
-                <li>Offering offline resources (PDFs, videos) for areas with limited internet.</li>
-                <li>Engaging female students through targeted STEM initiatives.</li>
-            </ul>
+        <div
+          class="progress-bar-container"
+          onclick="window.location.href='SQL.html'"
+        >
+          <div class="progress-title">SQL Databases</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 60%"></div>
+          </div>
+          <div class="progress-percentage">60%</div>
         </div>
 
-        <div id="faqs" class="content-section">
-            <div class="faq-section">
-                <h1>Frequently Asked Questions</h1>
-                <input type="text" id="search" class="faq-search" placeholder="Search FAQs..." onkeyup="searchFAQ()">
-                
-                <div class="faq">
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">1. What is this platform about?</h3>
-                        <p>This platform, Data Safari Academy, is a free and accessible website designed to help learners explore and master Data Science concepts. Our mission is to empower young minds, particularly in Kenya and beyond, by providing comprehensive resources, tutorials, and tools that simplify complex data science topics. Whether you're a beginner or looking to advance your skills, we offer a welcoming space to dive into the world of data, from foundational principles to cutting-edge applications.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">2. Is this website free to use?</h3>
-                        <p>Yes, this website is completely free and open to all learners worldwide. We believe that education should be accessible to everyone, regardless of financial background. There are no hidden fees or subscriptions—our core content, including tutorials, exercises, and community features, is available at no cost. We’re committed to keeping Data Safari Academy a resource that anyone with an internet connection can benefit from.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">3. Can I access the website on my phone?</h3>
-                        <p>Absolutely! The website is mobile-friendly and works seamlessly on both mobile and desktop devices. We’ve optimized our design to ensure a smooth experience whether you’re using a smartphone, tablet, or computer. This means you can learn on the go, access resources from anywhere, and enjoy the same functionality across all your devices, making Data Safari Academy truly flexible for your lifestyle.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">4. What topics does the platform cover?</h3>
-                        <p>We cover a wide range of Data Science topics, including Python programming, SQL databases, Machine Learning, Artificial Intelligence (AI), and Data Visualization. Our curriculum is designed to take you from the basics—like coding in Python or querying data with SQL—to advanced concepts such as building machine learning models and creating insightful visualizations. We’re constantly expanding our offerings to include emerging trends and tools in the data science field.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">5. Is customer support available?</h3>
-                        <p>Yes, we offer round-the-clock customer support to assist you with any questions or challenges you might face. Our dedicated team is available 24/7 via email or our website’s help center to provide guidance, troubleshoot issues, or simply chat about your learning journey. Whether you’re stuck on a technical problem or need advice on your next step, we’re here to ensure you have a smooth and enjoyable experience.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">6. How do I sign up?</h3>
-                        <p>Simply click on the 'Sign Up' button on the homepage and follow the registration steps—it’s quick and easy! You’ll need to provide an email address and create a password, after which you’ll gain full access to our learning resources and community features. Once registered, you can personalize your profile and start exploring the platform right away. If you ever need help, our support team is just a click away.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">7. Are there certificates available?</h3>
-                        <p>Currently, we do not offer certificates, but we plan to introduce them in the future as part of our commitment to enhancing your learning experience. These certificates will recognize your achievements and mastery of specific data science skills, providing a valuable credential for your resume or portfolio. Stay tuned for updates as we roll out this exciting feature!</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">8. How can I contribute to the platform?</h3>
-                        <p>You can contribute by sharing insights, submitting articles, or suggesting new learning materials that you think would benefit the community. Whether you’re an experienced data scientist or a passionate learner, your input is valuable! Reach out through our contact page or community forum to propose content, share your projects, or collaborate with us to make Data Safari Academy even better.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">9. Will AI be integrated into this platform?</h3>
-                        <p>Yes, we are planning to incorporate AI-driven learning assistants to improve the learning experience in the near future. These assistants will offer personalized recommendations, answer questions in real-time, and guide you through complex topics with tailored support. Our goal is to leverage AI to make learning more interactive and efficient, helping you achieve your data science goals faster.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">10. Are there community discussions?</h3>
-                        <p>Yes! Our community forum allows learners to interact, share insights, and collaborate on data science projects. It’s a vibrant space where you can ask questions, discuss concepts, showcase your work, and connect with peers from around the world. Whether you’re seeking feedback or just want to chat about data science, our community is here to support and inspire you.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">11. Do you provide live classes?</h3>
-                        <p>Currently, we focus on self-paced learning, offering flexible resources that you can explore at your own speed. However, we’re considering introducing live classes in the future to complement our offerings. These would include interactive sessions with experts, covering topics like coding, analysis, and more. Keep an eye out for announcements as we expand our educational formats!</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">12. Can I request a specific topic to be covered?</h3>
-                        <p>Yes! We welcome topic requests and encourage you to let us know what you’d like to see. Contact us through our website’s support section or community forum with your suggestions, and we’ll do our best to incorporate them. Your input helps shape the platform, ensuring it meets the needs and interests of learners like you.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">13. Do you offer mentorship?</h3>
-                        <p>We plan to introduce mentorship programs to connect learners with industry experts, providing personalized guidance and career advice. While this feature isn’t available yet, it’s in development, and we aim to launch it soon. Mentorship will offer you the chance to work one-on-one with professionals, gaining insights and feedback to accelerate your data science journey.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">14. Is there a paid version?</h3>
-                        <p>No, our platform remains free for all users, and we’re dedicated to keeping it that way. Data Safari Academy is built on the principle of accessibility, ensuring that everyone can learn data science without financial barriers. While we may offer optional premium features (like mentorship) in the future, the core experience will always be free.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 onclick="toggleAnswer(this)">15. How can I contact support?</h3>
-                        <p>You can contact our support team via email or the help center on our website, available 24/7 to assist you. Whether you have a technical issue, a question about content, or just need some encouragement, we’re here to help. Visit the ‘Support’ section on our homepage for contact details and quick access to our friendly support staff.</p>
-                    </div>
-                </div>
+        <div
+          class="progress-bar-container"
+          onclick="window.location.href='pythonfords.html'"
+        >
+          <div class="progress-title">Python for Data Science</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 70%"></div>
+          </div>
+          <div class="progress-percentage">70%</div>
+        </div>
+
+        <div
+          class="progress-bar-container"
+          onclick="window.location.href='machine learning.html'"
+        >
+          <div class="progress-title">Machine Learning</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 55%"></div>
+          </div>
+          <div class="progress-percentage">55%</div>
+        </div>
+      </div>
+
+      <div id="community" class="content-section">
+        <h2><i class="fas fa-users"></i> Community Engagement</h2>
+        <h3>Building a Learning Community</h3>
+        <p>
+          Data Safari Academy is committed to fostering a vibrant community of
+          young learners in Kenya and beyond. Our community engagement strategy
+          focuses on providing access to data science resources, tutorials, and
+          tools that simplify complex concepts for beginners.
+        </p>
+
+        <h3>Features for Community Engagement</h3>
+        <ul>
+          <li>
+            <strong>Discussion Forums:</strong> A space for learners to ask
+            questions, share projects, and collaborate on data science
+            challenges.
+          </li>
+          <li>
+            <strong>Mentorship Program:</strong> Connect with experienced data
+            professionals who offer guidance and feedback on projects.
+          </li>
+          <li>
+            <strong>Weekly Webinars:</strong> Live sessions with industry
+            experts covering topics like data cleaning, visualization, and
+            machine learning.
+          </li>
+          <li>
+            <strong>Project Showcase:</strong> Upload your data science projects
+            to our gallery, receive peer reviews, and build a portfolio.
+          </li>
+          <li>
+            <strong>Local Meetups:</strong> Partnering with polytechnics to host
+            in-person workshops and hackathons.
+          </li>
+        </ul>
+
+        <h3>Simplifying Complex Concepts</h3>
+        <p>We break down intricate topics into digestible lessons:</p>
+        <ul>
+          <li>
+            <strong>Data Science Basics:</strong> Interactive tutorials with
+            real-world examples (e.g., analyzing Kenyan weather data).
+          </li>
+          <li>
+            <strong>Hands-On Exercises:</strong> Code-along sessions in Python
+            and SQL, accessible via our platform.
+          </li>
+          <li>
+            <strong>Visual Learning Tools:</strong> Animated explainers and
+            infographics to demystify algorithms.
+          </li>
+        </ul>
+
+        <h3>Community Benefits</h3>
+        <p>By joining our community, young learners gain:</p>
+        <ul>
+          <li>Access to free and low-cost resources tailored for beginners.</li>
+          <li>Peer support to overcome learning hurdles.</li>
+          <li>
+            Opportunities to network with peers and professionals across Kenya.
+          </li>
+          <p>
+            If you would like to join our community , please feel free to join
+            it on
+            <a href="https://chat.whatsapp.com/LHDiVZQpAa77au7M5vktv2"
+              >whatsapp</a
+            >
+          </p>
+        </ul>
+      </div>
+
+      <div id="outreach" class="content-section">
+        <h2><i class="fas fa-bullhorn"></i> Outreach Strategy</h2>
+        <h3>Reaching Kenyan Polytechnics</h3>
+        <p>
+          Our outreach strategy aims to engage students from polytechnics across
+          Kenya, ensuring inclusivity and accessibility:
+        </p>
+
+        <h3>Plan</h3>
+        <ul>
+          <li>
+            <strong>Partnerships:</strong> Collaborate with polytechnic
+            institutions to integrate Data Safari resources into their
+            curricula.
+          </li>
+          <li>
+            <strong>Mobile Access:</strong> Optimize our website for
+            low-bandwidth environments and mobile devices, common among rural
+            students.
+          </li>
+          <li>
+            <strong>Workshops:</strong> Conduct free data science bootcamps in
+            underserved regions like Kisumu, Eldoret, and Mombasa.
+          </li>
+          <li>
+            <strong>Scholarships:</strong> Offer sponsored access to premium
+            content for top performers from disadvantaged backgrounds.
+          </li>
+          <li>
+            <strong>Social Media Campaigns:</strong> Use platforms like WhatsApp
+            and Instagram to share bite-sized lessons and event updates.
+          </li>
+        </ul>
+
+        <h3>Inclusivity Measures</h3>
+        <p>We ensure broad reach by:</p>
+        <ul>
+          <li>
+            Providing content in English and Swahili to accommodate diverse
+            learners.
+          </li>
+          <li>
+            Offering offline resources (PDFs, videos) for areas with limited
+            internet.
+          </li>
+          <li>Engaging female students through targeted STEM initiatives.</li>
+        </ul>
+      </div>
+
+      <div id="faqs" class="content-section">
+        <div class="faq-section">
+          <h1>Frequently Asked Questions</h1>
+          <input
+            type="text"
+            id="search"
+            class="faq-search"
+            placeholder="Search FAQs..."
+            onkeyup="searchFAQ()"
+          />
+
+          <div class="faq">
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                1. What is this platform about?
+              </h3>
+              <p>
+                This platform, Data Safari Academy, is a free and accessible
+                website designed to help learners explore and master Data
+                Science concepts. Our mission is to empower young minds,
+                particularly in Kenya and beyond, by providing comprehensive
+                resources, tutorials, and tools that simplify complex data
+                science topics. Whether you're a beginner or looking to advance
+                your skills, we offer a welcoming space to dive into the world
+                of data, from foundational principles to cutting-edge
+                applications.
+              </p>
             </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                2. Is this website free to use?
+              </h3>
+              <p>
+                Yes, this website is completely free and open to all learners
+                worldwide. We believe that education should be accessible to
+                everyone, regardless of financial background. There are no
+                hidden fees or subscriptions—our core content, including
+                tutorials, exercises, and community features, is available at no
+                cost. We’re committed to keeping Data Safari Academy a resource
+                that anyone with an internet connection can benefit from.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                3. Can I access the website on my phone?
+              </h3>
+              <p>
+                Absolutely! The website is mobile-friendly and works seamlessly
+                on both mobile and desktop devices. We’ve optimized our design
+                to ensure a smooth experience whether you’re using a smartphone,
+                tablet, or computer. This means you can learn on the go, access
+                resources from anywhere, and enjoy the same functionality across
+                all your devices, making Data Safari Academy truly flexible for
+                your lifestyle.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                4. What topics does the platform cover?
+              </h3>
+              <p>
+                We cover a wide range of Data Science topics, including Python
+                programming, SQL databases, Machine Learning, Artificial
+                Intelligence (AI), and Data Visualization. Our curriculum is
+                designed to take you from the basics—like coding in Python or
+                querying data with SQL—to advanced concepts such as building
+                machine learning models and creating insightful visualizations.
+                We’re constantly expanding our offerings to include emerging
+                trends and tools in the data science field.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                5. Is customer support available?
+              </h3>
+              <p>
+                Yes, we offer round-the-clock customer support to assist you
+                with any questions or challenges you might face. Our dedicated
+                team is available 24/7 via email or our website’s help center to
+                provide guidance, troubleshoot issues, or simply chat about your
+                learning journey. Whether you’re stuck on a technical problem or
+                need advice on your next step, we’re here to ensure you have a
+                smooth and enjoyable experience.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">6. How do I sign up?</h3>
+              <p>
+                Simply click on the 'Sign Up' button on the homepage and follow
+                the registration steps—it’s quick and easy! You’ll need to
+                provide an email address and create a password, after which
+                you’ll gain full access to our learning resources and community
+                features. Once registered, you can personalize your profile and
+                start exploring the platform right away. If you ever need help,
+                our support team is just a click away.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                7. Are there certificates available?
+              </h3>
+              <p>
+                Currently, we do not offer certificates, but we plan to
+                introduce them in the future as part of our commitment to
+                enhancing your learning experience. These certificates will
+                recognize your achievements and mastery of specific data science
+                skills, providing a valuable credential for your resume or
+                portfolio. Stay tuned for updates as we roll out this exciting
+                feature!
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                8. How can I contribute to the platform?
+              </h3>
+              <p>
+                You can contribute by sharing insights, submitting articles, or
+                suggesting new learning materials that you think would benefit
+                the community. Whether you’re an experienced data scientist or a
+                passionate learner, your input is valuable! Reach out through
+                our contact page or community forum to propose content, share
+                your projects, or collaborate with us to make Data Safari
+                Academy even better.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                9. Will AI be integrated into this platform?
+              </h3>
+              <p>
+                Yes, we are planning to incorporate AI-driven learning
+                assistants to improve the learning experience in the near
+                future. These assistants will offer personalized
+                recommendations, answer questions in real-time, and guide you
+                through complex topics with tailored support. Our goal is to
+                leverage AI to make learning more interactive and efficient,
+                helping you achieve your data science goals faster.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                10. Are there community discussions?
+              </h3>
+              <p>
+                Yes! Our community forum allows learners to interact, share
+                insights, and collaborate on data science projects. It’s a
+                vibrant space where you can ask questions, discuss concepts,
+                showcase your work, and connect with peers from around the
+                world. Whether you’re seeking feedback or just want to chat
+                about data science, our community is here to support and inspire
+                you.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                11. Do you provide live classes?
+              </h3>
+              <p>
+                Currently, we focus on self-paced learning, offering flexible
+                resources that you can explore at your own speed. However, we’re
+                considering introducing live classes in the future to complement
+                our offerings. These would include interactive sessions with
+                experts, covering topics like coding, analysis, and more. Keep
+                an eye out for announcements as we expand our educational
+                formats!
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                12. Can I request a specific topic to be covered?
+              </h3>
+              <p>
+                Yes! We welcome topic requests and encourage you to let us know
+                what you’d like to see. Contact us through our website’s support
+                section or community forum with your suggestions, and we’ll do
+                our best to incorporate them. Your input helps shape the
+                platform, ensuring it meets the needs and interests of learners
+                like you.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">13. Do you offer mentorship?</h3>
+              <p>
+                We plan to introduce mentorship programs to connect learners
+                with industry experts, providing personalized guidance and
+                career advice. While this feature isn’t available yet, it’s in
+                development, and we aim to launch it soon. Mentorship will offer
+                you the chance to work one-on-one with professionals, gaining
+                insights and feedback to accelerate your data science journey.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">14. Is there a paid version?</h3>
+              <p>
+                No, our platform remains free for all users, and we’re dedicated
+                to keeping it that way. Data Safari Academy is built on the
+                principle of accessibility, ensuring that everyone can learn
+                data science without financial barriers. While we may offer
+                optional premium features (like mentorship) in the future, the
+                core experience will always be free.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3 onclick="toggleAnswer(this)">
+                15. How can I contact support?
+              </h3>
+              <p>
+                You can contact our support team via email or the help center on
+                our website, available 24/7 to assist you. Whether you have a
+                technical issue, a question about content, or just need some
+                encouragement, we’re here to help. Visit the ‘Support’ section
+                on our homepage for contact details and quick access to our
+                friendly support staff.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div id="about" class="content-section">
-            <div class="about-section">
-                <h1>About Us</h1>
+      <div id="about" class="content-section">
+        <div class="about-section">
+          <h1>About Us</h1>
+          <p>
+            At Data Safari Academy, our team embarked on a mission to develop an
+            innovative Data Science Learning Platform, aimed at equipping
+            aspiring and existing data scientists with the right resources to
+            thrive in this dynamic field. We conducted an extensive community
+            outreach initiative across Kenya, engaging with students at various
+            academic levels—those just beginning to explore career paths and
+            those already immersed in the tech industry. Our goal was to bridge
+            the gap between curiosity and expertise, creating a platform that
+            inspires and educates the next generation of data professionals.
+          </p>
+          <p>
+            Our research focused on understanding perceptions of Data Science,
+            its career prospects, and how learners prefer to acquire knowledge
+            in this rapidly evolving domain. We also analyzed interests in Data
+            Science Hackathons, bootcamps, and available industry opportunities,
+            gathering insights from diverse communities to ensure our platform
+            resonates with real-world needs. The findings played a crucial role
+            in shaping the design and functionality of this website. We
+            meticulously crafted an interactive and user-friendly learning
+            environment, ensuring it meets the diverse needs of aspiring data
+            scientists, from interactive tutorials to a supportive community
+            space.
+          </p>
+
+          <!-- Base64 SVG Data Visualization Graphic -->
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDYwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgb3BhY2l0eT0iMC43NSI+PHBhdGggZD0iTTUwIDI1MEg1MDBWMjAwSDUwVjI1MFoiIGZpbGw9IiMzNDk4ZGIiLz48cGF0aCBkPSJNMTUwIDI1MEg0NTBWMTAwSDE1MFYyNTBaIiBmaWxsPSIjMjdhZTYwIi8+PHBhdGggZD0iTTI1MCAyNTBINDUwWjUwSDI1MFYyNTBaIiBmaWxsPSIjMmMzZTUwIi8+PC9nPjxwYXRoIGQ9Ik01MCAyNTBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCAyMDBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCAxMDBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCA1MEg1MDAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMjUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNTAgMjUwSDUwMCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4="
+            alt="Data Visualization Graphic"
+            class="about-image"
+          />
+
+          <div class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team">
+              <div class="member">
+                <strong>Project Manager: Mr. Okoth Rodney</strong>
                 <p>
-                    At Data Safari Academy, our team embarked on a mission to develop an innovative Data Science Learning Platform, aimed at equipping aspiring and existing data scientists with the right resources to thrive in this dynamic field. We conducted an extensive community outreach initiative across Kenya, engaging with students at various academic levels—those just beginning to explore career paths and those already immersed in the tech industry. Our goal was to bridge the gap between curiosity and expertise, creating a platform that inspires and educates the next generation of data professionals.
+                  Rodney oversees the vision and execution of Data Safari
+                  Academy, ensuring every aspect aligns with our mission. With
+                  years of experience in project management, he keeps our team
+                  on track and our goals in sight.
                 </p>
+              </div>
+              <div class="member">
+                <strong>Data Collection Lead: Ms. Wanjiru Joy</strong>
                 <p>
-                    Our research focused on understanding perceptions of Data Science, its career prospects, and how learners prefer to acquire knowledge in this rapidly evolving domain. We also analyzed interests in Data Science Hackathons, bootcamps, and available industry opportunities, gathering insights from diverse communities to ensure our platform resonates with real-world needs. The findings played a crucial role in shaping the design and functionality of this website. We meticulously crafted an interactive and user-friendly learning environment, ensuring it meets the diverse needs of aspiring data scientists, from interactive tutorials to a supportive community space.
+                  Joy spearheaded our nationwide outreach, gathering critical
+                  insights from students and professionals. Her passion for data
+                  and education drives our platform’s user-centric approach.
                 </p>
-                
-                <!-- Base64 SVG Data Visualization Graphic -->
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDYwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgb3BhY2l0eT0iMC43NSI+PHBhdGggZD0iTTUwIDI1MEg1MDBWMjAwSDUwVjI1MFoiIGZpbGw9IiMzNDk4ZGIiLz48cGF0aCBkPSJNMTUwIDI1MEg0NTBWMTAwSDE1MFYyNTBaIiBmaWxsPSIjMjdhZTYwIi8+PHBhdGggZD0iTTI1MCAyNTBINDUwWjUwSDI1MFYyNTBaIiBmaWxsPSIjMmMzZTUwIi8+PC9nPjxwYXRoIGQ9Ik01MCAyNTBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCAyMDBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCAxMDBINTAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik01MCA1MEg1MDAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMjUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDUwIDI1MFY1MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNTAgMjUwSDUwMCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=" alt="Data Visualization Graphic" class="about-image">
-                
-                <div class="team-section">
-                    <h2>Meet Our Team</h2>
-                    <div class="team">
-                        <div class="member">
-                            <strong>Project Manager: Mr. Okoth Rodney</strong>
-                            <p>Rodney oversees the vision and execution of Data Safari Academy, ensuring every aspect aligns with our mission. With years of experience in project management, he keeps our team on track and our goals in sight.</p>
-                        </div>
-                        <div class="member">
-                            <strong>Data Collection Lead: Ms. Wanjiru Joy</strong>
-                            <p>Joy spearheaded our nationwide outreach, gathering critical insights from students and professionals. Her passion for data and education drives our platform’s user-centric approach.</p>
-                        </div>
-                        <div class="member">
-                            <strong>Data Analyst: Mr. Omarii Frankline</strong>
-                            <p>Frankline crunched the numbers from our research, turning raw data into actionable strategies. His analytical skills ensure our content is both relevant and impactful.</p>
-                        </div>
-                        <div class="member">
-                            <strong>UI/UX Designer: Ms. Otieno Effie</strong>
-                            <p>Effie crafted the intuitive and visually appealing interface you see today. Her design expertise makes learning on our platform a seamless and enjoyable experience.</p>
-                        </div>
-                        <div class="member">
-                            <strong>Front-End Developer: Sir Leslie Gedion</strong>
-                            <p>Leslie brought our designs to life with clean, responsive code. His technical prowess ensures the platform works flawlessly across all devices.</p>
-                        </div>
-                        <div class="member">
-                            <strong>Back-End Developer: Ms. Jebet Sandra</strong>
-                            <p>Sandra powers the engine behind Data Safari Academy, building robust systems to support our features. Her work keeps everything running smoothly under the hood.</p>
-                        </div>
-                        <div class="member">
-                            <strong>Content & Documentation: Mr. Genga Kandy</strong>
-                            <p>Kandy curates and creates the educational content that fuels our platform. His knack for clear, engaging writing helps learners grasp complex concepts with ease.</p>
-                        </div>
-                        <div class="member">
-                            <strong>Deployment & Maintenance: Mr. Alumeta Philip</strong>
-                            <p>Philip ensures our platform stays live and up-to-date, handling deployment and ongoing maintenance. His dedication keeps Data Safari Academy reliable and accessible.</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              <div class="member">
+                <strong>Data Analyst: Mr. Omarii Frankline</strong>
+                <p>
+                  Frankline crunched the numbers from our research, turning raw
+                  data into actionable strategies. His analytical skills ensure
+                  our content is both relevant and impactful.
+                </p>
+              </div>
+              <div class="member">
+                <strong>UI/UX Designer: Ms. Otieno Effie</strong>
+                <p>
+                  Effie crafted the intuitive and visually appealing interface
+                  you see today. Her design expertise makes learning on our
+                  platform a seamless and enjoyable experience.
+                </p>
+              </div>
+              <div class="member">
+                <strong>Front-End Developer: Sir Leslie Gedion</strong>
+                <p>
+                  Leslie brought our designs to life with clean, responsive
+                  code. His technical prowess ensures the platform works
+                  flawlessly across all devices.
+                </p>
+              </div>
+              <div class="member">
+                <strong>Back-End Developer: Ms. Jebet Sandra</strong>
+                <p>
+                  Sandra powers the engine behind Data Safari Academy, building
+                  robust systems to support our features. Her work keeps
+                  everything running smoothly under the hood.
+                </p>
+              </div>
+              <div class="member">
+                <strong>Content & Documentation: Mr. Genga Kandy</strong>
+                <p>
+                  Kandy curates and creates the educational content that fuels
+                  our platform. His knack for clear, engaging writing helps
+                  learners grasp complex concepts with ease.
+                </p>
+              </div>
+              <div class="member">
+                <strong>Deployment & Maintenance: Mr. Alumeta Philip</strong>
+                <p>
+                  Philip ensures our platform stays live and up-to-date,
+                  handling deployment and ongoing maintenance. His dedication
+                  keeps Data Safari Academy reliable and accessible.
+                </p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div id="documentation" class="content-section">
-            <h2><i class="fas fa-file-alt"></i> Documentation</h2>
-            <h3>Our Journey</h3>
-            <p>From ideation to launch, we documented every step:</p>
-            <ul>
-                <li><strong>Ideation:</strong> Identified the need for accessible data science education in Kenya.</li>
-                <li><strong>Challenges:</strong> Limited internet access, diverse learner backgrounds.</li>
-                <li><strong>Solutions:</strong> Mobile-friendly design, offline resources, multilingual content.</li>
-                <li><strong>Lessons:</strong> Simplicity is key; community feedback drives improvement.</li>
-            </ul>
-            
-            <h3>Impact</h3>
-            <p>Aiming to reach 10,000 students by 2026, fostering data literacy and career growth.</p>
-        </div>
+      <div id="documentation" class="content-section">
+        <h2><i class="fas fa-file-alt"></i> Documentation</h2>
+        <h3>Our Journey</h3>
+        <p>From ideation to launch, we documented every step:</p>
+        <ul>
+          <li>
+            <strong>Ideation:</strong> Identified the need for accessible data
+            science education in Kenya.
+          </li>
+          <li>
+            <strong>Challenges:</strong> Limited internet access, diverse
+            learner backgrounds.
+          </li>
+          <li>
+            <strong>Solutions:</strong> Mobile-friendly design, offline
+            resources, multilingual content.
+          </li>
+          <li>
+            <strong>Lessons:</strong> Simplicity is key; community feedback
+            drives improvement.
+          </li>
+        </ul>
+
+        <h3>Impact</h3>
+        <p>
+          Aiming to reach 10,000 students by 2026, fostering data literacy and
+          career growth.
+        </p>
+      </div>
     </div>
 
     <!-- Support Section -->
     <div class="support-section">
-        <div class="support-text">Need help? Reach out to our support team!</div>
-        <button class="support-button" onclick="window.location.href='support.html'">Support</button>
+      <div class="support-text">Need help? Reach out to our support team!</div>
+      <button
+        class="support-button"
+        onclick="window.location.href='support.html'"
+      >
+        Support
+      </button>
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        © Data Safari Academy 2025
-    </div>
+    <div class="footer">© Data Safari Academy 2025</div>
 
     <script>
-        // Dropdown toggle
-        document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
-            e.stopPropagation();
-            const dropdown = document.querySelector('.dropdown-menu');
-            dropdown.classList.toggle('active');
+      // Dropdown toggle
+      document
+        .querySelector(".dropdown-arrow")
+        .addEventListener("click", function (e) {
+          e.stopPropagation();
+          const dropdown = document.querySelector(".dropdown-menu");
+          dropdown.classList.toggle("active");
         });
 
-        document.addEventListener('click', function(event) {
-            const profileContainer = document.querySelector('.profile-container');
-            const dropdown = document.querySelector('.dropdown-menu');
-            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
-                dropdown.classList.remove('active');
-            }
+      document.addEventListener("click", function (event) {
+        const profileContainer = document.querySelector(".profile-container");
+        const dropdown = document.querySelector(".dropdown-menu");
+        if (
+          !profileContainer.contains(event.target) &&
+          dropdown.classList.contains("active")
+        ) {
+          dropdown.classList.remove("active");
+        }
+      });
+
+      // Theme toggle
+      function toggleTheme() {
+        const body = document.body;
+        if (body.getAttribute("data-theme") === "dark") {
+          body.removeAttribute("data-theme");
+        } else {
+          body.setAttribute("data-theme", "dark");
+        }
+      }
+
+      // Navigation toggle for mobile
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+          navLinks.classList.toggle("active");
+          if (navLinks.classList.contains("active")) {
+            menuToggle.classList.remove("fa-bars");
+            menuToggle.classList.add("fa-times");
+          } else {
+            menuToggle.classList.remove("fa-times");
+            menuToggle.classList.add("fa-bars");
+          }
         });
 
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-            }
-        }
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !navLinks.contains(event.target) &&
+            !menuToggle.contains(event.target) &&
+            navLinks.classList.contains("active")
+          ) {
+            navLinks.classList.remove("active");
+            menuToggle.classList.remove("fa-times");
+            menuToggle.classList.add("fa-bars");
+          }
+        });
+      });
 
-        // Navigation toggle for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+      // Show content section
+      function showContent(id) {
+        document.querySelectorAll(".content-section").forEach((section) => {
+          section.classList.remove("active");
+        });
+        document.getElementById(id).classList.add("active");
 
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('fa-bars');
-                    menuToggle.classList.add('fa-times');
-                } else {
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
+        document.querySelectorAll(".nav-bar a").forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.add("active");
+          }
         });
 
-        // Show content section
-        function showContent(id) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(id).classList.add('active');
-
-            document.querySelectorAll('.nav-bar a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Close mobile menu after selection
-            if (window.innerWidth <= 768) {
-                const navLinks = document.querySelector('.nav-links');
-                const menuToggle = document.querySelector('.menu-toggle');
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('fa-times');
-                menuToggle.classList.add('fa-bars');
-            }
+        // Close mobile menu after selection
+        if (window.innerWidth <= 768) {
+          const navLinks = document.querySelector(".nav-links");
+          const menuToggle = document.querySelector(".menu-toggle");
+          navLinks.classList.remove("active");
+          menuToggle.classList.remove("fa-times");
+          menuToggle.classList.add("fa-bars");
         }
+      }
 
-        // Logout function
-        function logout() {
-            // Simulate ending the session by clearing sessionStorage (client-side example)
-            sessionStorage.clear();
-            // Redirect to LoginPage.html
-            window.location.href = 'LoginPage.html';
-        }
+      // Logout function
+      function logout() {
+        // Simulate ending the session by clearing sessionStorage (client-side example)
+        sessionStorage.clear();
+        // Redirect to LoginPage.html
+        window.location.href = "LoginPage.html";
+      }
 
-        // FAQ toggle
-        function toggleAnswer(element) {
-            let answer = element.nextElementSibling;
-            answer.style.display = answer.style.display === "block" ? "none" : "block";
-        }
+      // FAQ toggle
+      function toggleAnswer(element) {
+        let answer = element.nextElementSibling;
+        answer.style.display =
+          answer.style.display === "block" ? "none" : "block";
+      }
 
-        // FAQ search
-        function searchFAQ() {
-            let input = document.getElementById('search').value.toLowerCase();
-            let faqs = document.getElementsByClassName('faq-item');
-            
-            for (let i = 0; i < faqs.length; i++) {
-                let question = faqs[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-                
-                if (question.includes(input)) {
-                    faqs[i].style.display = "block";
-                } else {
-                    faqs[i].style.display = "none";
-                }
-            }
+      const profileNameElement = document.querySelector(".profile-name");
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          // Get user document from Firestore
+          const userDocRef = doc(db, "users", user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            profileNameElement.textContent = userData.firstName || "User";
+          } else {
+            console.log("No user data found");
+          }
+        } else {
+          profileNameElement.textContent = "Guest";
         }
+      });
+
+      // FAQ search
+      function searchFAQ() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let faqs = document.getElementsByClassName("faq-item");
+
+        for (let i = 0; i < faqs.length; i++) {
+          let question = faqs[i]
+            .getElementsByTagName("h3")[0]
+            .innerText.toLowerCase();
+
+          if (question.includes(input)) {
+            faqs[i].style.display = "block";
+          } else {
+            faqs[i].style.display = "none";
+          }
+        }
+      }
     </script>
-</body>
+  </body>
 </html>

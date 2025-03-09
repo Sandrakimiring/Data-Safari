@@ -322,7 +322,7 @@
         <div class="sidebar-header">
             <div class="logo">
                 <i class="fas fa-database"></i>
-                <h2>SQL Learning</h2>
+                <h2> <a href= homepage.html>Learning</a> </h2>
             </div>
         </div>
         
@@ -345,6 +345,7 @@
     <div class="content">
         <div class="header">
             <h1>SQL Learning Resources</h1>
+            
         </div>
         
         <div id="introduction" class="content-section active">
@@ -631,7 +632,7 @@
 
         function checkAnswer() {
             let userAnswer = document.getElementById("answer").value.trim().toUpperCase();
-            let correctAnswer = "SELECT * FROM students;".toUpperCase();
+            let correctAnswer = "SELECT * FROM students;".toUpperCase() || toLowerCase(userAnswer);
             
             if (userAnswer === correctAnswer) {
                 document.getElementById("result").innerHTML = "✅ Correct! You got it.";
