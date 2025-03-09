@@ -248,104 +248,118 @@
 
     <script type="module">
       import { db } from "./firebase.js";
-import { auth } from "./firebase-config.js";
-import { 
-    createUserWithEmailAndPassword, 
-    sendEmailVerification 
-} from "firebase/auth";
-import { 
-    doc, 
-    setDoc 
-} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+      import { auth } from "./firebase-config.js";
+      import { 
+        createUserWithEmailAndPassword, 
+        sendEmailVerification 
+      } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+      import { 
+        doc, 
+        setDoc 
+      } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-        const signupForm = document.getElementById("signup-form");
-        const passwordInput = document.getElementById("password");
-        const confirmPasswordInput = document.getElementById("confirmPassword");
-        const togglePassword = document.getElementById("togglePassword");
-        const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+      const signupForm = document.getElementById("signup-form");
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirmPassword");
+      const togglePassword = document.getElementById("togglePassword");
+      const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
 
-        // Password toggle functionality
-        togglePassword.addEventListener("click", () => {
-            const type = passwordInput.type === "password" ? "text" : "password";
-            passwordInput.type = type;
-            togglePassword.classList.toggle("fa-eye");
-            togglePassword.classList.toggle("fa-eye-slash");
-        });
+      // Password toggle functionality
+      togglePassword.addEventListener("click", () => {
+        const type = passwordInput.type === "password" ? "text" : "password";
+        passwordInput.type = type;
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+      });
 
-        toggleConfirmPassword.addEventListener("click", () => {
-            const type = confirmPasswordInput.type === "password" ? "text" : "password";
-            confirmPasswordInput.type = type;
-            toggleConfirmPassword.classList.toggle("fa-eye");
-            toggleConfirmPassword.classList.toggle("fa-eye-slash");
-        });
+      toggleConfirmPassword.addEventListener("click", () => {
+        const type = confirmPasswordInput.type === "password" ? "text" : "password";
+        confirmPasswordInput.type = type;
+        toggleConfirmPassword.classList.toggle("fa-eye");
+        toggleConfirmPassword.classList.toggle("fa-eye-slash");
+      });
 
-signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            const firstName = document.getElementById("firstName").value;
-            const lastName = document.getElementById("lastName").value;
-            const age = document.getElementById("age").value;
-            const gender = document.getElementById("gender").value;
-            const proficiency = document.getElementById("proficiency").value;
-            const country = document.getElementById("country").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-            const interest = document.getElementById("interest").value;
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const age = document.getElementById("age").value;
+        const gender = document.getElementById("gender").value;
+        const proficiency = document.getElementById("proficiency").value;
+        const country = document.getElementById("country").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const interest = document.getElementById("interest").value;
 
-            // Validate required fields
-            if (!firstName || !lastName || !email || !password || !confirmPassword || !proficiency) {
-                alert("Please fill in all required fields (First Name, Last Name, Email, Password, Confirm Password, Proficiency).");
-                return;
-            }
+        // Validate required fields
+        if (!firstName || !lastName || !email || !password || !confirmPassword || !proficiency) {
+          alert("Please fill in all required fields (First Name, Last Name, Email, Password, Confirm Password, Proficiency).");
+          return;
+        }
 
-            // Email format validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert("Please enter a valid email address (e.g., user@domain.com).");
-                return;
-            }
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address (e.g., user@domain.com).");
+          return;
+        }
 
-    // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-    if (!passwordRegex.test(password)) {
-        alert("Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
-        return;
-    }
+        // Password validation
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          alert("Password must be at least 8 characters long, with 1 uppercase, 1 lowercase, 1 number, and 1 special character.");
+          return;
+        }
 
-            try {
-                console.log("Attempting to sign up with:", email);
-                // Create user with Firebase Authentication using auth.js
-                const userCredential = await signUp(email, password);
-                const user = userCredential.user;
-                console.log("User created:", user.uid);
+        // Confirm password match
+        if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return;
+        }
 
-                // Store user data in Firestore under UserSignUpData collection
-                await setDoc(doc(db, "UserSignUpData", user.uid), {
-                    firstName,
-                    lastName,
-                    age: age ? Number(age) : null,
-                    gender: gender || null,
-                    proficiency,
-                    country: country || null,
-                    email,
-                    interest: interest || null,
-                    createdAt: new Date().toISOString()
-                });
-                console.log("User data stored in Firestore under UserSignUpData");
+        try {
+          console.log("Attempting to sign up with:", email);
+          // Create user with Firebase Authentication
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+          console.log("User created:", user.uid);
 
-                // Set success flag and redirect to homepage
-                sessionStorage.setItem("signupSuccess", "true");
-                window.location.href = "homepage.html";
-            } catch (error) {
-                console.error("Signup error:", error.code, error.message);
-                if (error.code === "auth/email-already-in-use") {
-                    alert("Email already in use. Please log in or use a different email.");
-                } else {
-                    alert("Sign up failed: " + error.message);
-                }
-            }
-        });
+          // Store user data in Firestore under UserSignUpData collection
+          await setDoc(doc(db, "UserSignUpData", user.uid), {
+            firstName,
+            lastName,
+            age: age ? Number(age) : null,
+            gender: gender || null,
+            proficiency,
+            country: country || null,
+            email,
+            interest: interest || null,
+            createdAt: new Date().toISOString()
+          });
+          console.log("User data stored in Firestore under UserSignUpData");
+
+          // Optional: Send email verification (remove if not needed)
+          await sendEmailVerification(user);
+          console.log("Verification email sent");
+
+          // Set success flag and redirect to homepage
+          sessionStorage.setItem("signupSuccess", "true");
+          window.location.href = "homepage.html";
+        } catch (error) {
+          console.error("Signup error:", error.code, error.message);
+          if (error.code === "auth/email-already-in-use") {
+            alert("Email already in use. Please log in or use a different email.");
+          } else if (error.code === "auth/invalid-email") {
+            alert("Invalid email format.");
+          } else if (error.code === "auth/weak-password") {
+            alert("Password is too weak.");
+          } else {
+            alert("Sign up failed: " + error.message);
+          }
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
