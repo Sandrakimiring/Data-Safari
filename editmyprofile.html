@@ -278,7 +278,7 @@
             color: var(--text-dark);
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px;
             border: 2px solid var(--primary-color);
@@ -294,7 +294,7 @@
             color: #666;
         }
 
-        .form-group input:focus, .form-group textarea:focus {
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             outline: none;
             border-color: #2980b9;
         }
@@ -320,6 +320,25 @@
         .profile-form button:hover {
             background: #2980b9;
             transform: translateY(-2px);
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px var(--shadow);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        .success-message.show {
+            opacity: 1;
         }
 
         /* Footer */
@@ -407,7 +426,7 @@
                 font-size: 14px;
             }
 
-            .form-group input, .form-group textarea {
+            .form-group input, .form-group textarea, .form-group select {
                 font-size: 14px;
             }
 
@@ -475,12 +494,31 @@
                     <input type="text" id="last-name" disabled>
                 </div>
                 <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="e.g., datasafari123" required>
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" placeholder="e.g., +254 712 345 678">
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country">
+                        <option value="">Select your country</option>
+                        <option value="KE">Kenya</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="IN">India</option>
+                        <!-- Add more countries as needed -->
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="bio">Bio</label>
@@ -490,6 +528,9 @@
             </form>
         </div>
     </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="success-message">Successful!</div>
 
     <!-- Footer -->
     <div class="footer">
@@ -586,7 +627,10 @@
                             // Load existing profile data if available
                             if (profileDoc.exists()) {
                                 const profileData = profileDoc.data();
+                                document.getElementById("username").value = profileData.username || "";
                                 document.getElementById("phone").value = profileData.phone || "";
+                                document.getElementById("dob").value = profileData.dob || "";
+                                document.getElementById("country").value = profileData.country || "";
                                 document.getElementById("bio").value = profileData.bio || "";
                             }
                         } else {
@@ -602,19 +646,31 @@
                     const profileForm = document.getElementById("profile-form");
                     profileForm.addEventListener("submit", async (e) => {
                         e.preventDefault();
+                        const username = document.getElementById("username").value.trim();
                         const email = document.getElementById("email").value.trim();
                         const phone = document.getElementById("phone").value.trim();
+                        const dob = document.getElementById("dob").value;
+                        const country = document.getElementById("country").value;
                         const bio = document.getElementById("bio").value.trim();
 
                         try {
                             const profileDocRef = doc(db, "UserData", user.uid);
                             await setDoc(profileDocRef, {
+                                username: username,
                                 email: email,
                                 phone: phone,
+                                dob: dob,
+                                country: country,
                                 bio: bio,
                                 updatedAt: new Date().toISOString()
                             }, { merge: true });
-                            alert("Profile updated successfully!");
+
+                            // Show success message
+                            const successMessage = document.getElementById("success-message");
+                            successMessage.classList.add("show");
+                            setTimeout(() => {
+                                successMessage.classList.remove("show");
+                            }, 3000); // Hide after 3 seconds
                         } catch (error) {
                             console.error("Error updating profile:", error.message, error.code);
                             alert(`Failed to update profile: ${error.message}. Please try again.`);
