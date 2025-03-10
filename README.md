@@ -60,7 +60,7 @@ To manage user authentication, Firebase has been integrated into the project.
 
 2. Open your browser and navigate to `http://localhost:3000`.
 
-## Features 
+## Features
 
 - User Authentication
 - Access to Study Materials
