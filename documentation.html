@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght=300&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2kePSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
+    <link rel="stylesheet" href="styles/modern.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -18,6 +19,7 @@
             --text-dark: #333;
             --shadow: rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
+            --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
         }
 
         [data-theme="dark"] {
@@ -26,10 +28,11 @@
             --text-light: #f8f9fa;
             --dark-bg: #4a5568;
             --shadow: rgba(0, 0, 0, 0.3);
+            --neon-glow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 30px var(--accent-color);
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background: var(--light-bg);
@@ -38,7 +41,6 @@
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            /* New background styling */
             background-image: linear-gradient(to top, var(--light-bg) 70%, rgba(52, 152, 219, 0.1) 100%),
                               url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHBhdGggZD0iTTEwIDQwQTEwIDEwIDAgMCAxIDEwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoNTIsIDE1MiwgMjE5LCAwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4='); /* Subtle circle pattern */
             background-size: cover, 50px 50px;
@@ -104,7 +106,7 @@
 
         .logo-text p {
             font-size: 14px;
-            color: var(--text-light);
+            color: var (--text-light);
             opacity: 0.8;
         }
 
@@ -286,6 +288,28 @@
             color: var(--text-light);
         }
 
+        .doc-content {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .doc-links a.active {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .youtube-link {
+            display: block;
+            margin-top: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .youtube-link:hover {
+            text-decoration: underline;
+        }
+
         /* Support Section */
         .support-section {
             padding: 30px 20px;
@@ -450,6 +474,53 @@
         .theme-logo:hover {
             transform: scale(1.1);
         }
+
+        .doc-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .doc-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .doc-content p {
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        .doc-content h3 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-top: 20px;
+        }
+
+        .doc-content code {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .doc-content pre {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        /* Smooth animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -466,7 +537,6 @@
                 <div class="profile-pic" id="profile-pic">JD</div>
                 <span class="profile-name" id="profile-name">Loading...</span>
                 <span class="dropdown-arrow">▾</span>
-                <img src="light-mode-icon.svg" alt="Toggle Theme" class="theme-logo" id="theme-logo">
                 <div class="dropdown-menu">
                     <a href="editmyprofile.html">Edit My Profile</a>
                     <a href="#" onclick="logout()">Log Out</a>
@@ -485,39 +555,161 @@
                 <a href="about.html">About Us</a>
                 <a href="documentation.html" class="active">Documentation</a>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="content">
-        <div id="documentation" class="content-section">
+        <div id="documentation" class="content-section fade-up">
             <h2><i class="fas fa-file-alt"></i> Documentation</h2>
             <p>Explore our detailed documentation to get started with Data Safari Academy and make the most of our resources:</p>
             <div class="doc-links">
-                <a href="#">Getting Started Guide</a>
-                <div class="doc-content">
-                    <p>Welcome to the Getting Started Guide! Here you will find all the information you need to begin your journey with Data Safari Academy. This guide covers account setup, navigation, and basic usage tips.</p>
+                <a href="#" class="doc-link fade-up" style="animation-delay: 0.1s" data-target="getting-started">Getting Started Guide</a>
+                <div id="getting-started" class="doc-content">
+                    <h3>Account Setup</h3>
+                    <p>Learn how to create and set up your account:</p>
+                    <ul>
+                        <li>Visit the <a href="signup.html">Sign Up</a> page.</li>
+                        <li>Fill in your personal details and create a password.</li>
+                        <li>Verify your email address through the link sent to your inbox.</li>
+                        <li>Log in to your new account and complete your profile.</li>
+                    </ul>
+                    <h3>Navigation</h3>
+                    <p>Understand the layout and how to navigate through the platform:</p>
+                    <ul>
+                        <li>Use the top navigation bar to access different sections such as Learning, Community, Outreach, and more.</li>
+                        <li>Click on your profile picture to access account settings and log out.</li>
+                    </ul>
+                    <h3>Basic Usage Tips</h3>
+                    <p>Get tips on how to use the platform effectively:</p>
+                    <ul>
+                        <li>Explore the <a href="learning.html">Learning</a> section for tutorials and courses.</li>
+                        <li>Join discussions in the <a href="community.html">Community</a> section.</li>
+                        <li>Participate in outreach programs listed in the <a href="outreach.html">Outreach</a> section.</li>
+                    </ul>
                 </div>
-                <a href="#">Python Basics Tutorial</a>
-                <div class="doc-content">
-                    <p>In this Python Basics Tutorial, you will learn the fundamentals of Python programming. Topics include variables, data types, control structures, functions, and basic libraries.</p>
+                <a href="#" class="doc-link fade-up" style="animation-delay: 0.2s" data-target="python-basics">Python Basics Tutorial</a>
+                <div id="python-basics" class="doc-content">
+                    <h3>Variables</h3>
+                    <p>Learn how to declare and use variables in Python:</p>
+                    <pre><code>my_variable = 10
+print(my_variable)</code></pre>
+                    <h3>Data Types</h3>
+                    <p>Understand different data types such as integers, strings, and lists:</p>
+                    <pre><code>my_int = 10
+my_string = "Hello, World!"
+my_list = [1, 2, 3, 4, 5]</code></pre>
+                    <h3>Control Structures</h3>
+                    <p>Explore if-else statements, loops, and more:</p>
+                    <pre><code>if my_variable > 5:
+    print("Greater than 5")
+else:
+    print("Less than or equal to 5")
+
+for i in my_list:
+    print(i)</code></pre>
+                    <h3>Functions</h3>
+                    <p>Learn how to define and call functions:</p>
+                    <pre><code>def my_function():
+    print("Hello from the function!")
+
+my_function()</code></pre>
+                    <h3>Basic Libraries</h3>
+                    <p>Get introduced to essential Python libraries:</p>
+                    <pre><code>import math
+print(math.sqrt(16))</code></pre>
                 </div>
-                <a href="#">SQL Fundamentals</a>
-                <div class="doc-content">
-                    <p>The SQL Fundamentals section introduces you to the basics of SQL. Learn how to create, read, update, and delete data in a database using SQL commands.</p>
+                <a href="#" class="doc-link fade-up" style="animation-delay: 0.3s" data-target="sql-fundamentals">SQL Fundamentals</a>
+                <div id="sql-fundamentals" class="doc-content">
+                    <h3>Creating Data</h3>
+                    <p>Learn how to insert data into tables:</p>
+                    <pre><code>INSERT INTO students (name, age) VALUES ('John Doe', 20);</code></pre>
+                    <h3>Reading Data</h3>
+                    <p>Understand how to query data from tables:</p>
+                    <pre><code>SELECT * FROM students;</code></pre>
+                    <h3>Updating Data</h3>
+                    <p>Learn how to update existing data:</p>
+                    <pre><code>UPDATE students SET age = 21 WHERE name = 'John Doe';</code></pre>
+                    <h3>Deleting Data</h3>
+                    <p>Understand how to delete data from tables:</p>
+                    <pre><code>DELETE FROM students WHERE name = 'John Doe';</code></pre>
                 </div>
-                <a href="#">Machine Learning Overview</a>
-                <div class="doc-content">
-                    <p>Get an overview of Machine Learning concepts in this section. Understand the different types of machine learning, key algorithms, and how to apply them to real-world problems.</p>
+                <a href="#" class="doc-link" data-target="ml-overview">Machine Learning Overview</a>
+                <div id="ml-overview" class="doc-content">
+                    <h3>Types of Machine Learning</h3>
+                    <p>Learn about supervised, unsupervised, and reinforcement learning:</p>
+                    <ul>
+                        <li><strong>Supervised Learning:</strong> Training a model on labeled data.</li>
+                        <li><strong>Unsupervised Learning:</strong> Finding patterns in unlabeled data.</li>
+                        <li><strong>Reinforcement Learning:</strong> Learning through rewards and penalties.</li>
+                    </ul>
+                    <h3>Key Algorithms</h3>
+                    <p>Explore algorithms such as linear regression, decision trees, and neural networks:</p>
+                    <ul>
+                        <li><strong>Linear Regression:</strong> Predicting a continuous value.</li>
+                        <li><strong>Decision Trees:</strong> Making decisions based on feature values.</li>
+                        <li><strong>Neural Networks:</strong> Modeling complex patterns with layers of neurons.</li>
+                    </ul>
+                    <h3>Real-World Applications</h3>
+                    <p>Understand how to apply machine learning to solve real-world problems:</p>
+                    <ul>
+                        <li><strong>Image Recognition:</strong> Identifying objects in images.</li>
+                        <li><strong>Natural Language Processing:</strong> Analyzing and generating human language.</li>
+                        <li><strong>Recommendation Systems:</strong> Suggesting products or content to users.</li>
+                    </ul>
                 </div>
-                <a href="#">Data Visualization with Python</a>
-                <div class="doc-content">
-                    <p>Learn how to create stunning data visualizations using Python libraries such as Matplotlib and Seaborn. This section covers various types of charts and graphs to represent your data effectively.</p>
+                <a href="#" class="doc-link" data-target="data-visualization">Data Visualization with Python</a>
+                <div id="data-visualization" class="doc-content">
+                    <h3>Matplotlib</h3>
+                    <p>Learn how to create basic plots and customize them:</p>
+                    <pre><code>import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 25, 30, 35]
+
+plt.plot(x, y)
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.title('Basic Plot')
+plt.show()</code></pre>
+                    <h3>Seaborn</h3>
+                    <p>Explore advanced visualization techniques with Seaborn:</p>
+                    <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+
+data = sns.load_dataset('iris')
+sns.pairplot(data, hue='species')
+plt.show()</code></pre>
+                    <h3>Types of Charts</h3>
+                    <p>Understand different types of charts such as bar charts, line charts, and scatter plots:</p>
+                    <ul>
+                        <li><strong>Bar Chart:</strong> Representing data with rectangular bars.</li>
+                        <li><strong>Line Chart:</strong> Showing trends over time with lines.</li>
+                        <li><strong>Scatter Plot:</strong> Displaying data points on a Cartesian plane.</li>
+                    </ul>
                 </div>
-                <a href="#">API Reference</a>
-                <div class="doc-content">
-                    <p>The API Reference provides detailed information on the available APIs. Learn how to integrate and use these APIs in your projects to enhance functionality and data access.</p>
+                <a href="#" class="doc-link" data-target="api-reference">API Reference</a>
+                <div id="api-reference" class="doc-content">
+                    <h3>Authentication API</h3>
+                    <p>Learn how to authenticate users and manage sessions:</p>
+                    <pre><code>POST /api/auth/login
+{
+    "username": "user",
+    "password": "pass"
+}</code></pre>
+                    <h3>Data API</h3>
+                    <p>Understand how to access and manipulate data using the API:</p>
+                    <pre><code>GET /api/data/students
+{
+    "id": 1,
+    "name": "John Doe",
+    "age": 20
+}</code></pre>
+                    <h3>Integration Examples</h3>
+                    <p>Get examples of how to integrate the API into your projects:</p>
+                    <pre><code>fetch('/api/data/students')
+    .then(response => response.json())
+    .then(data => console.log(data));</code></pre>
                 </div>
             </div>
         </div>
@@ -554,21 +746,6 @@
                 dropdown.classList.remove('active');
             }
         });
-
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeLogo = document.getElementById('theme-logo');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                themeLogo.src = 'light-mode-icon.svg';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeLogo.src = 'dark-mode-icon.svg';
-            }
-        }
-
-        document.getElementById('theme-logo').addEventListener('click', toggleTheme);
 
         // Navigation toggle for mobile
         document.addEventListener('DOMContentLoaded', function() {
@@ -644,6 +821,47 @@
                     link.classList.remove('active');
                 }
             });
+
+            // Toggle documentation sections
+            document.querySelectorAll('.doc-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.getElementById(this.getAttribute('data-target'));
+                    const isActive = this.classList.contains('active');
+                    document.querySelectorAll('.doc-link').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.doc-content').forEach(c => c.style.display = 'none');
+                    if (!isActive) {
+                        this.classList.add('active');
+                        target.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for fade-up animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-up');
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
         });
 
         // Logout function
