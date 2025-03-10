@@ -137,7 +137,7 @@
         .dropdown-arrow {
             margin-left: 8px;
             font-size: 14px;
-            color: var(--text-light);
+            color: var (--text-light);
             cursor: pointer;
             padding: 5px;
         }
@@ -438,6 +438,18 @@
                 font-size: 12px;
             }
         }
+
+        /* Dark/Light Mode Logo Styling */
+        .theme-logo {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .theme-logo:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -454,6 +466,7 @@
                 <div class="profile-pic" id="profile-pic">JD</div>
                 <span class="profile-name" id="profile-name">Loading...</span>
                 <span class="dropdown-arrow">▾</span>
+                <img src="light-mode-icon.svg" alt="Toggle Theme" class="theme-logo" id="theme-logo">
                 <div class="dropdown-menu">
                     <a href="editmyprofile.html">Edit My Profile</a>
                     <a href="#" onclick="logout()">Log Out</a>
@@ -483,11 +496,29 @@
             <p>Explore our detailed documentation to get started with Data Safari Academy and make the most of our resources:</p>
             <div class="doc-links">
                 <a href="#">Getting Started Guide</a>
+                <div class="doc-content">
+                    <p>Welcome to the Getting Started Guide! Here you will find all the information you need to begin your journey with Data Safari Academy. This guide covers account setup, navigation, and basic usage tips.</p>
+                </div>
                 <a href="#">Python Basics Tutorial</a>
+                <div class="doc-content">
+                    <p>In this Python Basics Tutorial, you will learn the fundamentals of Python programming. Topics include variables, data types, control structures, functions, and basic libraries.</p>
+                </div>
                 <a href="#">SQL Fundamentals</a>
+                <div class="doc-content">
+                    <p>The SQL Fundamentals section introduces you to the basics of SQL. Learn how to create, read, update, and delete data in a database using SQL commands.</p>
+                </div>
                 <a href="#">Machine Learning Overview</a>
+                <div class="doc-content">
+                    <p>Get an overview of Machine Learning concepts in this section. Understand the different types of machine learning, key algorithms, and how to apply them to real-world problems.</p>
+                </div>
                 <a href="#">Data Visualization with Python</a>
+                <div class="doc-content">
+                    <p>Learn how to create stunning data visualizations using Python libraries such as Matplotlib and Seaborn. This section covers various types of charts and graphs to represent your data effectively.</p>
+                </div>
                 <a href="#">API Reference</a>
+                <div class="doc-content">
+                    <p>The API Reference provides detailed information on the available APIs. Learn how to integrate and use these APIs in your projects to enhance functionality and data access.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -527,12 +558,17 @@
         // Theme toggle
         function toggleTheme() {
             const body = document.body;
+            const themeLogo = document.getElementById('theme-logo');
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
+                themeLogo.src = 'light-mode-icon.svg';
             } else {
                 body.setAttribute('data-theme', 'dark');
+                themeLogo.src = 'dark-mode-icon.svg';
             }
         }
+
+        document.getElementById('theme-logo').addEventListener('click', toggleTheme);
 
         // Navigation toggle for mobile
         document.addEventListener('DOMContentLoaded', function() {
