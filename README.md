@@ -14,7 +14,7 @@ To manage user authentication, Firebase has been integrated into the project.yes
 
 1. **Firebase Setup**  
    - Created a Firebase project.  
-   - Enabled Email/Password authentication.  
+   - Enabled Email/Password authentication.  hshd
    - Configured email verification settings.  
 
 2. **Project Structure**  
