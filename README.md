@@ -18,7 +18,7 @@ To manage user authentication, Firebase has been integrated into the project.
    - Configured email verification settings.  
 
 2. **Project Structure**  
-   - `firebase.js` – Initializes Firebase.  
+   - `firebase.js` – Initializes joyFirebase.  
    - `auth.js` – Handles user sign-up and login.
 
 ## Project Configuration
