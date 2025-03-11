@@ -39,6 +39,68 @@ DataSafari Academy is a web platform designed to provide accessible and engaging
 </tr>
 </table>
 
+## 📖 Our Story
+
+In the heart of Kenya's tech revolution, DataSafari Academy was born from a simple yet powerful idea: making data science education accessible to every aspiring learner. What started as a university research project has blossomed into a vibrant learning community, breaking down barriers in data science education.
+
+### 🎯 Mission & Goals
+
+- 🌍 **Democratize Data Science** - Make quality education accessible to all
+- 🚀 **Empower Innovation** - Foster creative problem-solving through data
+- 🤝 **Build Community** - Create a supportive network of learners and mentors
+- 📚 **Localize Content** - Develop content relevant to African context
+- 💡 **Drive Impact** - Enable data-driven solutions for local challenges
+
+## 👥 Meet Our Team
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="https://github.com/identicons/manager.png" width="100px;" alt=""/>
+<br /><sub><b>Mr. Okoth Rodney</b></sub>
+<br />👑 Project Manager</td>
+
+<td align="center">
+<img src="https://github.com/identicons/data.png" width="100px;" alt=""/>
+<br /><sub><b>Ms. Wanjiru Joy</b></sub>
+<br />📊 Data Collection Lead</td>
+
+<td align="center">
+<img src="https://github.com/identicons/analyst.png" width="100px;" alt=""/>
+<br /><sub><b>Mr. Omari Frankline</b></sub>
+<br />📈 Data Analyst</td>
+
+<td align="center">
+<img src="https://github.com/identicons/designer.png" width="100px;" alt=""/>
+<br /><sub><b>Ms. Otieno Effie</b></sub>
+<br />🎨 UI/UX Designer</td>
+</tr>
+
+<tr>
+<td align="center">
+<img src="https://github.com/identicons/frontend.png" width="100px;" alt=""/>
+<br /><sub><b>Sir Leslie Gedion</b></sub>
+<br />💻 Front-End Developer</td>
+
+<td align="center">
+<img src="https://github.com/identicons/backend.png" width="100px;" alt=""/>
+<br /><sub><b>Ms Jebet Sandra</b></sub>
+<br />⚙️ Back-End Developer</td>
+
+<td align="center">
+<img src="https://github.com/identicons/docs.png" width="100px;" alt=""/>
+<br /><sub><b>Mr. Genga Kandy</b></sub>
+<br />📚 Content & Documentation</td>
+
+<td align="center">
+<img src="https://github.com/identicons/devops.png" width="100px;" alt=""/>
+<br /><sub><b>Mr. Alumeta Philip</b></sub>
+<br />🚀 Deployment & Maintenance</td>
+</tr>
+</table>
+</div>
+
 ## Table of Contents
 
 -   [Features](#features)
@@ -185,6 +247,18 @@ To manage user authentication, Firebase has been integrated into the project.
     -   Firebase manages the user's session.
     -   The user's authentication state is persisted across page visits.
     -   Users can log out via the profile menu, which clears the Firebase session.
+
+## 🎨 Platform Design
+
+<div align="center">
+
+| 🌈 Modern UI | 📱 Responsive | 🌙 Dark Mode | ⚡ Fast Load |
+|-------------|---------------|--------------|-------------|
+| Material Design | Mobile-First | Eye Comfort | Optimized |
+| Intuitive Nav | All Devices | Theme Switch | < 2s Load |
+| Clean Layout | Touch-Ready | Auto-Detect | Compressed |
+
+</div>
 
 ## 📅 Project Timeline and Achievements
 
