@@ -19,7 +19,7 @@ To manage user authentication, Firebase has been integrated into the project.  S
 Roddy
 2. **Project Structure**  
    - `firebase.js` – Initializes joyFirebase.  
-   - `auth.js` – Handles user sign-up and login.
+   - `auth.js` – Handles user sign-hjansup and login.
 
 ## Project Configuration ¥¥$
 
