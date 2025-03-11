@@ -1,4 +1,4 @@
-hdhsnrhbrh# Research Methodology Project - DataSafari  
+# Research Methodology Project - DataSafari  
 
 This project is part of a research methodology assignment, focusing on building a web platform where students can:  
 - Log in to their accounts.  
@@ -8,7 +8,7 @@ This project is part of a research methodology assignment, focusing on building 
 
 ## Authentication Setup  
 
-To manage user authentication, Firebase has been integrated into the project.  Shawn Kimani ananisumbua
+To manage user authentication, Firebase has been integrated into the project.yes
 
 ### Steps Completed  
 
@@ -83,8 +83,7 @@ Roddy
 5. Push to the branch (`git push origin feature-branch`).
 6. Open a pull request.
 
-## Licenses
+## License
 
 This project is licensed under the MIT License.
 
-yhr
