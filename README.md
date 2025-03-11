@@ -21,7 +21,7 @@ Roddy
    - `firebase.js` – Initializes joyFirebase.  
    - `auth.js` – Handles user sign-up and login.
 
-## Project Configuration
+## Project Configuration ¥¥$
 
 ### Prerequisites
 
