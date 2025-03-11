@@ -5,51 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community | Data Safari Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <style>
         :root {
             --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-light: #f8f9fa;
-            --text-dark: #333;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-            --gradient: linear-gradient(135deg, #3498db, #27ae60);
-        }
-
-        [data-theme="dark"] {
-            --light-bg: #1a1a1a;
-            --text-dark: #f8f9fa;
-            --text-light: #f8f9fa;
-            --dark-bg: #4a5568;
+            --dark-bg: #2d3748;
+            --darker-bg: #1a202c;
+            --text-light: #e2e8f0;
             --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
             min-height: 100vh;
+            background: var(--darker-bg);
+            color: var(--text-light);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            background-image: var(--gradient), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDMwTDEwIDUwTDEwIDEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoNTIsIDE1MiwgMjE5LCAwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=');
-            background-size: cover, 60px 60px;
-            background-repeat: no-repeat, repeat;
         }
 
-        /* Header Styling */
         .header-container {
             background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 20px 40px;
-            box-shadow: 0 4px 20px var(--shadow);
+            padding: 20px 30px;
+            box-shadow: 0 4px 12px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -57,62 +42,48 @@
 
         .header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-        }
-
-        .header.hidden {
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            transition: opacity 0.3s ease, height 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .logo-container img {
-            width: 110px;
-            height: 110px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
 
         .logo-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+            transform: scale(1.05);
         }
 
         .logo-text h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 28px;
+            font-size: 28px; /* Enhanced title size */
             margin: 0;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo-text p {
-            font-size: 16px;
             color: var(--text-light);
-            opacity: 0.85;
         }
 
         .profile-container {
             display: flex;
             align-items: center;
+            gap: 10px;
             position: relative;
         }
 
         .profile-pic {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--primary-color);
             display: flex;
@@ -120,32 +91,19 @@
             align-items: center;
             color: white;
             font-weight: bold;
-            margin-right: 12px;
-            box-shadow: 0 3px 6px var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .profile-pic:hover {
-            transform: rotate(360deg);
+            box-shadow: 0 2px 4px var(--shadow);
         }
 
         .profile-name {
-            font-size: 18px;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
+            font-size: 16px;
         }
 
         .dropdown-arrow {
-            margin-left: 10px;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-light);
             cursor: pointer;
             padding: 5px;
-            transition: transform 0.3s;
-        }
-
-        .dropdown-arrow:hover {
-            transform: rotate(180deg);
         }
 
         .dropdown-menu {
@@ -154,11 +112,10 @@
             right: 0;
             top: 100%;
             background: var(--dark-bg);
-            box-shadow: 0 8px 16px var(--shadow);
-            border-radius: 10px;
-            width: 180px;
-            z-index: 10;
-            overflow: hidden;
+            box-shadow: 0 6px 12px var(--shadow);
+            border-radius: 8px;
+            width: 160px;
+            z-index: 1001;
         }
 
         .dropdown-menu.active {
@@ -167,245 +124,176 @@
 
         .dropdown-menu a {
             display: block;
-            padding: 14px 20px;
+            padding: 12px;
             color: var(--text-light);
             text-decoration: none;
-            font-size: 15px;
-            transition: background 0.3s, padding-left 0.3s;
+            font-size: 14px;
+            transition: background 0.2s;
         }
 
         .dropdown-menu a:hover {
             background: var(--primary-color);
-            padding-left: 25px;
         }
 
-        /* Navigation Bar */
-        .nav-bar {
-            background: transparent;
-            padding: 15px 40px;
+        .main-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
+        .sidebar {
+            width: 250px;
+            background: var(--dark-bg);
+            padding: 20px;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            box-shadow: 2px 0 12px var(--shadow);
+            overflow-y: auto;
+            z-index: 900;
         }
 
-        .nav-bar a {
+        .sidebar a {
+            display: block;
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-light);
-            font-size: 17px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: background 0.3s, color 0.3s, transform 0.3s;
-            cursor: pointer;
+            font-size: 16px;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s, padding-left 0.3s;
         }
 
-        .nav-bar a:hover, .nav-bar a.active {
+        .sidebar a:hover, .sidebar a.active {
             background: var(--primary-color);
-            color: var(--text-light);
-            transform: translateY(-2px);
+            padding-left: 20px;
         }
 
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #2980b9;
-            transform: scale(1.05);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        /* Main Content */
         .content {
-            padding: 40px;
-            flex-grow: 1;
+            margin-left: 250px;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
+            overflow-y: auto;
+            z-index: 800;
         }
 
         .content-section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
-            margin-bottom: 40px;
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-        }
-
-        [data-theme="dark"] .content-section {
-            background: rgba(42, 42, 42, 0.95);
+            background: var(--dark-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow);
         }
 
         .content-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            font-size: 32px; /* Enhanced title size */
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
         }
 
         .content-section h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            color: var(--secondary-color);
-            margin: 20px 0 10px;
+            font-size: 22px;
+            color: var(--text-light);
+            margin: 15px 0 10px;
         }
 
         .content-section p, .content-section li {
-            line-height: 1.8;
-            margin-bottom: 15px;
-            color: var(--text-dark);
             font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-light);
         }
 
-        .content-section ul {
-            padding-left: 25px;
-        }
-
-        .content-section ul li {
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .content-section ul li:before {
-            content: "➤";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Community Features Section */
         .community-features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .feature-card {
-            background: var(--light-bg);
+            background: var(--dark-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        [data-theme="dark"] .feature-card {
-            background: var(--dark-bg);
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 20px var(--shadow);
         }
 
         .feature-card h4 {
             font-family: 'Poppins', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin: 0 0 10px 0;
         }
 
-        .feature-card p {
-            font-size: 15px;
-        }
-
-        /* Join Community Section */
         .join-community {
-            padding: 40px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
-            margin: 0 40px 40px;
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px var(--shadow);
             text-align: center;
+            margin: 20px 0;
         }
 
         .join-community h2 {
-            color: white;
-            border-bottom: 2px solid white;
-        }
-
-        .join-community p {
-            font-size: 18px;
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 32px; /* Enhanced title size */
         }
 
         .join-button {
-            background: var(--accent-color);
+            background: var(--primary-color);
             color: white;
-            padding: 14px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            transition: background 0.3s, transform 0.3s;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .join-button:hover {
-            background: #219653;
-            transform: scale(1.05);
+            background: #2980b9;
+            transform: translateY(-2px);
         }
 
-        /* Support Section */
         .support-section {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            margin: 0 40px 40px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px var(--shadow);
             text-align: center;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .support-section {
-            background: rgba(42, 42, 42, 0.95);
+            margin: 20px 0;
         }
 
         .support-text {
-            margin-bottom: 20px;
-            font-size: 18px;
-            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: var(--text-light);
         }
 
         .support-button {
             background: var(--primary-color);
             color: white;
-            padding: 14px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            transition: background 0.3s, transform 0.3s;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .support-button:hover {
@@ -413,105 +301,85 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
         .footer {
             background: var(--dark-bg);
-            padding: 20px 40px;
-            text-align: center;
+            padding: 15px 30px;
+            text-align: left;
             color: var(--text-light);
-            font-size: 16px;
+            font-size: 14px;
             box-shadow: 0 -2px 10px var(--shadow);
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            z-index: 800;
         }
 
-        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 200px;
+            }
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
         @media (max-width: 768px) {
-            .header-container, .nav-bar, .content, .join-community, .support-section {
-                padding: 20px;
-                margin: 0 20px 20px;
+            .sidebar {
+                width: 200px;
+                top: 80px;
             }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
+            .content {
+                margin-left: 200px;
             }
-
-            .nav-links.active {
-                display: flex;
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
             }
-
-            .menu-toggle {
-                display: block;
+            .header-container {
+                padding: 15px 20px;
             }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .content-section h2, .join-community h2 {
-                font-size: 28px;
-            }
-
             .community-features {
                 grid-template-columns: 1fr;
-            }
-
-            .join-button, .support-button {
-                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
-            .logo-container img {
-                width: 60px;
-                height: 60px;
+            .main-container {
+                flex-direction: column;
             }
-
+            .sidebar {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                padding: 10px;
+            }
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
+            .footer {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+            .header-container {
+                padding: 10px 15px;
+            }
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
             .logo-text h1 {
                 font-size: 22px;
             }
-
-            .logo-text p {
-                font-size: 14px;
-            }
-
-            .profile-pic {
-                width: 36px;
-                height: 36px;
-            }
-
-            .profile-name {
-                font-size: 16px;
-            }
-
-            .nav-bar a {
-                font-size: 15px;
-            }
-
             .content-section h2, .join-community h2 {
-                font-size: 24px;
+                font-size: 26px;
             }
-
-            .join-community p {
-                font-size: 16px;
-            }
-
             .join-button, .support-button {
-                font-size: 16px;
-                padding: 12px 20px;
-            }
-
-            .footer {
-                font-size: 14px;
+                width: 100%;
             }
         }
     </style>
@@ -523,7 +391,6 @@
                 <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
                 <div class="logo-text">
                     <h1>Data Safari Academy</h1>
-                    <p>Empowering Young Minds in Data Science</p>
                 </div>
             </div>
             <div class="profile-container">
@@ -536,102 +403,92 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <i class="fas fa-bars menu-toggle"></i>
-            <div class="nav-links">
-                <a href="homepage.html">Learning</a>
-                <a href="community.html" class="active">Community</a>
-                <a href="outreach.html">Outreach</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="about.html">About Us</a>
-                <a href="documentation.html">Documentation</a>
+    <div class="main-container">
+        <div class="sidebar">
+            <a href="homepage.html">Learning</a>
+            <a href="community.html" class="active">Community</a>
+            <a href="outreach.html">Outreach</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="about.html">About Us</a>
+            <a href="documentation.html">Documentation</a>
+        </div>
+
+        <div class="content">
+            <div id="community" class="content-section">
+                <h2><i class="fas fa-users"></i> Our Vibrant Community</h2>
+                <h3>Uniting Data Enthusiasts Across Kenya & Beyond</h3>
+                <p>At Data Safari Academy, our community is the heartbeat of our mission. We’re building a dynamic, inclusive space where young learners, seasoned professionals, and curious minds come together to explore, learn, and innovate in Data Science.</p>
+
+                <h3>Why Join Our Community?</h3>
+                <p>We’re more than just a learning platform—we’re a movement. Here’s what you gain:</p>
+                <ul>
+                    <li><strong>Connection:</strong> Network with peers, mentors, and industry leaders from Nairobi to Mombasa and beyond.</li>
+                    <li><strong>Growth:</strong> Access resources tailored for all levels, from beginners to advanced practitioners.</li>
+                    <li><strong>Inspiration:</strong> Share your journey, showcase your projects, and celebrate collective success.</li>
+                </ul>
+
+                <h3>Community Features</h3>
+                <div class="community-features">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-comments"></i> Discussion Forums</h4>
+                        <p>Ask questions, share ideas, and collaborate on real-world data challenges in our interactive forums.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-chalkboard-teacher"></i> Mentorship Program</h4>
+                        <p>Pair with experienced data professionals for personalized guidance and project feedback.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-video"></i> Weekly Webinars</h4>
+                        <p>Join live sessions with experts on topics like data visualization, machine learning, and more.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-folder-open"></i> Project Showcase</h4>
+                        <p>Upload your work, get peer reviews, and build a portfolio that stands out.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-map-marker-alt"></i> Local Meetups</h4>
+                        <p>Attend in-person workshops and hackathons hosted with polytechnics across Kenya.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><i class="fas fa-users-cog"></i> Peer Challenges</h4>
+                        <p>Compete in friendly data science contests to sharpen your skills and win prizes.</p>
+                    </div>
+                </div>
+
+                <h3>Simplifying Data Science</h3>
+                <p>We make complex concepts accessible to everyone:</p>
+                <ul>
+                    <li><strong>Interactive Tutorials:</strong> Learn with real-world examples, like analyzing Kenyan election data or predicting rainfall patterns.</li>
+                    <li><strong>Code-Along Sessions:</strong> Master Python, SQL, and R through hands-on exercises available on our platform.</li>
+                    <li><strong>Visual Tools:</strong> Explore animated explainers and infographics that break down algorithms like decision trees and neural networks.</li>
+                    <li><strong>Beginner Guides:</strong> Start with foundational topics like data cleaning and statistics, no prior experience needed.</li>
+                </ul>
+
+                <h3>Community Spotlight</h3>
+                <p>Meet some of our shining stars:</p>
+                <ul>
+                    <li><strong>Amina from Nairobi:</strong> Turned her webinar learnings into a data visualization project showcased at a local tech meetup.</li>
+                    <li><strong>Peter from Kisumu:</strong> Won our peer challenge with a predictive model for lake water levels, now mentoring others.</li>
+                </ul>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+            <div class="join-community">
+                <h2><i class="fas fa-handshake"></i> Join Our WhatsApp Data Safari Family</h2>
+                <p>Ready to dive into a world of learning, collaboration, and innovation? Join our WhatsApp community today—whether you’re a beginner or a pro, there’s a place for you here. Let’s grow together!</p>
+                <button class="join-button" onclick="window.open('https://chat.whatsapp.com/LHDiVZQpAa77au7M5vktv2', '_blank')">Join Now</button>
+            </div>
+
+            <div class="support-section">
+                <div class="support-text">Have questions or want to get involved? Our team is here to help!</div>
+                <button class="support-button" onclick="window.location.href='support.html'">Contact Support</button>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div id="community" class="content-section">
-            <h2><i class="fas fa-users"></i> Our Vibrant Community</h2>
-            <h3>Uniting Data Enthusiasts Across Kenya & Beyond</h3>
-            <p>At Data Safari Academy, our community is the heartbeat of our mission. We’re building a dynamic, inclusive space where young learners, seasoned professionals, and curious minds come together to explore, learn, and innovate in Data Science.</p>
-
-            <h3>Why Join Our Community?</h3>
-            <p>We’re more than just a learning platform—we’re a movement. Here’s what you gain:</p>
-            <ul>
-                <li><strong>Connection:</strong> Network with peers, mentors, and industry leaders from Nairobi to Mombasa and beyond.</li>
-                <li><strong>Growth:</strong> Access resources tailored for all levels, from beginners to advanced practitioners.</li>
-                <li><strong>Inspiration:</strong> Share your journey, showcase your projects, and celebrate collective success.</li>
-            </ul>
-
-            <h3>Community Features</h3>
-            <div class="community-features">
-                <div class="feature-card">
-                    <h4><i class="fas fa-comments"></i> Discussion Forums</h4>
-                    <p>Ask questions, share ideas, and collaborate on real-world data challenges in our interactive forums.</p>
-                </div>
-                <div class="feature-card">
-                    <h4><i class="fas fa-chalkboard-teacher"></i> Mentorship Program</h4>
-                    <p>Pair with experienced data professionals for personalized guidance and project feedback.</p>
-                </div>
-                <div class="feature-card">
-                    <h4><i class="fas fa-video"></i> Weekly Webinars</h4>
-                    <p>Join live sessions with experts on topics like data visualization, machine learning, and more.</p>
-                </div>
-                <div class="feature-card">
-                    <h4><i class="fas fa-folder-open"></i> Project Showcase</h4>
-                    <p>Upload your work, get peer reviews, and build a portfolio that stands out.</p>
-                </div>
-                <div class="feature-card">
-                    <h4><i class="fas fa-map-marker-alt"></i> Local Meetups</h4>
-                    <p>Attend in-person workshops and hackathons hosted with polytechnics across Kenya.</p>
-                </div>
-                <div class="feature-card">
-                    <h4><i class="fas fa-users-cog"></i> Peer Challenges</h4>
-                    <p>Compete in friendly data science contests to sharpen your skills and win prizes.</p>
-                </div>
-            </div>
-
-            <h3>Simplifying Data Science</h3>
-            <p>We make complex concepts accessible to everyone:</p>
-            <ul>
-                <li><strong>Interactive Tutorials:</strong> Learn with real-world examples, like analyzing Kenyan election data or predicting rainfall patterns.</li>
-                <li><strong>Code-Along Sessions:</strong> Master Python, SQL, and R through hands-on exercises available on our platform.</li>
-                <li><strong>Visual Tools:</strong> Explore animated explainers and infographics that break down algorithms like decision trees and neural networks.</li>
-                <li><strong>Beginner Guides:</strong> Start with foundational topics like data cleaning and statistics, no prior experience needed.</li>
-            </ul>
-
-            <h3>Community Spotlight</h3>
-            <p>Meet some of our shining stars:</p>
-            <ul>
-                <li><strong>Amina from Nairobi:</strong> Turned her webinar learnings into a data visualization project showcased at a local tech meetup.</li>
-                <li><strong>Peter from Kisumu:</strong> Won our peer challenge with a predictive model for lake water levels, now mentoring others.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Join Community Section -->
-     <!-- Join Community Section -->
-<div class="join-community">
-    <h2><i class="fas fa-handshake"></i> Join Our WhatsApp Data Safari Family</h2>
-    <p>Ready to dive into a world of learning, collaboration, and innovation? Join our WhatsApp community today—whether you’re a beginner or a pro, there’s a place for you here. Let’s grow together!</p>
-    <button class="join-button" onclick="window.open('https://chat.whatsapp.com/LHDiVZQpAa77au7M5vktv2', '_blank');">Join Now</button>
-</div>
-
-  
-
-    <!-- Support Section -->
-    <div class="support-section">
-        <div class="support-text">Have questions or want to get involved? Our team is here to help!</div>
-        <button class="support-button" onclick="window.location.href='support.html'">Contact Support</button>
-    </div>
-
-    <!-- Footer -->
     <div class="footer">
-        © Data Safari Academy 2025 | <a href="mailto:support@datasafariacademy.org" style="color: var(--primary-color); text-decoration: none;">support@datasafariacademy.org</a> | Follow us on <a href="#" style="color: var(--primary-color); text-decoration: none;">Twitter</a> & <a href="#" style="color: var(--primary-color); text-decoration: none;">Instagram</a>
+        © Data Safari Academy 2025 | <a href="mailto:support@datasafariacademy.org" style="color: var(--primary-color); text-decoration: none;">support@datasafariacademy.org</a>
     </div>
 
     <script type="module">
@@ -640,69 +497,21 @@
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
         import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-        // Dropdown toggle
         document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
             e.stopPropagation();
             const dropdown = document.querySelector('.dropdown-menu');
             dropdown.classList.toggle('active');
         });
 
-        document.addEventListener('click', function(event) {
-            const profileContainer = document.querySelector('.profile-container');
-            const dropdown = document.querySelector('.dropdown-menu');
-            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
-                dropdown.classList.remove('active');
+        document.addEventListener("click", function(event) {
+            const profileContainer = document.querySelector(".profile-container");
+            const dropdown = document.querySelector(".dropdown-menu");
+            if (!profileContainer.contains(event.target) && dropdown.classList.contains("active")) {
+                dropdown.classList.remove("active");
             }
         });
 
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-            }
-        }
-
-        // Navigation toggle for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('fa-bars');
-                    menuToggle.classList.add('fa-times');
-                } else {
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            const header = document.querySelector('.header');
-            let lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop && scrollTop > 50) {
-                    header.classList.add('hidden');
-                } else if (scrollTop <= 50) {
-                    header.classList.remove('hidden');
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            });
-
-            // Fetch user data
+        document.addEventListener("DOMContentLoaded", function() {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     try {
@@ -713,7 +522,7 @@
                             const fullName = `${userData.firstName} ${userData.lastName}`;
                             const initials = userData.firstName[0] + userData.lastName[0];
                             document.getElementById("profile-name").textContent = fullName;
-                            document.getElementById("profile-pic").textContent = initials;
+                            document.getElementById("profile-pic").textContent = initials.toUpperCase();
                         } else {
                             console.error("No such document!");
                             document.getElementById("profile-name").textContent = "User Not Found";
@@ -723,13 +532,12 @@
                         document.getElementById("profile-name").textContent = "Error Loading Name";
                     }
                 } else {
-                    window.location.href = "LoginPage.html";
+                    window.location.href = "index.html";
                 }
             });
 
-            // Highlight current page in nav
             const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
-            document.querySelectorAll('.nav-bar a').forEach(link => {
+            document.querySelectorAll('.sidebar a').forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
                 } else {
@@ -738,14 +546,12 @@
             });
         });
 
-        // Logout function
         function logout() {
             auth.signOut().then(() => {
                 sessionStorage.clear();
-                window.location.href = "LoginPage.html";
+                window.location.href = "index.html";
             }).catch((error) => {
-                console.error("Logout error:", error.message);
-                alert("Failed to log out. Please try again.");
+                console.error("Logout error:", error);
             });
         }
     </script>

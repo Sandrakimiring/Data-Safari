@@ -5,77 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation | Data Safari Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght=300&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2kePSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
-    <link rel="stylesheet" href="styles/modern.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <style>
         :root {
             --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-light: #f8f9fa;
-            --text-dark: #333;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] {
-            --light-bg: #1a1a1a;
-            --text-dark: #f8f9fa;
-            --text-light: #f8f9fa;
-            --dark-bg: #4a5568;
+            --dark-bg: #2d3748;
+            --darker-bg: #1a202c;
+            --text-light: #e2e8f0;
             --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
             min-height: 100vh;
+            background: var(--darker-bg);
+            color: var(--text-light);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            background-image: linear-gradient(to top, var(--light-bg) 70%, rgba(52, 152, 219, 0.1) 100%),
-                              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHBhdGggZD0iTTEwIDQwQTEwIDEwIDAgMCAxIDEwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoNTIsIDE1MiwgMjE5LCAwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4='); /* Subtle circle pattern */
-            background-size: cover, 50px 50px;
-            background-repeat: no-repeat, repeat;
         }
 
-        [data-theme="dark"] body {
-            background-image: linear-gradient(to top, var(--light-bg) 70%, rgba(52, 152, 219, 0.2) 100%),
-                              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHBhdGggZD0iTTEwIDQwQTEwIDEwIDAgMCAxIDEwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoNTIsIDE1MiwgMjE5LCAwLjMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4='); /* Slightly brighter in dark mode */
-        }
-
-        /* Header Styling */
         .header-container {
             background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 20px 25px;
+            padding: 20px 30px;
             box-shadow: 0 4px 12px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: padding 0.3s ease;
         }
 
         .header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            transition: opacity 0.3s ease, height 0.3s ease;
-        }
-
-        .header.hidden {
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo-container {
@@ -85,8 +56,8 @@
         }
 
         .logo-container img {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
             transition: transform 0.3s;
@@ -98,19 +69,15 @@
 
         .logo-text h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             margin: 0;
-        }
-
-        .logo-text p {
-            font-size: 14px;
-            color: var (--text-light);
-            opacity: 0.8;
+            color: var(--text-light);
         }
 
         .profile-container {
             display: flex;
             align-items: center;
+            gap: 10px;
             position: relative;
         }
 
@@ -124,20 +91,17 @@
             align-items: center;
             color: white;
             font-weight: bold;
-            margin-right: 10px;
             box-shadow: 0 2px 4px var(--shadow);
         }
 
         .profile-name {
-            font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
+            font-size: 16px;
         }
 
         .dropdown-arrow {
-            margin-left: 8px;
             font-size: 14px;
-            color: var (--text-light);
+            color: var(--text-light);
             cursor: pointer;
             padding: 5px;
         }
@@ -151,7 +115,7 @@
             box-shadow: 0 6px 12px var(--shadow);
             border-radius: 8px;
             width: 160px;
-            z-index: 10;
+            z-index: 1001;
         }
 
         .dropdown-menu.active {
@@ -171,99 +135,80 @@
             background: var(--primary-color);
         }
 
-        /* Navigation Bar */
-        .nav-bar {
-            background: transparent;
-            padding: 10px 25px;
+        .main-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            position: relative;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+        .sidebar {
+            width: 250px;
+            background: var(--dark-bg);
+            padding: 20px;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            box-shadow: 2px 0 12px var(--shadow);
+            overflow-y: auto;
+            z-index: 900;
         }
 
-        .nav-bar a {
+        .sidebar a {
+            display: block;
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
             font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            padding: 8px 12px;
+            padding: 15px;
+            margin: 5px 0;
             border-radius: 5px;
-            transition: background 0.3s, color 0.3s;
-            cursor: pointer;
+            transition: background 0.3s, padding-left 0.3s;
         }
 
-        .nav-bar a:hover, .nav-bar a.active {
+        .sidebar a:hover, .sidebar a.active {
             background: var(--primary-color);
-            color: var(--text-light);
+            padding-left: 20px;
         }
 
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #2980b9;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        /* Main Content */
         .content {
+            margin-left: 250px;
             padding: 30px;
-            flex-grow: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
+            overflow-y: auto;
+            z-index: 800;
         }
 
         .content-section {
-            background: white;
+            background: var(--dark-bg);
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px var(--shadow);
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .content-section {
-            background: #2a2a2a;
         }
 
         .content-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
             font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .content-section p {
+            font-size: 16px;
             line-height: 1.6;
+            color: var(--text-light);
             margin-bottom: 15px;
-            color: var(--text-dark);
         }
 
-        /* Documentation Section Specific Styling */
         .doc-links {
             display: flex;
             flex-direction: column;
@@ -271,7 +216,7 @@
             margin-top: 20px;
         }
 
-        .doc-links a {
+        .doc-link {
             text-decoration: none;
             color: var(--primary-color);
             font-size: 16px;
@@ -279,9 +224,15 @@
             border-radius: 5px;
             background: rgba(52, 152, 219, 0.1);
             transition: background 0.3s ease, color 0.3s ease;
+            cursor: pointer;
         }
 
-        .doc-links a:hover {
+        .doc-link:hover {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .doc-link.active {
             background: var(--primary-color);
             color: var(--text-light);
         }
@@ -289,11 +240,6 @@
         .doc-content {
             display: none;
             margin-top: 10px;
-        }
-
-        .doc-links a.active {
-            background: var(--primary-color);
-            color: var(--text-light);
         }
 
         .youtube-link {
@@ -308,20 +254,52 @@
             text-decoration: underline;
         }
 
-        /* Support Section */
+        .doc-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .doc-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .doc-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: var(--text-light);
+            margin: 20px 0 10px;
+        }
+
+        .doc-content code {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--text-light);
+        }
+
+        .doc-content pre {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: var(--text-light);
+        }
+
         .support-section {
-            padding: 30px 20px;
-            background: var(--light-bg);
-            margin: 0 30px 20px;
-            border-radius: 15px;
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 10px;
             box-shadow: 0 6px 15px var(--shadow);
             text-align: center;
+            margin: 20px 0;
         }
 
         .support-text {
             margin-bottom: 15px;
             font-size: 16px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .support-button {
@@ -341,7 +319,6 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
         .footer {
             background: var(--dark-bg);
             padding: 15px 30px;
@@ -349,237 +326,87 @@
             color: var(--text-light);
             font-size: 14px;
             box-shadow: 0 -2px 10px var(--shadow);
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            z-index: 800;
         }
 
-        /* Responsive Design */
         @media (max-width: 1024px) {
-            .header {
-                padding: 15px;
+            .sidebar {
+                width: 200px;
             }
-
-            .nav-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px 15px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
             .content {
-                padding: 20px;
+                margin-left: 200px;
             }
-
-            .doc-links a {
-                font-size: 14px;
-                padding: 8px 12px;
-            }
-
-            .support-section {
-                margin: 0 15px 15px;
-                padding: 20px 15px;
-            }
-
-            .support-text {
-                font-size: 14px;
-            }
-
-            .support-button {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
             }
         }
 
         @media (max-width: 768px) {
-            .header {
-                padding: 15px;
+            .sidebar {
+                width: 200px;
+                top: 80px;
             }
-
-            .nav-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px 15px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
             .content {
-                padding: 20px;
+                margin-left: 200px;
             }
-
-            .doc-links a {
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+            .header-container {
+                padding: 15px 20px;
+            }
+            .doc-link {
                 font-size: 14px;
                 padding: 8px 12px;
-            }
-
-            .support-section {
-                margin: 0 15px 15px;
-                padding: 20px 15px;
-            }
-
-            .support-text {
-                font-size: 14px;
-            }
-
-            .support-button {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
             }
         }
 
         @media (max-width: 480px) {
-            .logo-container img {
-                width: 60px;
-                height: 60px;
+            .main-container {
+                flex-direction: column;
             }
-
+            .sidebar {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                padding: 10px;
+            }
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
+            .footer {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+            .header-container {
+                padding: 10px 15px;
+            }
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
             .logo-text h1 {
+                font-size: 22px;
+            }
+            .content-section h2 {
+                font-size: 26px;
+            }
+            .content-section h3 {
                 font-size: 20px;
             }
-
-            .logo-text p {
-                font-size: 12px;
-            }
-
-            .profile-pic {
-                width: 36px;
-                height: 36px;
-            }
-
-            .profile-name {
-                font-size: 14px;
-            }
-
-            .nav-bar a {
-                font-size: 14px;
-            }
-
-            .doc-links a {
+            .doc-link {
                 font-size: 13px;
                 padding: 6px 10px;
             }
-
-            .support-text {
-                font-size: 13px;
-            }
-
             .support-button {
-                padding: 8px 15px;
-                font-size: 13px;
+                width: 100%;
             }
-
-            .footer {
-                padding: 10px 15px;
-                font-size: 12px;
-            }
-        }
-
-        /* Dark/Light Mode Logo Styling */
-        .theme-logo {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .theme-logo:hover {
-            transform: scale(1.1);
-        }
-
-        .doc-content ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin-top: 10px;
-        }
-
-        .doc-content ul li {
-            margin-bottom: 10px;
-        }
-
-        .doc-content p {
-            font-size: 16px;
-            color: var(--text-dark);
-        }
-
-        .doc-content h3 {
-            font-size: 18px;
-            color: var(--primary-color);
-            margin-top: 20px;
-        }
-
-        .doc-content code {
-            background: rgba(52, 152, 219, 0.1);
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .doc-content pre {
-            background: rgba(52, 152, 219, 0.1);
-            padding: 10px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-
-        /* Smooth animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.active {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -590,7 +417,6 @@
                 <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
                 <div class="logo-text">
                     <h1>Data Safari Academy</h1>
-                    <p>Empowering Young Minds in Data Science</p>
                 </div>
             </div>
             <div class="profile-container">
@@ -603,217 +429,210 @@
                 </div>
             </div>
         </div>
-
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <i class="fas fa-bars menu-toggle"></i>
-            <div class="nav-links">
-                <a href="homepage.html">Learning</a>
-                <a href="community.html">Community</a>
-                <a href="outreach.html">Outreach</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="about.html">About Us</a>
-                <a href="documentation.html" class="active">Documentation</a>
-            </div>
-            <button class="theme-toggle" id="theme-toggle">
-                <i class="fas fa-sun"></i>
-            </button>
-        </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div id="documentation" class="content-section fade-up">
-            <h2><i class="fas fa-file-alt"></i> Documentation</h2>
-            <p>Explore our detailed documentation to get started with Data Safari Academy and make the most of our resources:</p>
-            <div class="doc-links">
-                <a href="#" class="doc-link fade-up" style="animation-delay: 0.1s" data-target="getting-started">Getting Started Guide</a>
-                <div id="getting-started" class="doc-content">
-                    <h3>Account Setup</h3>
-                    <p>Learn how to create and set up your account:</p>
-                    <ul>
-                        <li>Visit the <a href="signup.html">Sign Up</a> page.</li>
-                        <li>Fill in your personal details and create a password.</li>
-                        <li>Verify your email address through the link sent to your inbox.</li>
-                        <li>Log in to your new account and complete your profile.</li>
-                    </ul>
-                    <p> To begin your journey with Data Safari Academy, the first step is to create an account. Navigate to our <a href="signup.html">Sign Up</a> page where you'll find a straightforward form. Ensure you provide accurate personal details, as this information will be used to personalize your learning experience. When creating a password, aim for a strong combination of upper and lower case letters, numbers, and symbols to ensure the security of your account. After submitting the form, you'll receive a verification email. Click the link in the email to verify your address. This step is crucial as it confirms your identity and enables important account features. Finally, log in to your new account and complete your profile by adding a profile picture and a brief bio. This helps other community members get to know you!</p>
-                    <h3>Navigation</h3>
-                    <p>Understand the layout and how to navigate through the platform:</p>
-                    <ul>
-                        <li>Use the top navigation bar to access different sections such as Learning, Community, Outreach, and more.</li>
-                        <li>Click on your profile picture to access account settings and log out.</li>
-                    </ul>
-                    <p> Our platform is designed to be intuitive and user-friendly. The top navigation bar serves as your primary tool for accessing different sections. The "Learning" section is where you'll find all our courses and tutorials. The "Community" section is your hub for interacting with other learners, participating in discussions, and asking questions. The "Outreach" section showcases our initiatives to bring data science education to underserved communities. To manage your account settings or log out, simply click on your profile picture located in the top right corner of the screen. A dropdown menu will appear, providing access to these options.</p>
-                    <h3>Basic Usage Tips</h3>
-                    <p>Get tips on how to use the platform effectively:</p>
-                    <ul>
-                        <li>Explore the <a href="learning.html">Learning</a> section for tutorials and courses.</li>
-                        <li>Join discussions in the <a href="community.html">Community</a> section.</li>
-                        <li>Participate in outreach programs listed in the <a href="outreach.html">Outreach</a> section.</li>
-                    </ul>
-                    <p> To make the most of Data Safari Academy, we recommend starting with the "Learning" section. Here, you'll find a wide range of tutorials and courses catering to different skill levels. Don't hesitate to dive into the "Community" section to connect with fellow learners, share your progress, and seek assistance when needed. Our platform thrives on collaboration and peer support. Additionally, consider exploring the "Outreach" section to discover opportunities to contribute to our mission of democratizing data science education. By actively participating in these programs, you'll not only enhance your own learning but also make a positive impact on others.</p>
-                </div>
-                <a href="#" class="doc-link fade-up" style="animation-delay: 0.2s" data-target="python-basics">Python Basics Tutorial</a>
-                <div id="python-basics" class="doc-content">
-                    <h3>Variables</h3>
-                    <p>Learn how to declare and use variables in Python:</p>
-                    <pre><code>my_variable = 10
+    <div class="main-container">
+        <div class="sidebar">
+            <a href="homepage.html">Learning</a>
+            <a href="community.html">Community</a>
+            <a href="outreach.html">Outreach</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="about.html">About Us</a>
+            <a href="documentation.html" class="active">Documentation</a>
+        </div>
+
+        <div class="content">
+            <div id="documentation" class="content-section">
+                <h2><i class="fas fa-file-alt"></i> Documentation</h2>
+                <p>Explore our detailed documentation to get started with Data Safari Academy and make the most of our resources:</p>
+                <div class="doc-links">
+                    <a href="#" class="doc-link" data-target="getting-started">Getting Started Guide</a>
+                    <div id="getting-started" class="doc-content">
+                        <h3>Account Setup</h3>
+                        <p>Learn how to create and set up your account:</p>
+                        <ul>
+                            <li>Visit the <a href="signup.html">Sign Up</a> page.</li>
+                            <li>Fill in your personal details and create a password.</li>
+                            <li>Verify your email address through the link sent to your inbox.</li>
+                            <li>Log in to your new account and complete your profile.</li>
+                        </ul>
+                        <p> To begin your journey with Data Safari Academy, the first step is to create an account. Navigate to our <a href="signup.html">Sign Up</a> page where you'll find a straightforward form. Ensure you provide accurate personal details, as this information will be used to personalize your learning experience. When creating a password, aim for a strong combination of upper and lower case letters, numbers, and symbols to ensure the security of your account. After submitting the form, you'll receive a verification email. Click the link in the email to verify your address. This step is crucial as it confirms your identity and enables important account features. Finally, log in to your new account and complete your profile by adding a profile picture and a brief bio. This helps other community members get to know you!</p>
+                        <h3>Navigation</h3>
+                        <p>Understand the layout and how to navigate through the platform:</p>
+                        <ul>
+                            <li>Use the top navigation bar to access different sections such as Learning, Community, Outreach, and more.</li>
+                            <li>Click on your profile picture to access account settings and log out.</li>
+                        </ul>
+                        <p> Our platform is designed to be intuitive and user-friendly. The top navigation bar serves as your primary tool for accessing different sections. The "Learning" section is where you'll find all our courses and tutorials. The "Community" section is your hub for interacting with other learners, participating in discussions, and asking questions. The "Outreach" section showcases our initiatives to bring data science education to underserved communities. To manage your account settings or log out, simply click on your profile picture located in the top right corner of the screen. A dropdown menu will appear, providing access to these options.</p>
+                        <h3>Basic Usage Tips</h3>
+                        <p>Get tips on how to use the platform effectively:</p>
+                        <ul>
+                            <li>Explore the <a href="learning.html">Learning</a> section for tutorials and courses.</li>
+                            <li>Join discussions in the <a href="community.html">Community</a> section.</li>
+                            <li>Participate in outreach programs listed in the <a href="outreach.html">Outreach</a> section.</li>
+                        </ul>
+                        <p> To make the most of Data Safari Academy, we recommend starting with the "Learning" section. Here, you'll find a wide range of tutorials and courses catering to different skill levels. Don't hesitate to dive into the "Community" section to connect with fellow learners, share your progress, and seek assistance when needed. Our platform thrives on collaboration and peer support. Additionally, consider exploring the "Outreach" section to discover opportunities to contribute to our mission of democratizing data science education. By actively participating in these programs, you'll not only enhance your own learning but also make a positive impact on others.</p>
+                    </div>
+                    <a href="#" class="doc-link" data-target="python-basics">Python Basics Tutorial</a>
+                    <div id="python-basics" class="doc-content">
+                        <h3>Variables</h3>
+                        <p>Learn how to declare and use variables in Python:</p>
+                        <pre><code>my_variable = 10
 print(my_variable)</code></pre>
-                    <p>Variables are used to store data values. In this example, <code>my_variable</code> is assigned the integer value 10.</p>
-                    <p> In Python, a variable is a named storage location in the computer's memory. It's like a container that holds a value. The <code>=</code> operator is used to assign a value to a variable. In the example above, we're creating a variable named <code>my_variable</code> and assigning it the integer value <code>10</code>. The <code>print()</code> function then displays the value of the variable on the console. Variables are fundamental to programming as they allow you to store and manipulate data.</p>
-                    <h3>Data Types</h3>
-                    <p>Understand different data types such as integers, strings, and lists:</p>
-                    <pre><code>my_int = 10
+                        <p>Variables are used to store data values. In this example, <code>my_variable</code> is assigned the integer value 10.</p>
+                        <p> In Python, a variable is a named storage location in the computer's memory. It's like a container that holds a value. The <code>=</code> operator is used to assign a value to a variable. In the example above, we're creating a variable named <code>my_variable</code> and assigning it the integer value <code>10</code>. The <code>print()</code> function then displays the value of the variable on the console. Variables are fundamental to programming as they allow you to store and manipulate data.</p>
+                        <h3>Data Types</h3>
+                        <p>Understand different data types such as integers, strings, and lists:</p>
+                        <pre><code>my_int = 10
 my_string = "Hello, World!"
 my_list = [1, 2, 3, 4, 5]</code></pre>
-                    <p>Python supports various data types, including integers (<code>int</code>), strings (<code>str</code>), and lists (<code>list</code>). Each data type has its own properties and methods.</p>
-                    <p> Data types classify the kind of value a variable holds. Python has several built-in data types, including:
-                    <ul>
-                        <li><b>Integers (<code>int</code>):</b> Whole numbers, such as <code>10</code>, <code>-5</code>, and <code>0</code>.</li>
-                        <li><b>Strings (<code>str</code>):</b> Sequences of characters, such as <code>"Hello, World!"</code>. Strings are enclosed in either single quotes (<code>'</code>) or double quotes (<code>"</code>).</li>
-                        <li><b>Lists (<code>list</code>):</b> Ordered collections of items, such as <code>[1, 2, 3, 4, 5]</code>. Lists are enclosed in square brackets (<code>[]</code>) and can contain items of different data types.</li>
-                    </ul>
-                    Understanding data types is crucial as it determines the operations you can perform on a variable.</p>
-                    <h3>Control Structures</h3>
-                    <p>Explore if-else statements, loops, and more:</p>
-                    <pre><code>if my_variable > 5:
+                        <p>Python supports various data types, including integers (<code>int</code>), strings (<code>str</code>), and lists (<code>list</code>). Each data type has its own properties and methods.</p>
+                        <p> Data types classify the kind of value a variable holds. Python has several built-in data types, including:
+                        <ul>
+                            <li><b>Integers (<code>int</code>):</b> Whole numbers, such as <code>10</code>, <code>-5</code>, and <code>0</code>.</li>
+                            <li><b>Strings (<code>str</code>):</b> Sequences of characters, such as <code>"Hello, World!"</code>. Strings are enclosed in either single quotes (<code>'</code>) or double quotes (<code>"</code>).</li>
+                            <li><b>Lists (<code>list</code>):</b> Ordered collections of items, such as <code>[1, 2, 3, 4, 5]</code>. Lists are enclosed in square brackets (<code>[]</code>) and can contain items of different data types.</li>
+                        </ul>
+                        Understanding data types is crucial as it determines the operations you can perform on a variable.</p>
+                        <h3>Control Structures</h3>
+                        <p>Explore if-else statements, loops, and more:</p>
+                        <pre><code>if my_variable > 5:
     print("Greater than 5")
 else:
     print("Less than or equal to 5")
 
 for i in my_list:
     print(i)</code></pre>
-                    <p>Control structures allow you to control the flow of your program. The <code>if-else</code> statement executes different blocks of code based on a condition, while the <code>for</code> loop iterates over a sequence of values.</p>
-                    <p> Control structures are essential for creating programs that can make decisions and repeat actions.
-                    <ul>
-                        <li><b>If-else statement:</b> The <code>if</code> statement evaluates a condition. If the condition is true, the code block under the <code>if</code> statement is executed. Otherwise, the code block under the <code>else</code> statement is executed (if an <code>else</code> statement is present).</li>
-                        <li><b>For loop:</b> The <code>for</code> loop iterates over a sequence of values, such as a list or a range of numbers. For each value in the sequence, the code block under the <code>for</code> loop is executed.</li>
-                    </ul>
-                    Control structures enable you to create dynamic and responsive programs.</p>
-                    <h3>Functions</h3>
-                    <p>Learn how to define and call functions:</p>
-                    <pre><code>def my_function():
+                        <p>Control structures allow you to control the flow of your program. The <code>if-else</code> statement executes different blocks of code based on a condition, while the <code>for</code> loop iterates over a sequence of values.</p>
+                        <p> Control structures are essential for creating programs that can make decisions and repeat actions.
+                        <ul>
+                            <li><b>If-else statement:</b> The <code>if</code> statement evaluates a condition. If the condition is true, the code block under the <code>if</code> statement is executed. Otherwise, the code block under the <code>else</code> statement is executed (if an <code>else</code> statement is present).</li>
+                            <li><b>For loop:</b> The <code>for</code> loop iterates over a sequence of values, such as a list or a range of numbers. For each value in the sequence, the code block under the <code>for</code> loop is executed.</li>
+                        </ul>
+                        Control structures enable you to create dynamic and responsive programs.</p>
+                        <h3>Functions</h3>
+                        <p>Learn how to define and call functions:</p>
+                        <pre><code>def my_function():
     print("Hello from the function!")
 
 my_function()</code></pre>
-                    <p>Functions are reusable blocks of code that perform a specific task. In this example, <code>my_function</code> prints a greeting message when called.</p>
-                    <p> Functions are fundamental to modular programming. They allow you to break down complex tasks into smaller, more manageable units.
-                    <ul>
-                        <li><b>Defining a function:</b> The <code>def</code> keyword is used to define a function. The function name is followed by parentheses <code>()</code>, which may contain parameters (inputs) to the function. The code block under the function definition is executed when the function is called.</li>
-                        <li><b>Calling a function:</b> To call a function, simply type its name followed by parentheses <code>()</code>. If the function has parameters, you must provide values for those parameters when calling the function.</li>
-                    </ul>
-                    Functions promote code reusability and make your programs easier to understand and maintain.</p>
-                    <h3>Basic Libraries</h3>
-                    <p>Get introduced to essential Python libraries:</p>
-                    <pre><code>import math
+                        <p>Functions are reusable blocks of code that perform a specific task. In this example, <code>my_function</code> prints a greeting message when called.</p>
+                        <p> Functions are fundamental to modular programming. They allow you to break down complex tasks into smaller, more manageable units.
+                        <ul>
+                            <li><b>Defining a function:</b> The <code>def</code> keyword is used to define a function. The function name is followed by parentheses <code>()</code>, which may contain parameters (inputs) to the function. The code block under the function definition is executed when the function is called.</li>
+                            <li><b>Calling a function:</b> To call a function, simply type its name followed by parentheses <code>()</code>. If the function has parameters, you must provide values for those parameters when calling the function.</li>
+                        </ul>
+                        Functions promote code reusability and make your programs easier to understand and maintain.</p>
+                        <h3>Basic Libraries</h3>
+                        <p>Get introduced to essential Python libraries:</p>
+                        <pre><code>import math
 print(math.sqrt(16))</code></pre>
-                    <p>Python has a rich ecosystem of libraries that provide additional functionality. The <code>math</code> library, for example, provides mathematical functions such as <code>sqrt</code> for calculating the square root of a number.</p>
-                    <p> Python libraries are collections of pre-written code that you can use to extend the functionality of your programs.
-                    <ul>
-                        <li><b>Importing a library:</b> The <code>import</code> keyword is used to import a library. Once a library is imported, you can access its functions and variables using the dot notation (<code>library_name.function_name()</code>).</li>
-                        <li><b>Math library:</b> The <code>math</code> library provides a wide range of mathematical functions, including trigonometric functions, logarithmic functions, and exponential functions. In the example above, we're using the <code>sqrt()</code> function to calculate the square root of <code>16</code>.</li>
-                    </ul>
-                    Python's extensive library ecosystem makes it a versatile language for a wide range of tasks.</p>
-                </div>
-                <a href="#" class="doc-link fade-up" style="animation-delay: 0.3s" data-target="sql-fundamentals">SQL Fundamentals</a>
-                <div id="sql-fundamentals" class="doc-content">
-                    <h3>Creating Data</h3>
-                    <p>Learn how to insert data into tables:</p>
-                    <pre><code>INSERT INTO students (name, age) VALUES ('John Doe', 20);</code></pre>
-                    <p>The <code>INSERT</code> statement is used to add new rows to a table. In this example, a new student named 'John Doe' with an age of 20 is added to the <code>students</code> table.</p>
-                    <p> The <code>INSERT INTO</code> statement is the foundation for adding new data to your database tables. Let's break down the syntax:
-                    <ul>
-                        <li><code>INSERT INTO students</code>: This specifies that you're adding data to the <code>students</code> table.</li>
-                        <li><code>(name, age)</code>: This lists the columns you're providing values for. The order matters!</li>
-                        <li><code>VALUES ('John Doe', 20)</code>: This provides the actual data to be inserted. <code>'John Doe'</code> is a string value for the <code>name</code> column, and <code>20</code> is an integer value for the <code>age</code> column.</li>
-                    </ul>
-                    Make sure the data types of the values you're inserting match the data types of the corresponding columns in the table.</p>
-                    <h3>Reading Data</h3>
-                    <p>Understand how to query data from tables:</p>
-                    <pre><code>SELECT * FROM students;</code></pre>
-                    <p>The <code>SELECT</code> statement is used to retrieve data from one or more tables. The <code>*</code> wildcard character selects all columns from the table.</p>
-                    <p> The <code>SELECT</code> statement is your primary tool for retrieving data from your database.
-                    <ul>
-                        <li><code>SELECT *</code>: The asterisk (<code>*</code>) is a wildcard that tells the database to select all columns from the specified table.</li>
-                        <li><code>FROM students</code>: This specifies that you're retrieving data from the <code>students</code> table.</li>
-                    </ul>
-                    This query will return all rows and all columns from the <code>students</code> table. You can also select specific columns by listing their names instead of using the <code>*</code> wildcard.</p>
-                    <h3>Updating Data</h3>
-                    <p>Learn how to update existing data:</p>
-                    <pre><code>UPDATE students SET age = 21 WHERE name = 'John Doe';</code></pre>
-                    <p>The <code>UPDATE</code> statement is used to modify existing data in a table. In this example, the age of 'John Doe' is updated to 21.</p>
-                    <p> The <code>UPDATE</code> statement allows you to modify existing data in your database tables.
-                    <ul>
-                        <li><code>UPDATE students</code>: This specifies that you're updating data in the <code>students</code> table.</li>
-                        <li><code>SET age = 21</code>: This sets the value of the <code>age</code> column to <code>21</code> for the rows that match the <code>WHERE</code> clause.</li>
-                        <li><code>WHERE name = 'John Doe'</code>: This is the <code>WHERE</code> clause, which specifies the condition that must be met for a row to be updated. In this case, only the row where the <code>name</code> column is equal to <code>'John Doe'</code> will be updated.</li>
-                    </ul>
-                    Always be careful when using the <code>UPDATE</code> statement, as it can permanently modify your data. It's a good practice to back up your data before performing any updates.</p>
-                    <h3>Deleting Data</h3>
-                    <p>Understand how to delete data from tables:</p>
-                    <pre><code>DELETE FROM students WHERE name = 'John Doe';</code></pre>
-                    <p>The <code>DELETE</code> statement is used to remove rows from a table. In this example, the row for 'John Doe' is deleted from the <code>students</code> table.</p>
-                    <p> The <code>DELETE FROM</code> statement is used to remove rows from a table.
-                    <ul>
-                        <li><code>DELETE FROM students</code>: This specifies that you're deleting data from the <code>students</code> table.</li>
-                        <li><code>WHERE name = 'John Doe'</code>: This is the <code>WHERE</code> clause, which specifies the condition that must be met for a row to be deleted. In this case, only the row where the <code>name</code> column is equal to <code>'John Doe'</code> will be deleted.</li>
-                    </ul>
-                    Like the <code>UPDATE</code> statement, the <code>DELETE</code> statement can permanently modify your data, so use it with caution. Always back up your data before performing any deletions.</p>
-                </div>
-                <a href="#" class="doc-link" data-target="ml-overview">Machine Learning Overview</a>
-                <div id="ml-overview" class="doc-content">
-                    <h3>Types of Machine Learning</h3>
-                    <p>Learn about supervised, unsupervised, and reinforcement learning:</p>
-                    <ul>
-                        <li><strong>Supervised Learning:</strong> Training a model on labeled data.</li>
-                        <li><strong>Unsupervised Learning:</strong> Finding patterns in unlabeled data.</li>
-                        <li><strong>Reinforcement Learning:</strong> Learning through rewards and penalties.</li>
-                    </ul>
-                    <p>Each type of machine learning has its own set of algorithms and applications. Supervised learning is commonly used for classification and regression tasks, while unsupervised learning is used for clustering and dimensionality reduction. Reinforcement learning is used for training agents to make decisions in an environment.</p>
-                    <p> Machine learning encompasses a variety of approaches to enable computers to learn from data. The three primary types are:
-                    <ul>
-                        <li><b>Supervised Learning:</b> In this paradigm, the model learns from a dataset where each example is labeled with the correct output. The goal is to learn a mapping from inputs to outputs. Common algorithms include linear regression, logistic regression, and support vector machines.</li>
-                        <li><b>Unsupervised Learning:</b> Here, the model learns from a dataset without any explicit labels. The goal is to discover hidden patterns and structures in the data. Common algorithms include clustering (e.g., k-means) and dimensionality reduction (e.g., principal component analysis).</li>
-                        <li><b>Reinforcement Learning:</b> In this approach, an agent learns to make decisions in an environment to maximize a reward signal. The agent interacts with the environment, receives feedback in the form of rewards and penalties, and adjusts its actions accordingly. Common algorithms include Q-learning and deep reinforcement learning.</li>
-                    </ul>
-                    The choice of machine learning type depends on the nature of the data and the desired outcome.</p>
-                    <h3>Key Algorithms</h3>
-                    <p>Explore algorithms such as linear regression, decision trees, and neural networks:</p>
-                    <ul>
-                        <li><strong>Linear Regression:</strong> Predicting a continuous value.</li>
-                        <li><strong>Decision Trees:</strong> Making decisions based on feature values.</li>
-                        <li><strong>Neural Networks:</strong> Modeling complex patterns with layers of neurons.</li>
-                    </ul>
-                    <p>These algorithms are fundamental to machine learning and are used in a wide range of applications. Linear regression is a simple yet powerful algorithm for predicting continuous values, while decision trees are used for making decisions based on feature values. Neural networks are more complex algorithms that can model highly non-linear relationships in data.</p>
-                    <p> Several key algorithms form the foundation of machine learning:
-                    <ul>
-                        <li><b>Linear Regression:</b> This algorithm models the relationship between a dependent variable and one or more independent variables by fitting a linear equation to the observed data. It's widely used for predicting continuous values, such as house prices or stock prices.</li>
-                        <li><b>Decision Trees:</b> Decision trees are tree-like structures that use a series of decisions based on feature values to classify or predict outcomes. They are easy to interpret and can handle both categorical and numerical data.</li>
-                        <li><b>Neural Networks:</b> Neural networks are complex models inspired by the structure of the human brain. They consist of interconnected layers of nodes (neurons) that learn to extract patterns from data. Neural networks are particularly well-suited for tasks such as image recognition, natural language processing, and speech recognition.</li>
-                    </ul>
-                    These algorithms represent just a small fraction of the vast landscape of machine learning algorithms.</p>
-                    <h3>Real-World Applications</h3>
-                    <p>Understand how to apply machine learning to solve real-world problems:</p>
-                    <ul>
-                        <li><strong>Image Recognition:</strong> Identifying objects in images.</li>
-                        <li><strong>Natural Language Processing:</strong> Analyzing and generating human language.</li>
-                        <li><strong>Recommendation Systems:</strong> Suggesting products or content to users.</li>
-                    </ul>
-                    <p>Machine learning is used in a variety of real-world applications, including image recognition, natural language processing, and recommendation systems. Image recognition is used in applications such as self-driving cars and medical imaging, while natural language processing is used in applications such as chatbots and machine translation. Recommendation systems are used in applications such as e-commerce and online advertising.</p>
-                    <p> Machine learning is transforming numerous industries and aspects of our lives. Some prominent real-world applications include:
-                    <ul>
-                        <li><b>Image Recognition:</b> Machine learning models can be trained to identify objects, people, and scenes in images. This technology is used in self-driving cars to detect traffic signs and pedestrians, in medical imaging to diagnose diseases, and in security systems to identify faces.</li>
-                        <li><b>Natural Language Processing (NLP):</b> NLP techniques enable computers to understand, interpret, and generate human language. NLP is used in chatbots to provide customer support, in machine translation to translate text between languages, and in sentiment analysis to gauge public opinion.</li>
-                        <li><b>Recommendation Systems:</b> Recommendation systems use machine learning to suggest products, content, or services to users based on their preferences and past behavior. These systems are widely used in e-commerce to recommend products to customers, in online advertising to target ads to specific users, and in streaming services to suggest movies and TV shows.</li>
-                    </ul>
-                    These examples highlight the transformative potential of machine learning to solve complex problems and improve our lives.</p>
-                </div>
-                <a href="#" class="doc-link" data-target="data-visualization">Data Visualization with Python</a>
-                <div id="data-visualization" class="doc-content">
-                    <h3>Matplotlib</h3>
-                    <p>Learn how to create basic plots and customize them:</p>
-                    <pre><code>import matplotlib.pyplot as plt
+                        <p>Python has a rich ecosystem of libraries that provide additional functionality. The <code>math</code> library, for example, provides mathematical functions such as <code>sqrt</code> for calculating the square root of a number.</p>
+                        <p> Python libraries are collections of pre-written code that you can use to extend the functionality of your programs.
+                        <ul>
+                            <li><b>Importing a library:</b> The <code>import</code> keyword is used to import a library. Once a library is imported, you can access its functions and variables using the dot notation (<code>library_name.function_name()</code>).</li>
+                            <li><b>Math library:</b> The <code>math</code> library provides a wide range of mathematical functions, including trigonometric functions, logarithmic functions, and exponential functions. In the example above, we're using the <code>sqrt()</code> function to calculate the square root of <code>16</code>.</li>
+                        </ul>
+                        Python's extensive library ecosystem makes it a versatile language for a wide range of tasks.</p>
+                    </div>
+                    <a href="#" class="doc-link" data-target="sql-fundamentals">SQL Fundamentals</a>
+                    <div id="sql-fundamentals" class="doc-content">
+                        <h3>Creating Data</h3>
+                        <p>Learn how to insert data into tables:</p>
+                        <pre><code>INSERT INTO students (name, age) VALUES ('John Doe', 20);</code></pre>
+                        <p>The <code>INSERT</code> statement is used to add new rows to a table. In this example, a new student named 'John Doe' with an age of 20 is added to the <code>students</code> table.</p>
+                        <p> The <code>INSERT INTO</code> statement is the foundation for adding new data to your database tables. Let's break down the syntax:
+                        <ul>
+                            <li><code>INSERT INTO students</code>: This specifies that you're adding data to the <code>students</code> table.</li>
+                            <li><code>(name, age)</code>: This lists the columns you're providing values for. The order matters!</li>
+                            <li><code>VALUES ('John Doe', 20)</code>: This provides the actual data to be inserted. <code>'John Doe'</code> is a string value for the <code>name</code> column, and <code>20</code> is an integer value for the <code>age</code> column.</li>
+                        </ul>
+                        Make sure the data types of the values you're inserting match the data types of the corresponding columns in the table.</p>
+                        <h3>Reading Data</h3>
+                        <p>Understand how to query data from tables:</p>
+                        <pre><code>SELECT * FROM students;</code></pre>
+                        <p>The <code>SELECT</code> statement is used to retrieve data from one or more tables. The <code>*</code> wildcard character selects all columns from the table.</p>
+                        <p> The <code>SELECT</code> statement is your primary tool for retrieving data from your database.
+                        <ul>
+                            <li><code>SELECT *</code>: The asterisk (<code>*</code>) is a wildcard that tells the database to select all columns from the specified table.</li>
+                            <li><code>FROM students</code>: This specifies that you're retrieving data from the <code>students</code> table.</li>
+                        </ul>
+                        This query will return all rows and all columns from the <code>students</code> table. You can also select specific columns by listing their names instead of using the <code>*</code> wildcard.</p>
+                        <h3>Updating Data</h3>
+                        <p>Learn how to update existing data:</p>
+                        <pre><code>UPDATE students SET age = 21 WHERE name= 'John Doe';</code></pre>
+                        <p>The <code>UPDATE</code> statement is used to modify existing data in a table. In this example, the age of 'John Doe' is updated to 21.</p>
+                        <p> The <code>UPDATE</code> statement allows you to modify existing data in your database tables.
+                        <ul>
+                            <li><code>UPDATE students</code>: This specifies that you're updating data in the <code>students</code> table.</li>
+                            <li><code>SET age = 21</code>: This sets the value of the <code>age</code> column to <code>21</code> for the rows that match the <code>WHERE</code> clause.</li>
+                            <li><code>WHERE name = 'John Doe'</code>: This is the <code>WHERE</code> clause, which specifies the condition that must be met for a row to be updated. In this case, only the row where the <code>name</code> column is equal to <code>'John Doe'</code> will be updated.</li>
+                        </ul>
+                        Always be careful when using the <code>UPDATE</code> statement, as it can permanently modify your data. It's a good practice to back up your data before performing any updates.</p>
+                        <h3>Deleting Data</h3>
+                        <p>Understand how to delete data from tables:</p>
+                        <pre><code>DELETE FROM students WHERE name = 'John Doe';</code></pre>
+                        <p>The <code>DELETE</code> statement is used to remove rows from a table. In this example, the row for 'John Doe' is deleted from the <code>students</code> table.</p>
+                        <p> The <code>DELETE FROM</code> statement is used to remove rows from a table.
+                        <ul>
+                            <li><code>DELETE FROM students</code>: This specifies that you're deleting data from the <code>students</code> table.</li>
+                            <li><code>WHERE name = 'John Doe'</code>: This is the <code>WHERE</code> clause, which specifies the condition that must be met for a row to be deleted. In this case, only the row where the <code>name</code> column is equal to <code>'John Doe'</code> will be deleted.</li>
+                        </ul>
+                        Like the <code>UPDATE</code> statement, the <code>DELETE</code> statement can permanently modify your data, so use it with caution. Always back up your data before performing any deletions.</p>
+                    </div>
+                    <a href="#" class="doc-link" data-target="ml-overview">Machine Learning Overview</a>
+                    <div id="ml-overview" class="doc-content">
+                        <h3>Types of Machine Learning</h3>
+                        <p>Learn about supervised, unsupervised, and reinforcement learning:</p>
+                        <ul>
+                            <li><strong>Supervised Learning:</strong> Training a model on labeled data.</li>
+                            <li><strong>Unsupervised Learning:</strong> Finding patterns in unlabeled data.</li>
+                            <li><strong>Reinforcement Learning:</strong> Learning through rewards and penalties.</li>
+                        </ul>
+                        <p>Each type of machine learning has its own set of algorithms and applications. Supervised learning is commonly used for classification and regression tasks, while unsupervised learning is used for clustering and dimensionality reduction. Reinforcement learning is used for training agents to make decisions in an environment.</p>
+                        <p> Machine learning encompasses a variety of approaches to enable computers to learn from data. The three primary types are:
+                        <ul>
+                            <li><b>Supervised Learning:</b> In this paradigm, the model learns from a dataset where each example is labeled with the correct output. The goal is to learn a mapping from inputs to outputs. Common algorithms include linear regression, logistic regression, and support vector machines.</li>
+                            <li><b>Unsupervised Learning:</b> Here, the model learns from a dataset without any explicit labels. The goal is to discover hidden patterns and structures in the data. Common algorithms include clustering (e.g., k-means) and dimensionality reduction (e.g., principal component analysis).</li>
+                            <li><b>Reinforcement Learning:</b> In this approach, an agent learns to make decisions in an environment to maximize a reward signal. The agent interacts with the environment, receives feedback in the form of rewards and penalties, and adjusts its actions accordingly. Common algorithms include Q-learning and deep reinforcement learning.</li>
+                        </ul>
+                        The choice of machine learning type depends on the nature of the data and the desired outcome.</p>
+                        <h3>Key Algorithms</h3>
+                        <p>Explore algorithms such as linear regression, decision trees, and neural networks:</p>
+                        <ul>
+                            <li><strong>Linear Regression:</strong> Predicting a continuous value.</li>
+                            <li><strong>Decision Trees:</strong> Making decisions based on feature values.</li>
+                            <li><strong>Neural Networks:</strong> Modeling complex patterns with layers of neurons.</li>
+                        </ul>
+                        <p>These algorithms are fundamental to machine learning and are used in a wide range of applications. Linear regression is a simple yet powerful algorithm for predicting continuous values, while decision trees are used for making decisions based on feature values. Neural networks are more complex algorithms that can model highly non-linear relationships in data.</p>
+                        <p> Several key algorithms form the foundation of machine learning:
+                        <ul>
+                            <li><b>Linear Regression:</b> This algorithm models the relationship between a dependent variable and one or more independent variables by fitting a linear equation to the observed data. It's widely used for predicting continuous values, such as house prices or stock prices.</li>
+                            <li><b>Decision Trees:</b> Decision trees are tree-like structures that use a series of decisions based on feature values to classify or predict outcomes. They are easy to interpret and can handle both categorical and numerical data.</li>
+                            <li><b>Neural Networks:</b> Neural networks are complex models inspired by the structure of the human brain. They consist of interconnected layers of nodes (neurons) that learn to extract patterns from data. Neural networks are particularly well-suited for tasks such as image recognition, natural language processing, and speech recognition.</li>
+                        </ul>
+                        These algorithms represent just a small fraction of the vast landscape of machine learning algorithms.</p>
+                        <h3>Real-World Applications</h3>
+                        <p>Understand how to apply machine learning to solve real-world problems:</p>
+                        <ul>
+                            <li><strong>Image Recognition:</strong> Identifying objects in images.</li>
+                            <li><strong>Natural Language Processing:</strong> Analyzing and generating human language.</li>
+                            <li><strong>Recommendation Systems:</strong> Suggesting products or content to users.</li>
+                        </ul>
+                        <p>Machine learning is used in a variety of real-world applications, including image recognition, natural language processing, and recommendation systems. Image recognition is used in applications such as self-driving cars and medical imaging, while natural language processing is used in applications such as chatbots and machine translation. Recommendation systems are used in applications such as e-commerce and online advertising.</p>
+                        <p> Machine learning is transforming numerous industries and aspects of our lives. Some prominent real-world applications include:
+                        <ul>
+                            <li><b>Image Recognition:</b> Machine learning models can be trained to identify objects, people, and scenes in images. This technology is used in self-driving cars to detect traffic signs and pedestrians, in medical imaging to diagnose diseases, and in security systems to identify faces.</li>
+                            <li><b>Natural Language Processing (NLP):</b> NLP techniques enable computers to understand, interpret, and generate human language. NLP is used in chatbots to provide customer support, in machine translation to translate text between languages, and in sentiment analysis to gauge public opinion.</li>
+                            <li><b>Recommendation Systems:</b> Recommendation systems use machine learning to suggest products, content, or services to users based on their preferences and past behavior. These systems are widely used in e-commerce to recommend products to customers, in online advertising to target ads to specific users, and in streaming services to suggest movies and TV shows.</li>
+                        </ul>
+                        These examples highlight the transformative potential of machine learning to solve complex problems and improve our lives.</p>
+                    </div>
+                    <a href="#" class="doc-link" data-target="data-visualization">Data Visualization with Python</a>
+                    <div id="data-visualization" class="doc-content">
+                        <h3>Matplotlib</h3>
+                        <p>Learn how to create basic plots and customize them:</p>
+                        <pre><code>import matplotlib.pyplot as plt
 
 x = [1, 2, 3, 4, 5]
 y = [10, 20, 25, 30, 35]
@@ -823,117 +642,116 @@ plt.xlabel('X-axis')
 plt.ylabel('Y-axis')
 plt.title('Basic Plot')
 plt.show()</code></pre>
-                    <p>Matplotlib is a powerful library for creating static, interactive, and animated visualizations in Python. In this example, a basic line plot is created using the <code>plot</code> function. The <code>xlabel</code>, <code>ylabel</code>, and <code>title</code> functions are used to add labels and a title to the plot.</p>
-                    <p> Matplotlib is a cornerstone of data visualization in Python, offering a wide array of tools for creating informative and visually appealing charts.
-                    <ul>
-                        <li><b>Creating a basic plot:</b> The <code>plt.plot(x, y)</code> function generates a line plot using the data provided in the <code>x</code> and <code>y</code> lists. The <code>x</code> list represents the values on the horizontal axis, and the <code>y</code> list represents the values on the vertical axis.</li>
-                        <li><b>Adding labels and title:</b> The <code>plt.xlabel()</code>, <code>plt.ylabel()</code>, and <code>plt.title()</code> functions are used to add labels to the axes and a title to the plot, respectively. These elements enhance the readability and understanding of the visualization.</li>
-                        <li><b>Displaying the plot:</b> The <code>plt.show()</code> function displays the plot in a separate window.</li>
-                    </ul>
-                    Matplotlib provides extensive customization options to tailor your visualizations to your specific needs.</p>
-                    <h3>Seaborn</h3>
-                    <p>Explore advanced visualization techniques with Seaborn:</p>
-                    <pre><code>import seaborn as sns
+                        <p>Matplotlib is a powerful library for creating static, interactive, and animated visualizations in Python. In this example, a basic line plot is created using the <code>plot</code> function. The <code>xlabel</code>, <code>ylabel</code>, and <code>title</code> functions are used to add labels and a title to the plot.</p>
+                        <p> Matplotlib is a cornerstone of data visualization in Python, offering a wide array of tools for creating informative and visually appealing charts.
+                        <ul>
+                            <li><b>Creating a basic plot:</b> The <code>plt.plot(x, y)</code> function generates a line plot using the data provided in the <code>x</code> and <code>y</code> lists. The <code>x</code> list represents the values on the horizontal axis, and the <code>y</code> list represents the values on the vertical axis.</li>
+                            <li><b>Adding labels and title:</b> The <code>plt.xlabel()</code>, <code>plt.ylabel()</code>, and <code>plt.title()</code> functions are used to add labels to the axes and a title to the plot, respectively. These elements enhance the readability and understanding of the visualization.</li>
+                            <li><b>Displaying the plot:</b> The <code>plt.show()</code> function displays the plot in a separate window.</li>
+                        </ul>
+                        Matplotlib provides extensive customization options to tailor your visualizations to your specific needs.</p>
+                        <h3>Seaborn</h3>
+                        <p>Explore advanced visualization techniques with Seaborn:</p>
+                        <pre><code>import seaborn as sns
 import matplotlib.pyplot as plt
 
 data = sns.load_dataset('iris')
 sns.pairplot(data, hue='species')
 plt.show()</code></pre>
-                    <p>Seaborn is a library for making statistical graphics in Python. It builds on top of Matplotlib and provides a high-level interface for creating informative and attractive visualizations. In this example, a pair plot is created using the <code>pairplot</code> function. The <code>hue</code> parameter is used to color the data points by species.</p>
-                    <p> Seaborn simplifies the creation of complex statistical visualizations, building upon Matplotlib's foundation.
-                    <ul>
-                        <li><b>Loading a dataset:</b> The <code>sns.load_dataset('iris')</code> function loads the Iris dataset, a classic dataset in machine learning and data visualization.</li>
-                        <li><b>Creating a pair plot:</b> The <code>sns.pairplot(data, hue='species')</code> function generates a pair plot, which displays the relationships between all pairs of variables in the dataset. The <code>hue</code> parameter colors the data points according to their species, allowing for easy visual comparison.</li>
-                        <li><b>Displaying the plot:</b> The <code>plt.show()</code> function displays the plot.</li>
-                    </ul>
-                    Seaborn offers a wide range of statistical plotting functions, making it a valuable tool for data exploration and analysis.</p>
-                    <h3>Types of Charts</h3>
-                    <p>Understand different types of charts such as bar charts, line charts, and scatter plots:</p>
-                    <ul>
-                        <li><strong>Bar Chart:</strong> Representing data with rectangular bars.</li>
-                        <li><strong>Line Chart:</strong> Showing trends over time with lines.</li>
-                        <li><strong>Scatter Plot:</strong> Displaying data points on a Cartesian plane.</li>
-                    </ul>
-                    <p>Each type of chart is suitable for different types of data and purposes. Bar charts are used to compare values across categories, while line charts are used to show trends over time. Scatter plots are used to display the relationship between two variables.</p>
-                     <p> Choosing the right chart type is crucial for effectively communicating your data.
-                    <ul>
-                        <li><b>Bar Chart:</b> Bar charts are ideal for comparing the values of different categories. The height of each bar represents the value of the corresponding category. Bar charts are commonly used to display sales figures, website traffic, or survey results.</li>
-                        <li><b>Line Chart:</b> Line charts are used to show trends over time. The data points are connected by lines, allowing you to easily visualize how a variable changes over time. Line charts are often used to display stock prices, temperature readings, or sales trends.</li>
-                        <li><b>Scatter Plot:</b> Scatter plots are used to display the relationship between two variables. Each data point is represented by a dot on the Cartesian plane, with the x-coordinate representing the value of one variable and the y-coordinate representing the value of the other variable. Scatter plots can reveal patterns such as correlations, clusters, and outliers.</li>
-                    </ul>
-                    By understanding the strengths and weaknesses of different chart types, you can create visualizations that effectively convey your message.</p>
-                </div>
-                <a href="#" class="doc-link" data-target="api-reference">API Reference</a>
-                <div id="api-reference" class="doc-content">
-                    <h3>Authentication API</h3>
-                    <p>Learn how to authenticate users and manage sessions:</p>
-                    <pre><code>POST /api/auth/login
+                        <p>Seaborn is a library for making statistical graphics in Python. It builds on top of Matplotlib and provides a high-level interface for creating informative and attractive visualizations. In this example, a pair plot is created using the <code>pairplot</code> function. The <code>hue</code> parameter is used to color the data points by species.</p>
+                        <p> Seaborn simplifies the creation of complex statistical visualizations, building upon Matplotlib's foundation.
+                        <ul>
+                            <li><b>Loading a dataset:</b> The <code>sns.load_dataset('iris')</code> function loads the Iris dataset, a classic dataset in machine learning and data visualization.</li>
+                            <li><b>Creating a pair plot:</b> The <code>sns.pairplot(data, hue='species')</code> function generates a pair plot, which displays the relationships between all pairs of variables in the dataset. The <code>hue</code> parameter colors the data points according to their species, allowing for easy visual comparison.</li>
+                            <li><b>Displaying the plot:</b> The <code>plt.show()</code> function displays the plot.</li>
+                        </ul>
+                        Seaborn offers a wide range of statistical plotting functions, making it a valuable tool for data exploration and analysis.</p>
+                        <h3>Types of Charts</h3>
+                        <p>Understand different types of charts such as bar charts, line charts, and scatter plots:</p>
+                        <ul>
+                            <li><strong>Bar Chart:</strong> Representing data with rectangular bars.</li>
+                            <li><strong>Line Chart:</strong> Showing trends over time with lines.</li>
+                            <li><strong>Scatter Plot:</strong> Displaying data points on a Cartesian plane.</li>
+                        </ul>
+                        <p>Each type of chart is suitable for different types of data and purposes. Bar charts are used to compare values across categories, while line charts are used to show trends over time. Scatter plots are used to display the relationship between two variables.</p>
+                        <p> Choosing the right chart type is crucial for effectively communicating your data.
+                        <ul>
+                            <li><b>Bar Chart:</b> Bar charts are ideal for comparing the values of different categories. The height of each bar represents the value of the corresponding category. Bar charts are commonly used to display sales figures, website traffic, or survey results.</li>
+                            <li><b>Line Chart:</b> Line charts are used to show trends over time. The data points are connected by lines, allowing you to easily visualize how a variable changes over time. Line charts are often used to display stock prices, temperature readings, or sales trends.</li>
+                            <li><b>Scatter Plot:</b> Scatter plots are used to display the relationship between two variables. Each data point is represented by a dot on the Cartesian plane, with the x-coordinate representing the value of one variable and the y-coordinate representing the value of the other variable. Scatter plots can reveal patterns such as correlations, clusters, and outliers.</li>
+                        </ul>
+                        By understanding the strengths and weaknesses of different chart types, you can create visualizations that effectively convey your message.</p>
+                    </div>
+                    <a href="#" class="doc-link" data-target="api-reference">API Reference</a>
+                    <div id="api-reference" class="doc-content">
+                        <h3>Authentication API</h3>
+                        <p>Learn how to authenticate users and manage sessions:</p>
+                        <pre><code>POST /api/auth/login
 {
     "username": "user",
     "password": "pass"
 }</code></pre>
-                    <p>The Authentication API allows users to log in and manage their sessions. The <code>POST /api/auth/login</code> endpoint is used to authenticate users by providing their username and password.</p>
-                     <p> The Authentication API is a critical component for securing your application and managing user access.
-                    <ul>
-                        <li><b>Endpoint:</b> <code>POST /api/auth/login</code>: This endpoint is responsible for authenticating users. The <code>POST</code> method indicates that the client is sending data to the server to be processed.</li>
-                        <li><b>Request Body:</b> The request body is a JSON object containing the user's credentials:
+                        <p>The Authentication API allows users to log in and manage their sessions. The <code>POST /api/auth/login</code> endpoint is used to authenticate users by providing their username and password.</p>
+                        <p> The Authentication API is a critical component for securing your application and managing user access.
                         <ul>
-                            <li><code>username</code>: The user's username.</li>
-                            <li><code>password</code>: The user's password.</li>
+                            <li><b>Endpoint:</b> <code>POST /api/auth/login</code>: This endpoint is responsible for authenticating users. The <code>POST</code> method indicates that the client is sending data to the server to be processed.</li>
+                            <li><b>Request Body:</b> The request body is a JSON object containing the user's credentials:
+                            <ul>
+                                <li><code>username</code>: The user's username.</li>
+                                <li><code>password</code>: The user's password.</li>
+                            </ul>
+                            </li>
+                            <li><b>Response:</b> Upon successful authentication, the server typically returns a JSON Web Token (JWT) or a session ID, which the client can use to authenticate subsequent requests.</li>
                         </ul>
-                        </li>
-                        <li><b>Response:</b> Upon successful authentication, the server typically returns a JSON Web Token (JWT) or a session ID, which the client can use to authenticate subsequent requests.</li>
-                    </ul>
-                    Properly securing your Authentication API is essential to protect user data and prevent unauthorized access.</p>
-                    <h3>Data API</h3>
-                    <p>Understand how to access and manipulate data using the API:</p>
-                    <pre><code>GET /api/data/students
+                        Properly securing your Authentication API is essential to protect user data and prevent unauthorized access.</p>
+                        <h3>Data API</h3>
+                        <p>Understand how to access and manipulate data using the API:</p>
+                        <pre><code>GET /api/data/students
 {
     "id": 1,
     "name": "John Doe",
     "age": 20
 }</code></pre>
-                    <p>The Data API provides access to the platform's data. The <code>GET /api/data/students</code> endpoint is used to retrieve a list of students. The response includes the ID, name, and age of each student.</p>
-                     <p> The Data API provides a structured way to access and manipulate data within your application.
-                    <ul>
-                        <li><b>Endpoint:</b> <code>GET /api/data/students</code>: This endpoint retrieves a list of students. The <code>GET</code> method indicates that the client is requesting data from the server.</li>
-                        <li><b>Response:</b> The server returns a JSON array of student objects. Each object contains the following properties:
+                        <p>The Data API provides access to the platform's data. The <code>GET /api/data/students</code> endpoint is used to retrieve a list of students. The response includes the ID, name, and age of each student.</p>
+                        <p> The Data API provides a structured way to access and manipulate data within your application.
                         <ul>
-                            <li><code>id</code>: The unique identifier of the student.</li>
-                            <li><code>name</code>: The name of the student.</li>
-                            <li><code>age</code>: The age of the student.</li>
+                            <li><b>Endpoint:</b> <code>GET /api/data/students</code>: This endpoint retrieves a list of students. The <code>GET</code> method indicates that the client is requesting data from the server.</li>
+                            <li><b>Response:</b> The server returns a JSON array of student objects. Each object contains the following properties:
+                            <ul>
+                                <li><code>id</code>: The unique identifier of the student.</li>
+                                <li><code>name</code>: The name of the student.</li>
+                                <li><code>age</code>: The age of the student.</li>
+                            </ul>
+                            </li>
+                            <li><b>Other Operations:</b> In addition to retrieving data, the Data API may also provide endpoints for creating, updating, and deleting data. These endpoints typically use the <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods, respectively.</li>
                         </ul>
-                        </li>
-                        <li><b>Other Operations:</b> In addition to retrieving data, the Data API may also provide endpoints for creating, updating, and deleting data. These endpoints typically use the <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods, respectively.</li>
-                    </ul>
-                    A well-designed Data API is crucial for enabling data-driven applications and integrations.</p>
-                    <h3>Integration Examples</h3>
-                    <p>Get examples of how to integrate the API into your projects:</p>
-                    <pre><code>fetch('/api/data/students')
+                        A well-designed Data API is crucial for enabling data-driven applications and integrations.</p>
+                        <h3>Integration Examples</h3>
+                        <p>Get examples of how to integrate the API into your projects:</p>
+                        <pre><code>fetch('/api/data/students')
     .then(response => response.json())
     .then(data => console.log(data));</code></pre>
-                    <p>This example shows how to use the <code>fetch</code> API to retrieve data from the <code>/api/data/students</code> endpoint. The response is parsed as JSON and then logged to the console.</p>
-                     <p><b>Detailed Explanation:</b> Integrating the API into your projects allows you to leverage the platform's data and functionality.
-                    <ul>
-                        <li><b>Fetch API:</b> The <code>fetch()</code> function is a modern JavaScript API for making network requests. It returns a promise that resolves to the response from the server.</li>
-                        <li><b>Parsing the response:</b> The <code>response.json()</code> method parses the response body as JSON. This method also returns a promise that resolves to the parsed JSON data.</li>
-                        <li><b>Handling the data:</b> The <code>then()</code> method is used to handle the resolved promise. In this example, the parsed JSON data is logged to the console using <code>console.log(data)</code>.</li>
-                    </ul>
-                    This example demonstrates a simple integration using JavaScript. You can also integrate the API using other programming languages and frameworks.</p>
+                        <p>This example shows how to use the <code>fetch</code> API to retrieve data from the <code>/api/data/students</code> endpoint. The response is parsed as JSON and then logged to the console.</p>
+                        <p><b>Detailed Explanation:</b> Integrating the API into your projects allows you to leverage the platform's data and functionality.
+                        <ul>
+                            <li><b>Fetch API:</b> The <code>fetch()</code> function is a modern JavaScript API for making network requests. It returns a promise that resolves to the response from the server.</li>
+                            <li><b>Parsing the response:</b> The <code>response.json()</code> method parses the response body as JSON. This method also returns a promise that resolves to the parsed JSON data.</li>
+                            <li><b>Handling the data:</b> The <code>then()</code> method is used to handle the resolved promise. In this example, the parsed JSON data is logged to the console using <code>console.log(data)</code>.</li>
+                        </ul>
+                        This example demonstrates a simple integration using JavaScript. You can also integrate the API using other programming languages and frameworks.</p>
+                    </div>
                 </div>
+            </div>
+
+            <div class="support-section">
+                <div class="support-text">Need help? Reach out to our support team!</div>
+                <button class="support-button" onclick="window.location.href='support.html'">Support</button>
             </div>
         </div>
     </div>
 
-    <!-- Support Section -->
-    <div class="support-section">
-        <div class="support-text">Need help? Reach out to our support team!</div>
-        <button class="support-button" onclick="window.location.href='support.html'">Support</button>
-    </div>
-
-    <!-- Footer -->
     <div class="footer">
-        © Data Safari Academy 2025
+        © Data Safari Academy 2025 | <a href="mailto:support@datasafariacademy.org" style="color: var(--primary-color); text-decoration: none;">support@datasafariacademy.org</a>
     </div>
 
     <script type="module">
@@ -942,61 +760,21 @@ plt.show()</code></pre>
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
         import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-        // Dropdown toggle
         document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
             e.stopPropagation();
             const dropdown = document.querySelector('.dropdown-menu');
             dropdown.classList.toggle('active');
         });
 
-        document.addEventListener('click', function(event) {
-            const profileContainer = document.querySelector('.profile-container');
-            const dropdown = document.querySelector('.dropdown-menu');
-            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
-                dropdown.classList.remove('active');
+        document.addEventListener("click", function(event) {
+            const profileContainer = document.querySelector(".profile-container");
+            const dropdown = document.querySelector(".dropdown-menu");
+            if (!profileContainer.contains(event.target) && dropdown.classList.contains("active")) {
+                dropdown.classList.remove("active");
             }
         });
 
-        // Navigation toggle for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('fa-bars');
-                    menuToggle.classList.add('fa-times');
-                } else {
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            // Hide header on scroll
-            const header = document.querySelector('.header');
-            let lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop && scrollTop > 50) { // Scrolling down past 50px
-                    header.classList.add('hidden');
-                } else if (scrollTop <= 50) { // Near top
-                    header.classList.remove('hidden');
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
-            });
-
-            // Fetch user data from Firestore
+        document.addEventListener("DOMContentLoaded", function() {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     try {
@@ -1007,7 +785,7 @@ plt.show()</code></pre>
                             const fullName = `${userData.firstName} ${userData.lastName}`;
                             const initials = userData.firstName[0] + userData.lastName[0];
                             document.getElementById("profile-name").textContent = fullName;
-                            document.getElementById("profile-pic").textContent = initials;
+                            document.getElementById("profile-pic").textContent = initials.toUpperCase();
                         } else {
                             console.error("No such document!");
                             document.getElementById("profile-name").textContent = "User Not Found";
@@ -1017,14 +795,12 @@ plt.show()</code></pre>
                         document.getElementById("profile-name").textContent = "Error Loading Name";
                     }
                 } else {
-                    // User not logged in, redirect to login page
-                    window.location.href = "LoginPage.html";
+                    window.location.href = "index.html";
                 }
             });
 
-            // Highlight current page in nav
             const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
-            document.querySelectorAll('.nav-bar a').forEach(link => {
+            document.querySelectorAll('.sidebar a').forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
                 } else {
@@ -1032,7 +808,6 @@ plt.show()</code></pre>
                 }
             });
 
-            // Toggle documentation sections
             document.querySelectorAll('.doc-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1048,65 +823,13 @@ plt.show()</code></pre>
             });
         });
 
-        // Add smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add intersection observer for fade-up animations
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-up');
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        document.querySelectorAll('.content-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Logout function
         function logout() {
             auth.signOut().then(() => {
                 sessionStorage.clear();
-                window.location.href = "LoginPage.html";
+                window.location.href = "index.html";
             }).catch((error) => {
                 console.error("Logout error:", error);
             });
-        }
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-
-        themeToggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-
-        // Load saved theme from localStorage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            body.setAttribute('data-theme', savedTheme);
-            if (savedTheme === 'dark') {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
         }
     </script>
 </body>

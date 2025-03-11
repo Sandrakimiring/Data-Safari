@@ -5,51 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outreach | Data Safari Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyAydjE4aDE4VjJIM1ptMTUgMTZoLTFWMTBoMVYxNlpNMTMgMTZoLTFWOGgxVjE2Wk0xMSAxNmgxVjZhMVYxNlpNOSAxNmgxVjRhMVYxNlpNNyAxNmgxVjhoMVYxNlpNNSAxNmgxVjZhMVYxNiIgc3Ryb2tlPSIjMzQ5OERCIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
     <style>
         :root {
             --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-light: #f8f9fa;
-            --text-dark: #333;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-            --gradient: linear-gradient(135deg, #3498db, #27ae60);
-        }
-
-        [data-theme="dark"] {
-            --light-bg: #1a1a1a;
-            --text-dark: #f8f9fa;
-            --text-light: #f8f9fa;
-            --dark-bg: #4a5568;
+            --dark-bg: #2d3748;
+            --darker-bg: #1a202c;
+            --text-light: #e2e8f0;
             --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
             min-height: 100vh;
+            background: var(--darker-bg);
+            color: var(--text-light);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            background-image: var(--gradient), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDMwTDEwIDUwTDEwIDEwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoNTIsIDE1MiwgMjE5LCAwLjIpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=');
-            background-size: cover, 60px 60px;
-            background-repeat: no-repeat, repeat;
         }
 
-        /* Header Styling */
         .header-container {
             background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 20px 40px;
-            box-shadow: 0 4px 20px var(--shadow);
+            padding: 20px 30px;
+            box-shadow: 0 4px 12px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -57,62 +42,48 @@
 
         .header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-        }
-
-        .header.hidden {
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            transition: opacity 0.3s ease, height 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .logo-container img {
-            width: 110px;
-            height: 110px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
 
         .logo-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+            transform: scale(1.05);
         }
 
         .logo-text h1 {
             font-family: 'Poppins', sans-serif;
             font-size: 28px;
             margin: 0;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo-text p {
-            font-size: 16px;
             color: var(--text-light);
-            opacity: 0.85;
         }
 
         .profile-container {
             display: flex;
             align-items: center;
+            gap: 10px;
             position: relative;
         }
 
         .profile-pic {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--primary-color);
             display: flex;
@@ -120,32 +91,19 @@
             align-items: center;
             color: white;
             font-weight: bold;
-            margin-right: 12px;
-            box-shadow: 0 3px 6px var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .profile-pic:hover {
-            transform: rotate(360deg);
+            box-shadow: 0 2px 4px var(--shadow);
         }
 
         .profile-name {
-            font-size: 18px;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
+            font-size: 16px;
         }
 
         .dropdown-arrow {
-            margin-left: 10px;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-light);
             cursor: pointer;
             padding: 5px;
-            transition: transform 0.3s;
-        }
-
-        .dropdown-arrow:hover {
-            transform: rotate(180deg);
         }
 
         .dropdown-menu {
@@ -154,11 +112,10 @@
             right: 0;
             top: 100%;
             background: var(--dark-bg);
-            box-shadow: 0 8px 16px var(--shadow);
-            border-radius: 10px;
-            width: 180px;
-            z-index: 10;
-            overflow: hidden;
+            box-shadow: 0 6px 12px var(--shadow);
+            border-radius: 8px;
+            width: 160px;
+            z-index: 1001;
         }
 
         .dropdown-menu.active {
@@ -167,192 +124,145 @@
 
         .dropdown-menu a {
             display: block;
-            padding: 14px 20px;
+            padding: 12px;
             color: var(--text-light);
             text-decoration: none;
-            font-size: 15px;
-            transition: background 0.3s, padding-left 0.3s;
+            font-size: 14px;
+            transition: background 0.2s;
         }
 
         .dropdown-menu a:hover {
             background: var(--primary-color);
-            padding-left: 25px;
         }
 
-        /* Navigation Bar */
-        .nav-bar {
-            background: transparent;
-            padding: 15px 40px;
+        .main-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
+        .sidebar {
+            width: 250px;
+            background: var(--dark-bg);
+            padding: 20px;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            box-shadow: 2px 0 12px var(--shadow);
+            overflow-y: auto;
+            z-index: 900;
         }
 
-        .nav-bar a {
+        .sidebar a {
+            display: block;
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-light);
-            font-size: 17px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: background 0.3s, color 0.3s, transform 0.3s;
-            cursor: pointer;
+            font-size: 16px;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s, padding-left 0.3s;
         }
 
-        .nav-bar a:hover, .nav-bar a.active {
+        .sidebar a:hover, .sidebar a.active {
             background: var(--primary-color);
-            color: var(--text-light);
-            transform: translateY(-2px);
+            padding-left: 20px;
         }
 
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #2980b9;
-            transform: scale(1.05);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        /* Main Content */
         .content {
-            padding: 40px;
-            flex-grow: 1;
+            margin-left: 250px;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
+            overflow-y: auto;
+            z-index: 800;
         }
 
         .content-section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
-            margin-bottom: 40px;
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-        }
-
-        [data-theme="dark"] .content-section {
-            background: rgba(42, 42, 42, 0.95);
+            background: var(--dark-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow);
         }
 
         .content-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
         }
 
         .content-section h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            color: var(--secondary-color);
-            margin: 20px 0 10px;
+            font-size: 22px;
+            color: var(--text-light);
+            margin: 15px 0 10px;
         }
 
         .content-section p, .content-section li {
-            line-height: 1.8;
-            margin-bottom: 15px;
-            color: var(--text-dark);
             font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-light);
         }
 
-        .content-section ul {
-            padding-left: 25px;
-        }
-
-        .content-section ul li {
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .content-section ul li:before {
-            content: "➤";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Questionnaire Section */
         .questionnaire-section {
-            padding: 40px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
-            margin: 0 40px 40px;
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px var(--shadow);
+            margin: 20px 0;
         }
 
         .questionnaire-section h2 {
-            color: white;
-            border-bottom: 2px solid white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
         }
 
         .questionnaire-form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .form-group label {
             font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-light);
         }
 
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid white;
-            border-radius: 8px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
             font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.9);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 14px;
+            background: var(--light-bg);
+            transition: box-shadow 0.3s ease;
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 8px rgba(39, 174, 96, 0.5);
+            box-shadow: 0 0 5px var(--primary-color);
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 100px;
             resize: vertical;
         }
 
@@ -363,37 +273,35 @@
         }
 
         .form-group .checkbox-group label {
-            font-size: 16px;
-            font-weight: 400;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
         }
 
         .questionnaire-form button {
-            background: var(--accent-color);
+            background: var(--primary-color);
             color: white;
-            padding: 14px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            transition: background 0.3s, transform 0.3s;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
             align-self: flex-start;
         }
 
         .questionnaire-form button:hover {
-            background: #219653;
-            transform: scale(1.05);
+            background: #2980b9;
+            transform: translateY(-2px);
         }
 
-        /* Success Message */
         .success-message {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--accent-color);
+            background: var(--primary-color);
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -407,37 +315,31 @@
             opacity: 1;
         }
 
-        /* Support Section */
         .support-section {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            margin: 0 40px 40px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px var(--shadow);
             text-align: center;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .support-section {
-            background: rgba(42, 42, 42, 0.95);
+            margin: 20px 0;
         }
 
         .support-text {
-            margin-bottom: 20px;
-            font-size: 18px;
-            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: var(--text-light);
         }
 
         .support-button {
             background: var(--primary-color);
             color: white;
-            padding: 14px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            transition: background 0.3s, transform 0.3s;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .support-button:hover {
@@ -445,110 +347,86 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
         .footer {
             background: var(--dark-bg);
-            padding: 20px 40px;
-            text-align: center;
+            padding: 15px 30px;
+            text-align: left;
             color: var(--text-light);
-            font-size: 16px;
+            font-size: 14px;
             box-shadow: 0 -2px 10px var(--shadow);
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            z-index: 800;
         }
 
-        /* Hide sections for questionnaire-only mode */
-        .questionnaire-only .header-container, .questionnaire-only .content, .questionnaire-only .support-section, .questionnaire-only .footer {
+        .questionnaire-only .header-container, .questionnaire-only .main-container, .questionnaire-only .support-section, .questionnaire-only .footer {
             display: none;
         }
 
-        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 200px;
+            }
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
         @media (max-width: 768px) {
-            .header-container, .nav-bar, .content, .questionnaire-section, .support-section {
-                padding: 20px;
-                margin: 0 20px 20px;
+            .sidebar {
+                width: 200px;
+                top: 80px;
             }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
+            .content {
+                margin-left: 200px;
             }
-
-            .nav-links.active {
-                display: flex;
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
             }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .content-section h2, .questionnaire-section h2 {
-                font-size: 28px;
-            }
-
-            .questionnaire-form button, .support-button {
-                width: 100%;
+            .header-container {
+                padding: 15px 20px;
             }
         }
 
         @media (max-width: 480px) {
-            .logo-container img {
-                width: 60px;
-                height: 60px;
+            .main-container {
+                flex-direction: column;
             }
-
+            .sidebar {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                padding: 10px;
+            }
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
+            .footer {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+            .header-container {
+                padding: 10px 15px;
+            }
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
             .logo-text h1 {
                 font-size: 22px;
             }
-
-            .logo-text p {
-                font-size: 14px;
-            }
-
-            .profile-pic {
-                width: 36px;
-                height: 36px;
-            }
-
-            .profile-name {
-                font-size: 16px;
-            }
-
-            .nav-bar a {
-                font-size: 15px;
-            }
-
             .content-section h2, .questionnaire-section h2 {
-                font-size: 24px;
+                font-size: 26px;
             }
-
-            .form-group label {
-                font-size: 16px;
-            }
-
-            .form-group input, .form-group select, .form-group textarea {
-                font-size: 14px;
-            }
-
             .questionnaire-form button, .support-button {
-                font-size: 16px;
-                padding: 12px 20px;
-            }
-
-            .footer {
-                font-size: 14px;
+                width: 100%;
             }
         }
     </style>
@@ -560,7 +438,6 @@
                 <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
                 <div class="logo-text">
                     <h1>Data Safari Academy</h1>
-                    <p>Empowering Young Minds in Data Science</p>
                 </div>
             </div>
             <div class="profile-container">
@@ -573,125 +450,117 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <i class="fas fa-bars menu-toggle"></i>
-            <div class="nav-links">
-                <a href="homepage.html">Learning</a>
-                <a href="community.html">Community</a>
-                <a href="outreach.html" class="active">Outreach</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="about.html">About Us</a>
-                <a href="documentation.html">Documentation</a>
+    <div class="main-container">
+        <div class="sidebar">
+            <a href="homepage.html">Learning</a>
+            <a href="community.html">Community</a>
+            <a href="outreach.html" class="active">Outreach</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="about.html">About Us</a>
+            <a href="documentation.html">Documentation</a>
+        </div>
+
+        <div class="content">
+            <div id="outreach" class="content-section">
+                <h2><i class="fas fa-bullhorn"></i> Outreach Strategy</h2>
+                <h3>Reaching Kenyan Polytechnics & Beyond</h3>
+                <p>At Data Safari Academy, our outreach strategy is designed to ignite a passion for Data Science across Kenya and beyond, focusing on inclusivity, accessibility, and empowerment. We target students from polytechnics, rural communities, and urban hubs alike.</p>
+
+                <h3>Our Plan</h3>
+                <ul>
+                    <li><strong>Partnerships:</strong> Collaborate with polytechnic institutions like Kabete National Polytechnic and Eldoret Polytechnic to integrate Data Safari resources into their curricula, offering hands-on data science modules.</li>
+                    <li><strong>Mobile Access:</strong> Optimize our platform for low-bandwidth environments and mobile devices, ensuring rural students with limited internet can still learn.</li>
+                    <li><strong>Workshops:</strong> Host free, interactive data science bootcamps in underserved regions such as Kisumu, Eldoret, Mombasa, and Nyeri, featuring real-world projects.</li>
+                    <li><strong>Scholarships:</strong> Provide sponsored access to premium content and certifications for top performers from disadvantaged backgrounds.</li>
+                    <li><strong>Social Media Campaigns:</strong> Leverage WhatsApp communities, Instagram, and Twitter to share bite-sized lessons, success stories, and event updates.</li>
+                    <li><strong>WhatsApp Communities:</strong> We’ve established vibrant WhatsApp groups to conduct polls, gather feedback, and connect with both aspiring data scientists and professionals already in the field.</li>
+                    <li><strong>Mentorship Programs:</strong> Pair students with industry experts for guidance and career advice.</li>
+                </ul>
+
+                <h3>Inclusivity Measures</h3>
+                <p>We’re committed to breaking barriers and ensuring everyone has a chance to excel:</p>
+                <ul>
+                    <li>Content available in English and Swahili to reach diverse learners.</li>
+                    <li>Offline resources (downloadable PDFs, video tutorials) for areas with unreliable internet.</li>
+                    <li>Targeted STEM initiatives to engage female students and underrepresented groups.</li>
+                    <li>Assistive technologies for learners with disabilities, such as screen reader compatibility.</li>
+                </ul>
+
+                <h3>Success Stories</h3>
+                <p>Our efforts have already made an impact:</p>
+                <ul>
+                    <li><strong>Mary from Kisumu:</strong> A polytechnic student who attended our bootcamp and now works as a data analyst at a local startup.</li>
+                    <li><strong>John from Eldoret:</strong> Received a scholarship and completed our Data Science Fundamentals course, landing an internship.</li>
+                </ul>
+
+                <h3>External Engagement</h3>
+                <p>We invite external users—students, educators, or professionals—to contribute to our mission by sharing their insights through our Data Safari Design Questionnaire below. Non-website users can access it directly via this link: <a href="outreach.html?mode=questionnaire" target="_blank" style="color: var(--primary-color); font-weight: bold;">Direct Questionnaire Access</a>. Share this link with others!</p>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+            <div class="questionnaire-section">
+                <h2><i class="fas fa-question-circle"></i> Data Safari Design Questionnaire</h2>
+                <p>We want to hear from you! Whether you’re new to Data Science or exploring your interests, your feedback helps us tailor our outreach efforts. This questionnaire is open to everyone—complete it only once with your email.</p>
+                <form class="questionnaire-form" id="questionnaire-form">
+                    <div class="form-group">
+                        <label for="email">Your Email (Required, used only once)</label>
+                        <input type="email" id="email" placeholder="e.g., you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">What’s your current level of experience in Data Science?</label>
+                        <select id="experience" required>
+                            <option value="">Select an option</option>
+                            <option value="Beginner">Beginner (No experience)</option>
+                            <option value="Intermediate">Intermediate (Some knowledge/projects)</option>
+                            <option value="Advanced">Advanced (Professional experience)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>How do you prefer to learn Data Science? (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="learning-preference" value="Online Courses"> Online Courses</label>
+                            <label><input type="checkbox" name="learning-preference" value="In-Person Workshops"> In-Person Workshops</label>
+                            <label><input type="checkbox" name="learning-preference" value="Books"> Books</label>
+                            <label><input type="checkbox" name="learning-preference" value="Videos"> Videos/Tutorials</label>
+                            <label><input type="checkbox" name="learning-preference" value="Hands-On Projects"> Hands-On Projects</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="understanding">Rate your current understanding of Data Science (1-10)</label>
+                        <input type="number" id="understanding" min="1" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interests">Which Data Science fields interest you most? (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="interests" value="Machine Learning"> Machine Learning</label>
+                            <label><input type="checkbox" name="interests" value="Data Visualization"> Data Visualization</label>
+                            <label><input type="checkbox" name="interests" value="Big Data"> Big Data</label>
+                            <label><input type="checkbox" name="interests" value="Statistics"> Statistics</label>
+                            <label><input type="checkbox" name="interests" value="AI"> Artificial Intelligence</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="challenges">What challenges do you face in learning Data Science?</label>
+                        <textarea id="challenges" placeholder="e.g., Lack of resources, time, etc." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="goals">What are your goals in Data Science?</label>
+                        <textarea id="goals" placeholder="e.g., Career switch, personal project, etc." required></textarea>
+                    </div>
+                    <button type="submit">Submit Response</button>
+                </form>
+            </div>
+
+            <div class="support-section">
+                <div class="support-text">Need assistance or want to collaborate? Our support team is here for you!</div>
+                <button class="support-button" onclick="window.location.href='support.html'">Contact Support</button>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div id="outreach" class="content-section">
-            <h2><i class="fas fa-bullhorn"></i> Outreach Strategy</h2>
-            <h3>Reaching Kenyan Polytechnics & Beyond</h3>
-            <p>At Data Safari Academy, our outreach strategy is designed to ignite a passion for Data Science across Kenya and beyond, focusing on inclusivity, accessibility, and empowerment. We target students from polytechnics, rural communities, and urban hubs alike.</p>
-
-            <h3>Our Plan</h3>
-            <ul>
-                <li><strong>Partnerships:</strong> Collaborate with polytechnic institutions like Kabete National Polytechnic and Eldoret Polytechnic to integrate Data Safari resources into their curricula, offering hands-on data science modules.</li>
-                <li><strong>Mobile Access:</strong> Optimize our platform for low-bandwidth environments and mobile devices, ensuring rural students with limited internet can still learn.</li>
-                <li><strong>Workshops:</strong> Host free, interactive data science bootcamps in underserved regions such as Kisumu, Eldoret, Mombasa, and Nyeri, featuring real-world projects.</li>
-                <li><strong>Scholarships:</strong> Provide sponsored access to premium content and certifications for top performers from disadvantaged backgrounds.</li>
-                <li><strong>Social Media Campaigns:</strong> Leverage WhatsApp communities, Instagram, and Twitter to share bite-sized lessons, success stories, and event updates.</li>
-                <li><strong>WhatsApp Communities:</strong> We’ve established vibrant WhatsApp groups to conduct polls, gather feedback, and connect with both aspiring data scientists and professionals already in the field.</li>
-                <li><strong>Mentorship Programs:</strong> Pair students with industry experts for guidance and career advice.</li>
-            </ul>
-
-            <h3>Inclusivity Measures</h3>
-            <p>We’re committed to breaking barriers and ensuring everyone has a chance to excel:</p>
-            <ul>
-                <li>Content available in English and Swahili to reach diverse learners.</li>
-                <li>Offline resources (downloadable PDFs, video tutorials) for areas with unreliable internet.</li>
-                <li>Targeted STEM initiatives to engage female students and underrepresented groups.</li>
-                <li>Assistive technologies for learners with disabilities, such as screen reader compatibility.</li>
-            </ul>
-
-            <h3>Success Stories</h3>
-            <p>Our efforts have already made an impact:</p>
-            <ul>
-                <li><strong>Mary from Kisumu:</strong> A polytechnic student who attended our bootcamp and now works as a data analyst at a local startup.</li>
-                <li><strong>John from Eldoret:</strong> Received a scholarship and completed our Data Science Fundamentals course, landing an internship.</li>
-            </ul>
-
-            <h3>External Engagement</h3>
-            <p>We invite external users—students, educators, or professionals—to contribute to our mission by sharing their insights through our Data Science Questionnaire below. Non-website users can access it directly via this link: <a href="outreach.html?mode=questionnaire" target="_blank" style="color: var(--primary-color); font-weight: bold;">Direct Questionnaire Access</a>. Share this link with others!</p>
-        </div>
-    </div>
-
-    <!-- Questionnaire Section -->
-    <div class="questionnaire-section">
-        <h2><i class="fas fa-question-circle"></i> Data Science Beginners Questionnaire</h2>
-        <p>We want to hear from you! Whether you’re new to Data Science or exploring your interests, your feedback helps us tailor our outreach efforts. This questionnaire is open to everyone—complete it only once with your email.</p>
-        <form class="questionnaire-form" id="questionnaire-form">
-            <div class="form-group">
-                <label for="email">Your Email (Required, used only once)</label>
-                <input type="email" id="email" placeholder="e.g., you@example.com" required>
-            </div>
-            <div class="form-group">
-                <label for="experience">What’s your current level of experience in Data Science?</label>
-                <select id="experience" required>
-                    <option value="">Select an option</option>
-                    <option value="Beginner">Beginner (No experience)</option>
-                    <option value="Intermediate">Intermediate (Some knowledge/projects)</option>
-                    <option value="Advanced">Advanced (Professional experience)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>How do you prefer to learn Data Science? (Select all that apply)</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="learning-preference" value="Online Courses"> Online Courses</label>
-                    <label><input type="checkbox" name="learning-preference" value="In-Person Workshops"> In-Person Workshops</label>
-                    <label><input type="checkbox" name="learning-preference" value="Books"> Books</label>
-                    <label><input type="checkbox" name="learning-preference" value="Videos"> Videos/Tutorials</label>
-                    <label><input type="checkbox" name="learning-preference" value="Hands-On Projects"> Hands-On Projects</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="understanding">Rate your current understanding of Data Science (1-10)</label>
-                <input type="number" id="understanding" min="1" max="10" required>
-            </div>
-            <div class="form-group">
-                <label for="interests">Which Data Science fields interest you most? (Select all that apply)</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="interests" value="Machine Learning"> Machine Learning</label>
-                    <label><input type="checkbox" name="interests" value="Data Visualization"> Data Visualization</label>
-                    <label><input type="checkbox" name="interests" value="Big Data"> Big Data</label>
-                    <label><input type="checkbox" name="interests" value="Statistics"> Statistics</label>
-                    <label><input type="checkbox" name="interests" value="AI"> Artificial Intelligence</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="challenges">What challenges do you face in learning Data Science?</label>
-                <textarea id="challenges" placeholder="e.g., Lack of resources, time, etc." required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="goals">What are your goals in Data Science?</label>
-                <textarea id="goals" placeholder="e.g., Career switch, personal project, etc." required></textarea>
-            </div>
-            <button type="submit">Submit Response</button>
-        </form>
-    </div>
-
-    <!-- Success Message -->
     <div class="success-message" id="success-message">Response Submitted Successfully!</div>
 
-    <!-- Support Section -->
-    <div class="support-section">
-        <div class="support-text">Need assistance or want to collaborate? Our support team is here for you!</div>
-        <button class="support-button" onclick="window.location.href='support.html'">Contact Support</button>
-    </div>
-
-    <!-- Footer -->
     <div class="footer">
         © Data Safari Academy 2025 | <a href="mailto:support@datasafariacademy.org" style="color: var(--primary-color); text-decoration: none;">support@datasafariacademy.org</a>
     </div>
@@ -702,69 +571,21 @@
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
         import { doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-        // Dropdown toggle
         document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
             e.stopPropagation();
             const dropdown = document.querySelector('.dropdown-menu');
             dropdown.classList.toggle('active');
         });
 
-        document.addEventListener('click', function(event) {
-            const profileContainer = document.querySelector('.profile-container');
-            const dropdown = document.querySelector('.dropdown-menu');
-            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
-                dropdown.classList.remove('active');
+        document.addEventListener("click", function(event) {
+            const profileContainer = document.querySelector(".profile-container");
+            const dropdown = document.querySelector(".dropdown-menu");
+            if (!profileContainer.contains(event.target) && dropdown.classList.contains("active")) {
+                dropdown.classList.remove("active");
             }
         });
 
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-            }
-        }
-
-        // Navigation toggle for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('fa-bars');
-                    menuToggle.classList.add('fa-times');
-                } else {
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            const header = document.querySelector('.header');
-            let lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop && scrollTop > 50) {
-                    header.classList.add('hidden');
-                } else if (scrollTop <= 50) {
-                    header.classList.remove('hidden');
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            });
-
-            // Check for questionnaire-only mode
+        document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const mode = urlParams.get('mode');
             if (mode === 'questionnaire') {
@@ -772,7 +593,6 @@
                 window.scrollTo(0, document.querySelector('.questionnaire-section').offsetTop);
             }
 
-            // Fetch user data
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     try {
@@ -783,8 +603,8 @@
                             const fullName = `${userData.firstName} ${userData.lastName}`;
                             const initials = userData.firstName[0] + userData.lastName[0];
                             document.getElementById("profile-name").textContent = fullName;
-                            document.getElementById("profile-pic").textContent = initials;
-                            document.getElementById("email").value = user.email || ""; // Pre-fill email for logged-in users
+                            document.getElementById("profile-pic").textContent = initials.toUpperCase();
+                            document.getElementById("email").value = user.email || "";
                         } else {
                             console.error("No such document!");
                             document.getElementById("profile-name").textContent = "User Not Found";
@@ -794,75 +614,78 @@
                         document.getElementById("profile-name").textContent = "Error Loading Name";
                     }
                 } else {
-                    console.log("No user signed in, but questionnaire is still accessible.");
+                    window.location.href = "index.html";
+                }
+            });
+
+            const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            const questionnaireForm = document.getElementById("questionnaire-form");
+            const successMessage = document.getElementById("success-message");
+
+            questionnaireForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const email = document.getElementById("email").value.trim();
+                const experience = document.getElementById("experience").value;
+                const learningPrefs = Array.from(document.querySelectorAll('input[name="learning-preference"]:checked')).map(cb => cb.value);
+                const understanding = document.getElementById("understanding").value;
+                const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+                const challenges = document.getElementById("challenges").value.trim();
+                const goals = document.getElementById("goals").value.trim();
+
+                if (!email || !experience || learningPrefs.length === 0 || !understanding || interests.length === 0 || !challenges || !goals) {
+                    alert("Please fill out all required fields.");
+                    return;
                 }
 
-                // Questionnaire form submission
-                const questionnaireForm = document.getElementById("questionnaire-form");
-                const successMessage = document.getElementById("success-message");
-
-                questionnaireForm.addEventListener("submit", async (e) => {
-                    e.preventDefault();
-                    const email = document.getElementById("email").value.trim();
-                    const experience = document.getElementById("experience").value;
-                    const learningPrefs = Array.from(document.querySelectorAll('input[name="learning-preference"]:checked')).map(cb => cb.value);
-                    const understanding = document.getElementById("understanding").value;
-                    const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
-                    const challenges = document.getElementById("challenges").value.trim();
-                    const goals = document.getElementById("goals").value.trim();
-
-                    if (!email || !experience || learningPrefs.length === 0 || !understanding || interests.length === 0 || !challenges || !goals) {
-                        alert("Please fill out all required fields.");
+                try {
+                    const q = query(collection(db, "OutreachResponse"), where("email", "==", email));
+                    const querySnapshot = await getDocs(q);
+                    if (!querySnapshot.empty) {
+                        alert("This email has already been used to submit a response.");
                         return;
                     }
 
-                    try {
-                        // Check if email already exists
-                        const q = query(collection(db, "OutreachResponse"), where("email", "==", email));
-                        const querySnapshot = await getDocs(q);
-                        if (!querySnapshot.empty) {
-                            alert("This email has already been used to submit a response.");
-                            return;
+                    const responseDocId = `${email}_${Date.now()}`;
+                    await setDoc(doc(db, "OutreachResponse", responseDocId), {
+                        email: email,
+                        experience: experience,
+                        learningPreferences: learningPrefs,
+                        understanding: parseInt(understanding),
+                        interests: interests,
+                        challenges: challenges,
+                        goals: goals,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    successMessage.classList.add("show");
+                    setTimeout(() => {
+                        successMessage.classList.remove("show");
+                        questionnaireForm.reset();
+                        if (mode === 'questionnaire') {
+                            window.location.href = "outreach.html";
                         }
-
-                        // Submit response
-                        const responseDocId = `${email}_${Date.now()}`; // Unique ID
-                        await setDoc(doc(db, "OutreachResponse", responseDocId), {
-                            email: email,
-                            experience: experience,
-                            learningPreferences: learningPrefs,
-                            understanding: parseInt(understanding),
-                            interests: interests,
-                            challenges: challenges,
-                            goals: goals,
-                            timestamp: new Date().toISOString()
-                        });
-
-                        // Show success message
-                        successMessage.classList.add("show");
-                        setTimeout(() => {
-                            successMessage.classList.remove("show");
-                            questionnaireForm.reset();
-                            if (mode === 'questionnaire') {
-                                window.location.href = "outreach.html"; // Redirect to full page after submission
-                            }
-                        }, 3000);
-                    } catch (error) {
-                        console.error("Error submitting questionnaire:", error.message, error.code);
-                        alert(`Failed to submit response: ${error.message}. Please try again.`);
-                    }
-                });
+                    }, 3000);
+                } catch (error) {
+                    console.error("Error submitting questionnaire:", error.message, error.code);
+                    alert(`Failed to submit response: ${error.message}. Please try again.`);
+                }
             });
         });
 
-        // Logout function
         function logout() {
             auth.signOut().then(() => {
                 sessionStorage.clear();
-                window.location.href = "LoginPage.html";
+                window.location.href = "index.html";
             }).catch((error) => {
-                console.error("Logout error:", error.message);
-                alert("Failed to log out. Please try again.");
+                console.error("Logout error:", error);
             });
         }
     </script>

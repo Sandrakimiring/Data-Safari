@@ -10,71 +10,43 @@
     <style>
         :root {
             --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-light: #f8f9fa;
-            --text-dark: #333;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] {
-            --light-bg: #1a1a1a;
-            --text-dark: #f8f9fa;
-            --text-light: #f8f9fa;
-            --dark-bg: #4a5568;
+            --dark-bg: #2d3748;
+            --darker-bg: #1a202c;
+            --text-light: #e2e8f0;
             --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
             min-height: 100vh;
+            background: var(--darker-bg);
+            color: var(--text-light);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            background-image: linear-gradient(to bottom right, var(--light-bg) 60%, rgba(52, 152, 219, 0.15) 100%),
-                              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHBhdGggZD0iTTAgMEw4MCA4ME0wIDgwTDgwIDAiIHN0cm9rZT0icmdiYSg1MiwgMTUyLCAyMTksIDAuMjUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4='); /* Subtle crosshatch pattern */
-            background-size: cover, 80px 80px;
-            background-repeat: no-repeat, repeat;
         }
 
-        [data-theme="dark"] body {
-            background-image: linear-gradient(to bottom right, var(--light-bg) 60%, rgba(52, 152, 219, 0.25) 100%),
-                              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHBhdGggZD0iTTAgMEw4MCA4ME0wIDgwTDgwIDAiIHN0cm9rZT0icmdiYSg1MiwgMTUyLCAyMTksIDAuMzUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4='); /* Slightly brighter in dark mode */
-        }
-
-        /* Header Styling */
         .header-container {
             background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 20px 25px;
+            padding: 20px 30px;
             box-shadow: 0 4px 12px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: padding 0.3s ease;
         }
 
         .header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            transition: opacity 0.3s ease, height 0.3s ease;
-        }
-
-        .header.hidden {
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo-container {
@@ -84,8 +56,8 @@
         }
 
         .logo-container img {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
             transition: transform 0.3s;
@@ -97,19 +69,15 @@
 
         .logo-text h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             margin: 0;
-        }
-
-        .logo-text p {
-            font-size: 14px;
             color: var(--text-light);
-            opacity: 0.8;
         }
 
         .profile-container {
             display: flex;
             align-items: center;
+            gap: 10px;
             position: relative;
         }
 
@@ -123,18 +91,15 @@
             align-items: center;
             color: white;
             font-weight: bold;
-            margin-right: 10px;
             box-shadow: 0 2px 4px var(--shadow);
         }
 
         .profile-name {
-            font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
+            font-size: 16px;
         }
 
         .dropdown-arrow {
-            margin-left: 8px;
             font-size: 14px;
             color: var(--text-light);
             cursor: pointer;
@@ -150,7 +115,7 @@
             box-shadow: 0 6px 12px var(--shadow);
             border-radius: 8px;
             width: 160px;
-            z-index: 10;
+            z-index: 1001;
         }
 
         .dropdown-menu.active {
@@ -170,105 +135,87 @@
             background: var(--primary-color);
         }
 
-        /* Navigation Bar */
-        .nav-bar {
-            background: transparent;
-            padding: 10px 25px;
+        .main-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            position: relative;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+        .sidebar {
+            width: 250px;
+            background: var(--dark-bg);
+            padding: 20px;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            box-shadow: 2px 0 12px var(--shadow);
+            overflow-y: auto;
+            z-index: 900;
         }
 
-        .nav-bar a {
+        .sidebar a {
+            display: block;
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
             font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            padding: 8px 12px;
+            padding: 15px;
+            margin: 5px 0;
             border-radius: 5px;
-            transition: background 0.3s, color 0.3s;
-            cursor: pointer;
+            transition: background 0.3s, padding-left 0.3s;
         }
 
-        .nav-bar a:hover, .nav-bar a.active {
+        .sidebar a:hover, .sidebar a.active {
             background: var(--primary-color);
-            color: var(--text-light);
+            padding-left: 20px;
         }
 
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #2980b9;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        /* Main Content */
         .content {
+            margin-left: 250px;
             padding: 30px;
-            flex-grow: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
+            overflow-y: auto;
+            z-index: 800;
         }
 
         .content-section {
-            background: white;
+            background: var(--dark-bg);
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px var(--shadow);
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .content-section {
-            background: #2a2a2a;
         }
 
         .content-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
             font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .content-section h3 {
-            color: var(--secondary-color);
             font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: var(--text-light);
             margin: 20px 0 10px;
         }
 
         .content-section p {
+            font-size: 16px;
             line-height: 1.6;
+            color: var(--text-light);
             margin-bottom: 15px;
-            color: var(--text-dark);
         }
 
-        /* About Section Specific Styling */
         .about-image {
             width: 100%;
             max-width: 600px;
@@ -292,17 +239,13 @@
         }
 
         .member {
-            background: var(--light-bg);
+            background: var(--dark-bg);
             padding: 20px;
-            border-radius: 322px;
+            border-radius: 10px;
             box-shadow: 0 4px 10px var(--shadow);
             text-align: center;
             width: 220px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        [data-theme="dark"] .member {
-            background: #2a2a2a;
         }
 
         .member:hover {
@@ -334,30 +277,29 @@
 
         .member p {
             font-size: 14px;
-            color: var(--text-dark);
+            color: var(--text-light);
             margin: 0;
         }
 
         .explanation {
             font-size: 13px;
-            color: #555;
+            color: #b0b7c3;
             margin-top: 10px;
         }
 
-        /* Support Section */
         .support-section {
-            padding: 30px 20px;
-            background: var(--light-bg);
-            margin: 0 30px 20px;
-            border-radius: 15px;
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 10px;
             box-shadow: 0 6px 15px var(--shadow);
             text-align: center;
+            margin: 20px 0;
         }
 
         .support-text {
             margin-bottom: 15px;
             font-size: 16px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .support-button {
@@ -377,7 +319,6 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
         .footer {
             background: var(--dark-bg);
             padding: 15px 30px;
@@ -385,145 +326,103 @@
             color: var(--text-light);
             font-size: 14px;
             box-shadow: 0 -2px 10px var(--shadow);
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            z-index: 800;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px;
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
             }
-
-            .nav-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px 15px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
             .content {
-                padding: 20px;
+                margin-left: 200px;
             }
-
-            .about-image {
-                max-width: 100%;
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
             }
+        }
 
-            .team {
-                gap: 20px;
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                top: 80px;
             }
-
+            .content {
+                margin-left: 200px;
+            }
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+            .header-container {
+                padding: 15px 20px;
+            }
             .member {
                 width: 180px;
             }
-
             .member-initials {
                 width: 80px;
                 height: 80px;
                 font-size: 20px;
             }
-
-            .support-section {
-                margin: 0 15px 15px;
-                padding: 20px 15px;
-            }
-
-            .support-text {
-                font-size: 14px;
-            }
-
-            .support-button {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
-            }
         }
 
         @media (max-width: 480px) {
-            .logo-container img {
-                width: 60px;
-                height: 60px;
+            .main-container {
+                flex-direction: column;
             }
-
+            .sidebar {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                padding: 10px;
+            }
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
+            .footer {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+            .header-container {
+                padding: 10px 15px;
+            }
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
             .logo-text h1 {
+                font-size: 22px;
+            }
+            .content-section h2 {
+                font-size: 26px;
+            }
+            .content-section h3 {
                 font-size: 20px;
             }
-
-            .logo-text p {
-                font-size: 12px;
-            }
-
-            .profile-pic {
-                width: 36px;
-                height: 36px;
-            }
-
-            .profile-name {
-                font-size: 14px;
-            }
-
-            .nav-bar a {
-                font-size: 14px;
-            }
-
             .member {
                 width: 140px;
             }
-
             .member-initials {
                 width: 70px;
                 height: 70px;
                 font-size: 18px;
             }
-
             .member h3 {
                 font-size: 16px;
             }
-
             .member p {
                 font-size: 12px;
             }
-
             .explanation {
                 font-size: 11px;
             }
-
-            .support-text {
-                font-size: 13px;
-            }
-
             .support-button {
-                padding: 8px 15px;
-                font-size: 13px;
-            }
-
-            .footer {
-                padding: 10px 15px;
-                font-size: 12px;
+                width: 100%;
             }
         }
     </style>
@@ -535,7 +434,6 @@
                 <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
                 <div class="logo-text">
                     <h1>Data Safari Academy</h1>
-                    <p>Empowering Young Minds in Data Science</p>
                 </div>
             </div>
             <div class="profile-container">
@@ -548,99 +446,93 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <i class="fas fa-bars menu-toggle"></i>
-            <div class="nav-links">
-                <a href="homepage.html">Learning</a>
-                <a href="community.html">Community</a>
-                <a href="outreach.html">Outreach</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="about.html" class="active">About Us</a>
-                <a href="documentation.html">Documentation</a>
+    <div class="main-container">
+        <div class="sidebar">
+            <a href="homepage.html">Learning</a>
+            <a href="community.html">Community</a>
+            <a href="outreach.html">Outreach</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="about.html" class="active">About Us</a>
+            <a href="documentation.html">Documentation</a>
+        </div>
+
+        <div class="content">
+            <div id="about" class="content-section">
+                <h2><i class="fas fa-info-circle"></i> About Us</h2>
+                <p>Data Safari Academy is a free and accessible platform dedicated to empowering young minds in Kenya and beyond by providing top-tier data science education. Our team embarked on a mission to develop an innovative Data Science Learning Platform, aimed at equipping aspiring and existing data scientists with the right resources. We conducted an extensive community outreach initiative across the country, engaging with students at different academic levels—those exploring career paths and those already in the tech field. Our goal was to create a bridge between curiosity and expertise, making data science approachable for all.</p>
+                <p>Our research focused on understanding perceptions of Data Science, its career prospects, and how learners prefer to acquire knowledge. We also analyzed interests in Data Science Hackathons, bootcamps, and available industry opportunities. The findings played a crucial role in shaping the design and functionality of this website. We meticulously crafted an interactive and user-friendly learning environment, ensuring that it meets the diverse needs of aspiring data scientists. From rural polytechnics to urban universities, we’ve tailored our content to resonate with learners from all walks of life, fostering a community where knowledge is shared freely and innovation thrives.</p>
+                
+                <h3>Our Vision</h3>
+                <p>We envision a future where every young person, regardless of background, has the opportunity to explore and excel in data science—a field that’s shaping the world through technology and innovation. By making learning fun, interactive, and inclusive, we aim to cultivate the next generation of data-driven problem solvers. Our platform isn’t just about teaching skills; it’s about inspiring a mindset of exploration and resilience. We see Data Safari Academy as a catalyst for change, breaking down barriers to STEM education and empowering individuals to contribute to a data-driven future, both locally in Kenya and globally.</p>
+
+                <h3>Our Journey</h3>
+                <p>The journey to build Data Safari Academy began with a simple question: How can we make data science education accessible to everyone? Our team traveled across Kenya, from Nairobi’s bustling tech hubs to the quiet classrooms of Kisumu and Eldoret, gathering insights from students, educators, and industry professionals. We hosted workshops, conducted surveys, and listened to stories of ambition and challenge. These experiences shaped our platform’s core features—mobile-friendly design, offline resources, and a focus on practical, hands-on learning. Every line of code, every lesson plan, and every design choice reflects our commitment to those we met along the way.</p>
+
+                <h3>Meet Our Team</h3>
+                <p>Behind Data Safari Academy is a passionate group of individuals united by a shared mission. Our diverse team brings expertise from project management, data analysis, design, development, and education, ensuring a holistic approach to building this platform. Get to know the people who make it all happen:</p>
+                <div class="team">
+                    <div class="member">
+                        <div class="member-initials">OR</div>
+                        <h3>Mr. Okoth Rodney</h3>
+                        <p>Project Manager</p>
+                        <p class="explanation">As the Project Manager, Mr. Rodney oversees the entire project lifecycle, ensuring milestones are met and the team stays aligned with project goals. With years of experience in tech leadership, he brings a strategic vision to Data Safari Academy, coordinating efforts to deliver a platform that’s both impactful and sustainable.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">WJ</div>
+                        <h3>Ms. Wanjiru Joy</h3>
+                        <p>Data Collection Lead</p>
+                        <p class="explanation">Ms. Joy spearheads the data collection process, gathering insights from diverse audiences to shape the platform’s features and usability. Her knack for connecting with people and understanding their needs ensures our content resonates with learners across Kenya.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">OF</div>
+                        <h3>Mr. Omari Frankline</h3>
+                        <p>Data Analyst</p>
+                        <p class="explanation">Mr. Frankline analyzes the data collected to extract meaningful insights, driving informed decisions throughout the platform’s development. His analytical prowess turns raw data into actionable strategies, keeping us grounded in evidence-based design.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">OE</div>
+                        <h3>Ms. Otieno Effie</h3>
+                        <p>UI/UX Designer</p>
+                        <p class="explanation">Ms. Effie is responsible for creating the platform’s intuitive and visually appealing user interface, ensuring a seamless experience for users. Her designs blend aesthetics with functionality, making learning both enjoyable and efficient.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">LG</div>
+                        <h3>Sir Leslie Gedion</h3>
+                        <p>Front-End Developer</p>
+                        <p class="explanation">Sir Gedion brings designs to life, developing the client-side of the platform and ensuring responsiveness across devices. His coding skills ensure that every button, page, and animation works flawlessly for our users.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">JS</div>
+                        <h3>Ms. Jebet Sandra</h3>
+                        <p>Back-End Developer</p>
+                        <p class="explanation">Ms. Sandra manages the server-side of the platform, ensuring the infrastructure is robust, secure, and scalable. Her expertise keeps Data Safari Academy running smoothly behind the scenes, supporting thousands of learners.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">GK</div>
+                        <h3>Mr. Genga Kandy</h3>
+                        <p>Content & Documentation</p>
+                        <p class="explanation">Mr. Kandy curates educational content and maintains meticulous project documentation to guide future improvements. His words bring clarity to complex topics, making data science accessible to beginners and experts alike.</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-initials">AP</div>
+                        <h3>Mr. Alumeta Philip</h3>
+                        <p>Deployment & Maintenance</p>
+                        <p class="explanation">Mr. Philip handles platform deployment and ongoing maintenance, ensuring uptime and optimal performance for users. His technical vigilance keeps Data Safari Academy reliable and ready for growth.</p>
+                    </div>
+                </div>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+            <div class="support-section">
+                <div class="support-text">Need help? Reach out to our support team!</div>
+                <button class="support-button" onclick="window.location.href='support.html'">Support</button>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div id="about" class="content-section">
-            <h2><i class="fas fa-info-circle"></i> About Us</h2>
-            <p>Data Safari Academy is a free and accessible platform dedicated to empowering young minds in Kenya and beyond by providing top-tier data science education. Our team embarked on a mission to develop an innovative Data Science Learning Platform, aimed at equipping aspiring and existing data scientists with the right resources. We conducted an extensive community outreach initiative across the country, engaging with students at different academic levels—those exploring career paths and those already in the tech field. Our goal was to create a bridge between curiosity and expertise, making data science approachable for all.</p>
-            <p>Our research focused on understanding perceptions of Data Science, its career prospects, and how learners prefer to acquire knowledge. We also analyzed interests in Data Science Hackathons, bootcamps, and available industry opportunities. The findings played a crucial role in shaping the design and functionality of this website. We meticulously crafted an interactive and user-friendly learning environment, ensuring that it meets the diverse needs of aspiring data scientists. From rural polytechnics to urban universities, we’ve tailored our content to resonate with learners from all walks of life, fostering a community where knowledge is shared freely and innovation thrives.</p>
-            
-            <h3>Our Vision</h3>
-            <p>We envision a future where every young person, regardless of background, has the opportunity to explore and excel in data science—a field that’s shaping the world through technology and innovation. By making learning fun, interactive, and inclusive, we aim to cultivate the next generation of data-driven problem solvers. Our platform isn’t just about teaching skills; it’s about inspiring a mindset of exploration and resilience. We see Data Safari Academy as a catalyst for change, breaking down barriers to STEM education and empowering individuals to contribute to a data-driven future, both locally in Kenya and globally.</p>
-
-            <h3>Our Journey</h3>
-            <p>The journey to build Data Safari Academy began with a simple question: How can we make data science education accessible to everyone? Our team traveled across Kenya, from Nairobi’s bustling tech hubs to the quiet classrooms of Kisumu and Eldoret, gathering insights from students, educators, and industry professionals. We hosted workshops, conducted surveys, and listened to stories of ambition and challenge. These experiences shaped our platform’s core features—mobile-friendly design, offline resources, and a focus on practical, hands-on learning. Every line of code, every lesson plan, and every design choice reflects our commitment to those we met along the way.</p>
-
-            <h3>Meet Our Team</h3>
-            <p>Behind Data Safari Academy is a passionate group of individuals united by a shared mission. Our diverse team brings expertise from project management, data analysis, design, development, and education, ensuring a holistic approach to building this platform. Get to know the people who make it all happen:</p>
-            <div class="team">
-                <div class="member">
-                    <div class="member-initials">OR</div>
-                    <h3>Mr. Okoth Rodney</h3>
-                    <p>Project Manager</p>
-                    <p class="explanation">As the Project Manager, Mr. Rodney oversees the entire project lifecycle, ensuring milestones are met and the team stays aligned with project goals. With years of experience in tech leadership, he brings a strategic vision to Data Safari Academy, coordinating efforts to deliver a platform that’s both impactful and sustainable.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">WJ</div>
-                    <h3>Ms. Wanjiru Joy</h3>
-                    <p>Data Collection Lead</p>
-                    <p class="explanation">Ms. Joy spearheads the data collection process, gathering insights from diverse audiences to shape the platform’s features and usability. Her knack for connecting with people and understanding their needs ensures our content resonates with learners across Kenya.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">OF</div>
-                    <h3>Mr. Omari Frankline</h3>
-                    <p>Data Analyst</p>
-                    <p class="explanation">Mr. Frankline analyzes the data collected to extract meaningful insights, driving informed decisions throughout the platform’s development. His analytical prowess turns raw data into actionable strategies, keeping us grounded in evidence-based design.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">OE</div>
-                    <h3>Ms. Otieno Effie</h3>
-                    <p>UI/UX Designer</p>
-                    <p class="explanation">Ms. Effie is responsible for creating the platform’s intuitive and visually appealing user interface, ensuring a seamless experience for users. Her designs blend aesthetics with functionality, making learning both enjoyable and efficient.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">LG</div>
-                    <h3>Sir Leslie Gedion</h3>
-                    <p>Front-End Developer</p>
-                    <p class="explanation">Sir Gedion brings designs to life, developing the client-side of the platform and ensuring responsiveness across devices. His coding skills ensure that every button, page, and animation works flawlessly for our users.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">JS</div>
-                    <h3>Ms. Jebet Sandra</h3>
-                    <p>Back-End Developer</p>
-                    <p class="explanation">Ms. Sandra manages the server-side of the platform, ensuring the infrastructure is robust, secure, and scalable. Her expertise keeps Data Safari Academy running smoothly behind the scenes, supporting thousands of learners.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">GK</div>
-                    <h3>Mr. Genga Kandy</h3>
-                    <p>Content & Documentation</p>
-                    <p class="explanation">Mr. Kandy curates educational content and maintains meticulous project documentation to guide future improvements. His words bring clarity to complex topics, making data science accessible to beginners and experts alike.</p>
-                </div>
-                <div class="member">
-                    <div class="member-initials">AP</div>
-                    <h3>Mr. Alumeta Philip</h3>
-                    <p>Deployment & Maintenance</p>
-                    <p class="explanation">Mr. Philip handles platform deployment and ongoing maintenance, ensuring uptime and optimal performance for users. His technical vigilance keeps Data Safari Academy reliable and ready for growth.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Support Section -->
-    <div class="support-section">
-        <div class="support-text">Need help? Reach out to our support team!</div>
-        <button class="support-button" onclick="window.location.href='support.html'">Support</button>
-    </div>
-
-    <!-- Footer -->
     <div class="footer">
-        © Data Safari Academy 2025
+        © Data Safari Academy 2025 | <a href="mailto:support@datasafariacademy.org" style="color: var(--primary-color); text-decoration: none;">support@datasafariacademy.org</a>
     </div>
 
     <script type="module">
@@ -649,71 +541,21 @@
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
         import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-        // Dropdown toggle
         document.querySelector('.dropdown-arrow').addEventListener('click', function(e) {
             e.stopPropagation();
             const dropdown = document.querySelector('.dropdown-menu');
             dropdown.classList.toggle('active');
         });
 
-        document.addEventListener('click', function(event) {
-            const profileContainer = document.querySelector('.profile-container');
-            const dropdown = document.querySelector('.dropdown-menu');
-            if (!profileContainer.contains(event.target) && dropdown.classList.contains('active')) {
-                dropdown.classList.remove('active');
+        document.addEventListener("click", function(event) {
+            const profileContainer = document.querySelector(".profile-container");
+            const dropdown = document.querySelector(".dropdown-menu");
+            if (!profileContainer.contains(event.target) && dropdown.classList.contains("active")) {
+                dropdown.classList.remove("active");
             }
         });
 
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-            }
-        }
-
-        // Navigation toggle for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
-                    menuToggle.classList.remove('fa-bars');
-                    menuToggle.classList.add('fa-times');
-                } else {
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('fa-times');
-                    menuToggle.classList.add('fa-bars');
-                }
-            });
-
-            // Hide header on scroll
-            const header = document.querySelector('.header');
-            let lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop && scrollTop > 50) { // Scrolling down past 50px
-                    header.classList.add('hidden');
-                } else if (scrollTop <= 50) { // Near top
-                    header.classList.remove('hidden');
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
-            });
-
-            // Fetch user data from Firestore
+        document.addEventListener("DOMContentLoaded", function() {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     try {
@@ -724,7 +566,7 @@
                             const fullName = `${userData.firstName} ${userData.lastName}`;
                             const initials = userData.firstName[0] + userData.lastName[0];
                             document.getElementById("profile-name").textContent = fullName;
-                            document.getElementById("profile-pic").textContent = initials;
+                            document.getElementById("profile-pic").textContent = initials.toUpperCase();
                         } else {
                             console.error("No such document!");
                             document.getElementById("profile-name").textContent = "User Not Found";
@@ -734,14 +576,12 @@
                         document.getElementById("profile-name").textContent = "Error Loading Name";
                     }
                 } else {
-                    // User not logged in, redirect to login page
-                    window.location.href = "LoginPage.html";
+                    window.location.href = "index.html";
                 }
             });
 
-            // Highlight current page in nav
             const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
-            document.querySelectorAll('.nav-bar a').forEach(link => {
+            document.querySelectorAll('.sidebar a').forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
                 } else {
@@ -750,11 +590,10 @@
             });
         });
 
-        // Logout function
         function logout() {
             auth.signOut().then(() => {
                 sessionStorage.clear();
-                window.location.href = "LoginPage.html";
+                window.location.href = "index.html";
             }).catch((error) => {
                 console.error("Logout error:", error);
             });
