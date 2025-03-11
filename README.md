@@ -8,7 +8,7 @@ This project is part of a research methodology assignment, focusing on building 
 
 ## Authentication Setup  
 
-To manage user authentication, Firebase has been integrated into the project.  
+To manage user authentication, Firebase has been integrated into the project.  Shawn Kimani ananisumbua
 
 ### Steps Completed  
 
