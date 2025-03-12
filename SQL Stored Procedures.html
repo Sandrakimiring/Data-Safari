@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Stored Procedures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-left: 5px solid #333;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Stored Procedures</h1>
+        <p>A stored procedure is a set of SQL statements that can be saved and reused.</p>
+        
+        <h2>1. Creating a Stored Procedure</h2>
+        <p>Define a stored procedure that retrieves all employees.</p>
+        <pre>CREATE PROCEDURE GetAllEmployees()
+BEGIN
+    SELECT * FROM employees;
+END;</pre>
+        
+        <h2>2. Executing a Stored Procedure</h2>
+        <p>Call the stored procedure to retrieve employee data.</p>
+        <pre>CALL GetAllEmployees();</pre>
+        
+        <h2>3. Stored Procedure with Parameters</h2>
+        <p>Create a stored procedure that retrieves employees by department.</p>
+        <pre>CREATE PROCEDURE GetEmployeesByDept(IN dept_id INT)
+BEGIN
+    SELECT * FROM employees WHERE department_id = dept_id;
+END;</pre>
+        
+        <h2>4. Dropping a Stored Procedure</h2>
+        <p>Remove a stored procedure from the database.</p>
+        <pre>DROP PROCEDURE GetAllEmployees;</pre>
+    </div>
+</body>
+</html>
