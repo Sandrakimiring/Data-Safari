@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Joins</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-left: 5px solid #333;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Joins</h1>
+        <p>Joins in SQL are used to combine rows from two or more tables based on a related column.</p>
+        
+        <h2>1. INNER JOIN</h2>
+        <p>Returns only the matching rows between both tables.</p>
+        <pre>SELECT employees.name, departments.department_name
+FROM employees
+INNER JOIN departments ON employees.dept_id = departments.id;</pre>
+        
+        <h2>2. LEFT JOIN</h2>
+        <p>Returns all rows from the left table and the matching rows from the right table.</p>
+        <pre>SELECT employees.name, departments.department_name
+FROM employees
+LEFT JOIN departments ON employees.dept_id = departments.id;</pre>
+        
+        <h2>3. RIGHT JOIN</h2>
+        <p>Returns all rows from the right table and the matching rows from the left table.</p>
+        <pre>SELECT employees.name, departments.department_name
+FROM employees
+RIGHT JOIN departments ON employees.dept_id = departments.id;</pre>
+        
+        <h2>4. FULL OUTER JOIN</h2>
+        <p>Returns all rows when there is a match in either left or right table.</p>
+        <pre>SELECT employees.name, departments.department_name
+FROM employees
+FULL OUTER JOIN departments ON employees.dept_id = departments.id;</pre>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Subqueries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-left: 5px solid #333;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Subqueries</h1>
+        <p>A subquery is a query nested inside another SQL query. It is used to fetch data for the main query.</p>
+        
+        <h2>1. Using Subqueries in SELECT</h2>
+        <p>Fetch employees who earn more than the average salary.</p>
+        <pre>SELECT name, salary FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);</pre>
+        
+        <h2>2. Using Subqueries in WHERE</h2>
+        <p>Find employees in the same department as a specific employee.</p>
+        <pre>SELECT name FROM employees
+WHERE dept_id = (SELECT dept_id FROM employees WHERE name = 'John Doe');</pre>
+        
+        <h2>3. Using Subqueries in FROM</h2>
+        <p>Find the average salary per department.</p>
+        <pre>SELECT dept_id, avg_salary FROM
+(SELECT dept_id, AVG(salary) AS avg_salary FROM employees GROUP BY dept_id) AS dept_avg;</pre>
+    </div>
+</body>
+</html>
