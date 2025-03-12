@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Basics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-left: 5px solid #333;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Introduction to SQL</h1>
+        <p>SQL (Structured Query Language) is a standard language used to manage and manipulate relational databases.</p>
+        
+        <h2>1. Basics of SQL</h2>
+        <p>SQL operates on databases and tables. Here are some fundamental concepts:</p>
+        <ul>
+            <li><b>Databases</b>: Organized collections of data.</li>
+            <li><b>Tables</b>: Structured format consisting of rows and columns.</li>
+            <li><b>Columns</b>: Define the type of data stored (e.g., name, age, salary).</li>
+            <li><b>Rows</b>: Individual records in a table.</li>
+        </ul>
+
+        <h2>2. Basic SQL Commands</h2>
+        <p><b>SELECT</b>: Retrieves data from a table.</p>
+        <pre>SELECT column1, column2 FROM table_name;</pre>
+        
+        <p><b>INSERT</b>: Adds new records to a table.</p>
+        <pre>INSERT INTO table_name (column1, column2) VALUES ('value1', 'value2');</pre>
+        
+        <p><b>UPDATE</b>: Modifies existing records.</p>
+        <pre>UPDATE table_name SET column1 = 'new_value' WHERE condition;</pre>
+        
+        <p><b>DELETE</b>: Removes records from a table.</p>
+        <pre>DELETE FROM table_name WHERE condition;</pre>
+        
+        <h2>3. Filtering Data</h2>
+        <p><b>WHERE Clause</b>: Filters records based on conditions.</p>
+        <pre>SELECT * FROM employees WHERE age > 30;</pre>
+        
+        <h2>4. Joins in SQL</h2>
+        <p><b>INNER JOIN</b>: Returns matching records between two tables.</p>
+        <pre>SELECT employees.name, departments.department_name 
+FROM employees
+INNER JOIN departments ON employees.dept_id = departments.id;</pre>
+        
+        <h2>5. Aggregate Functions</h2>
+        <p><b>COUNT()</b>: Returns the number of records.</p>
+        <pre>SELECT COUNT(*) FROM employees;</pre>
+    </div>
+</body>
+</html>
