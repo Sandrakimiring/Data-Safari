@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-left: 5px solid #333;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Transactions</h1>
+        <p>A transaction in SQL is a sequence of operations performed as a single logical unit of work.</p>
+        
+        <h2>1. Starting a Transaction</h2>
+        <p>Begin a new transaction using the <code>BEGIN</code> or <code>START TRANSACTION</code> statement.</p>
+        <pre>START TRANSACTION;</pre>
+        
+        <h2>2. Committing a Transaction</h2>
+        <p>Save the changes permanently to the database.</p>
+        <pre>COMMIT;</pre>
+        
+        <h2>3. Rolling Back a Transaction</h2>
+        <p>Undo all changes made in the transaction.</p>
+        <pre>ROLLBACK;</pre>
+        
+        <h2>4. Using Savepoints</h2>
+        <p>Savepoints allow partial rollbacks within a transaction.</p>
+        <pre>START TRANSACTION;
+INSERT INTO accounts (name, balance) VALUES ('John Doe', 1000);
+SAVEPOINT savepoint1;
+UPDATE accounts SET balance = balance - 500 WHERE name = 'John Doe';
+ROLLBACK TO savepoint1;
+COMMIT;</pre>
+    </div>
+</body>
+</html>
