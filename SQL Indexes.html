@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Indexes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-left: 5px solid #333;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Indexes</h1>
+        <p>An index in SQL is used to speed up searches and queries by providing a fast lookup mechanism.</p>
+        
+        <h2>1. Creating an Index</h2>
+        <p>Indexes help improve performance on frequently searched columns.</p>
+        <pre>CREATE INDEX idx_employee_name
+ON employees(name);</pre>
+        
+        <h2>2. Unique Index</h2>
+        <p>A unique index ensures that no duplicate values exist in a column.</p>
+        <pre>CREATE UNIQUE INDEX idx_unique_email
+ON employees(email);</pre>
+        
+        <h2>3. Composite Index</h2>
+        <p>An index on multiple columns to improve searches involving both.</p>
+        <pre>CREATE INDEX idx_name_department
+ON employees(name, dept_id);</pre>
+        
+        <h2>4. Dropping an Index</h2>
+        <p>Removing an index from a table.</p>
+        <pre>DROP INDEX idx_employee_name;</pre>
+    </div>
+</body>
+</html>
