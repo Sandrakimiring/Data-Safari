@@ -10,50 +10,31 @@
     <style>
         :root {
             --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #27ae60;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
-            --text-light: #f8f9fa;
-            --text-dark: #333;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] {
-            --light-bg: #1a1a1a;
-            --text-dark: #f8f9fa;
-            --text-light: #f8f9fa;
-            --dark-bg: #4a5568;
+            --dark-bg: #2d3748;
+            --darker-bg: #1a202c;
+            --text-light: #e2e8f0;
             --shadow: rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--light-bg);
-            color: var(--text-dark);
             min-height: 100vh;
+            background: var(--darker-bg);
+            color: var(--text-light);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            background-image: linear-gradient(to top left, var(--light-bg) 60%, rgba(52, 152, 219, 0.15) 100%),
-                              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCI+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iNyIgeD0iMzUiIHk9IjM1IiBmaWxsPSJyZ2JhKDUyLCAxNTIsIDIxOSwgMC4yKSIvPjwvc3ZnPg==');
-            background-size: cover, 70px 70px;
-            background-repeat: no-repeat, repeat;
-        }
-
-        [data-theme="dark"] body {
-            background-image: linear-gradient(to top left, var(--light-bg) 60%, rgba(52, 152, 219, 0.25) 100%),
-                              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCI+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iNyIgeD0iMzUiIHk9IjM1IiBmaWxsPSJyZ2JhKDUyLCAxNTIsIDIxOSwgMC4zKSIvPjwvc3ZnPg==');
         }
 
         /* Header Styling */
         .header-container {
             background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 20px 25px;
+            padding: 20px 30px;
             box-shadow: 0 4px 12px var(--shadow);
             position: sticky;
             top: 0;
@@ -62,18 +43,11 @@
 
         .header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-        }
-
-        .header.hidden {
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            transition: opacity 0.3s ease, height 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo-container {
@@ -83,8 +57,8 @@
         }
 
         .logo-container img {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
             transition: transform 0.3s;
@@ -96,19 +70,15 @@
 
         .logo-text h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             margin: 0;
-        }
-
-        .logo-text p {
-            font-size: 14px;
             color: var(--text-light);
-            opacity: 0.8;
         }
 
         .profile-container {
             display: flex;
             align-items: center;
+            gap: 10px;
             position: relative;
         }
 
@@ -122,18 +92,15 @@
             align-items: center;
             color: white;
             font-weight: bold;
-            margin-right: 10px;
             box-shadow: 0 2px 4px var(--shadow);
         }
 
         .profile-name {
-            font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-light);
+            font-size: 16px;
         }
 
         .dropdown-arrow {
-            margin-left: 8px;
             font-size: 14px;
             color: var(--text-light);
             cursor: pointer;
@@ -149,7 +116,7 @@
             box-shadow: 0 6px 12px var(--shadow);
             border-radius: 8px;
             width: 160px;
-            z-index: 10;
+            z-index: 1001;
         }
 
         .dropdown-menu.active {
@@ -169,55 +136,48 @@
             background: var(--primary-color);
         }
 
-        /* Navigation Bar */
-        .nav-bar {
-            background: transparent;
-            padding: 10px 25px;
+        /* Main Container */
+        .main-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--dark-bg);
+            padding: 20px;
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            box-shadow: 2px 0 12px var(--shadow);
+            overflow-y: auto;
+            z-index: 900;
+            transition: var(--transition);
         }
 
-        .nav-bar a {
+        .sidebar a {
+            display: block;
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
             font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            padding: 8px 12px;
+            padding: 15px;
+            margin: 5px 0;
             border-radius: 5px;
-            transition: background 0.3s, color 0.3s;
-            cursor: pointer;
+            transition: background 0.3s, padding-left 0.3s;
         }
 
-        .nav-bar a:hover, .nav-bar a.active {
+        .sidebar a:hover, .sidebar a.active {
             background: var(--primary-color);
-            color: var(--text-light);
+            padding-left: 20px;
         }
 
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: #2980b9;
-        }
-
+        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             font-size: 24px;
@@ -226,29 +186,31 @@
             padding: 10px;
         }
 
-        /* Main Content */
+        /* Content */
         .content {
+            margin-left: 250px;
             padding: 30px;
-            flex-grow: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
+            overflow-y: auto;
+            z-index: 800;
         }
 
         .content-section {
-            background: white;
+            background: var(--dark-bg);
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px var(--shadow);
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
-
-        [data-theme="dark"] .content-section {
-            background: #2a2a2a;
         }
 
         .content-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
             font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -257,9 +219,10 @@
         .content-section p {
             line-height: 1.6;
             margin-bottom: 15px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
+        /* Profile Form */
         .profile-form {
             display: flex;
             flex-direction: column;
@@ -275,7 +238,7 @@
         .form-group label {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .form-group input, .form-group textarea, .form-group select {
@@ -285,13 +248,16 @@
             border-radius: 8px;
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
+            background: var(--light-bg);
+            color: var(--text-dark);
             transition: border-color 0.3s ease;
         }
 
         .form-group input:disabled {
-            background: #e9ecef;
-            border-color: #ccc;
-            color: #666;
+            background: var(--dark-bg); /* Matches the form background */
+            border-color: var(--primary-color); /* Keeps the border consistent */
+            color: var(--text-light); /* Bright text for readability */
+            opacity: 1; /* Ensures full visibility */
         }
 
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
@@ -327,7 +293,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--accent-color);
+            background: #27ae60;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -349,95 +315,83 @@
             color: var(--text-light);
             font-size: 14px;
             box-shadow: 0 -2px 10px var(--shadow);
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            z-index: 800;
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 200px;
+            }
+            .footer {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
         @media (max-width: 768px) {
-            .header {
-                padding: 15px;
+            .sidebar {
+                width: 200px;
+                top: 80px;
+                left: -200px;
             }
-
-            .nav-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px 15px;
+            .sidebar.active {
+                left: 0;
             }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
+            .content {
+                margin-left: 0;
+            }
+            .footer {
+                margin-left: 0;
                 width: 100%;
-                gap: 15px;
-                background: var(--dark-bg);
-                padding: 15px 0;
             }
-
-            .nav-links.active {
-                display: flex;
+            .header-container {
+                padding: 15px 20px;
             }
-
             .menu-toggle {
                 display: block;
-            }
-
-            .theme-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .profile-form button {
-                width: 100%;
-            }
-
-            .logo-container img {
-                width: 80px;
-                height: 80px;
             }
         }
 
         @media (max-width: 480px) {
-            .logo-container img {
-                width: 60px;
-                height: 60px;
+            .main-container {
+                flex-direction: column;
             }
-
-            .logo-text h1 {
-                font-size: 20px;
+            .sidebar {
+                position: fixed;
+                width: 100%;
+                height: calc(100% - 80px);
+                top: 80px;
+                left: -100%;
+                padding: 10px;
+                z-index: 1000;
             }
-
-            .logo-text p {
-                font-size: 12px;
+            .sidebar.active {
+                left: 0;
             }
-
-            .profile-pic {
-                width: 36px;
-                height: 36px;
+            .content {
+                padding: 15px;
             }
-
-            .profile-name {
-                font-size: 14px;
-            }
-
-            .nav-bar a {
-                font-size: 14px;
-            }
-
-            .form-group input, .form-group textarea, .form-group select {
-                font-size: 14px;
-            }
-
-            .profile-form button {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-
             .footer {
+                padding: 15px;
+            }
+            .header-container {
                 padding: 10px 15px;
-                font-size: 12px;
+            }
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-text h1 {
+                font-size: 22px;
+            }
+            .profile-form button {
+                width: 100%;
             }
         }
     </style>
@@ -449,7 +403,6 @@
                 <img src="https://github.com/Sandrakimiring/Research-methodology-project-/raw/main/841acb4a-e416-448b-a72e-31bb2ecc746d.jpeg" alt="Data Safari Logo">
                 <div class="logo-text">
                     <h1>Data Safari Academy</h1>
-                    <p>Empowering Young Minds in Data Science</p>
                 </div>
             </div>
             <div class="profile-container">
@@ -462,69 +415,66 @@
                 </div>
             </div>
         </div>
-
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <i class="fas fa-bars menu-toggle"></i>
-            <div class="nav-links">
-                <a href="homepage.html">Learning</a>
-                <a href="community.html">Community</a>
-                <a href="outreach.html">Outreach</a>
-                <a href="faqs.html">FAQs</a>
-                <a href="about.html">About Us</a>
-                <a href="documentation.html">Content Review</a>
-            </div>
-            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
-        </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div class="content-section">
-            <h2><i class="fas fa-user-edit"></i> Edit My Profile</h2>
-            <p>Update your profile details below. Note: Your name cannot be changed.</p>
-            <form class="profile-form" id="profile-form">
-                <div class="form-group">
-                    <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="e.g., datasafari123" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" placeholder="e.g., +254 712 345 678">
-                </div>
-                <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob">
-                </div>
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <select id="country">
-                        <option value="">Select your country</option>
-                        <option value="KE">Kenya</option>
-                        <option value="US">United States</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="IN">India</option>
-                        <!-- Add more countries as needed -->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="bio">Bio</label>
-                    <textarea id="bio" placeholder="Tell us about yourself..."></textarea>
-                </div>
-                <button type="submit">Save Changes</button>
-            </form>
+    <div class="main-container">
+        <div class="sidebar">
+            <a href="homepage.html">Learning</a>
+            <a href="community.html">Community</a>
+            <a href="outreach.html">Outreach</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="about.html">About Us</a>
+            <a href="documentation.html">Content Review</a>
+        </div>
+
+        <div class="content">
+            <i class="fas fa-bars menu-toggle"></i>
+            <div class="content-section">
+                <h2><i class="fas fa-user-edit"></i> Edit My Profile</h2>
+                <p>Update your profile details below. Note: Your name cannot be changed.</p>
+                <form class="profile-form" id="profile-form">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="e.g., datasafari123" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="e.g., +254 712 345 678">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country">
+                            <option value="">Select your country</option>
+                            <option value="KE">Kenya</option>
+                            <option value="US">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="IN">India</option>
+                            <!-- Add more countries as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" placeholder="Tell us about yourself..."></textarea>
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -557,24 +507,14 @@
             }
         });
 
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-            }
-        }
-
-        // Navigation toggle for mobile
+        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+            const sidebar = document.querySelector('.sidebar');
 
             menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                if (navLinks.classList.contains('active')) {
+                sidebar.classList.toggle('active');
+                if (sidebar.classList.contains('active')) {
                     menuToggle.classList.remove('fa-bars');
                     menuToggle.classList.add('fa-times');
                 } else {
@@ -584,24 +524,21 @@
             });
 
             document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
+                if (!sidebar.contains(event.target) && !menuToggle.contains(event.target) && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
                     menuToggle.classList.remove('fa-times');
                     menuToggle.classList.add('fa-bars');
                 }
             });
 
-            const header = document.querySelector('.header');
-            let lastScrollTop = 0;
-
-            window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop && scrollTop > 50) {
-                    header.classList.add('hidden');
-                } else if (scrollTop <= 50) {
-                    header.classList.remove('hidden');
+            // Highlight active sidebar link
+            const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             });
 
             // Fetch and update profile data
@@ -623,7 +560,6 @@
                             document.getElementById("last-name").value = signupData.lastName || "";
                             document.getElementById("email").value = user.email || "";
 
-                            // Load existing profile data if available
                             if (profileDoc.exists()) {
                                 const profileData = profileDoc.data();
                                 document.getElementById("username").value = profileData.username || "";
@@ -664,12 +600,11 @@
                                 updatedAt: new Date().toISOString()
                             }, { merge: true });
 
-                            // Show success message
                             const successMessage = document.getElementById("success-message");
                             successMessage.classList.add("show");
                             setTimeout(() => {
                                 successMessage.classList.remove("show");
-                            }, 3000); // Hide after 3 seconds
+                            }, 3000);
                         } catch (error) {
                             console.error("Error updating profile:", error.message, error.code);
                             alert(`Failed to update profile: ${error.message}. Please try again.`);
